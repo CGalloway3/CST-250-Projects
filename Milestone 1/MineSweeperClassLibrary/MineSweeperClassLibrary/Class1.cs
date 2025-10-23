@@ -1,4 +1,4 @@
-﻿namespace VehicleClassLibrary
+﻿namespace MineSweeperClassLibrary
 {
     public class Class1
     {
