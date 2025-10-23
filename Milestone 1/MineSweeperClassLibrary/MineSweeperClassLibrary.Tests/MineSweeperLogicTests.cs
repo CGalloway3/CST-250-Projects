@@ -8,6 +8,8 @@
  */
 
 using MineSweeperClassLibrary.Models;
+using MineSweeperClassLibrary.Enums;
+using Xunit;
 
 namespace MineSweeperClassLibrary.Tests
 {
@@ -27,6 +29,25 @@ namespace MineSweeperClassLibrary.Tests
             Assert.Equal(size, board.Cells.GetLength(0)); // Rows
             Assert.Equal(size, board.Cells.GetLength(1)); // Columns
             Assert.Equal(size * size, board.Cells.Length); // Total cells
+        }
+
+        // Test proper initialization of a cell
+        [Fact]
+        public void CellModel_DefaultConstructor_InitializesProperties()
+        {
+            // Arrange & Act: Create an instance of the CellModel
+            CellModel cell = new CellModel();
+
+            // Assert: Verify that the properties are initialized to their default values
+            Assert.NotNull(cell);
+            Assert.Equal(-1, cell.Row);
+            Assert.Equal(-1, cell.Column);
+            Assert.Equal(CellVisualStates.Hidden, cell.VisualState);
+            Assert.False(cell.IsVisited);
+            Assert.False(cell.IsBomb);
+            Assert.False(cell.IsFlagged);
+            Assert.Equal(0, cell.NumberOfBombNeighbors);
+            Assert.False(cell.HasSpecialReward);
         }
     }
 }
