@@ -9,8 +9,15 @@
 
 namespace MineSweeperClassLibrary.Models
 {
-    internal class BoardModel
+    public class BoardModel
     {
+        public int Size { get; set; }
+        public CellModel[,] Cells { get; set; }
 
+        public BoardModel(int size)
+        {
+            Size = size;
+            Cells = new CellModel[size, size];
+        }
     }
 }

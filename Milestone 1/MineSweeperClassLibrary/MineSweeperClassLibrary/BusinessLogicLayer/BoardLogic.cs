@@ -7,9 +7,9 @@
  * References:
  */
 
-namespace MineSweeperClassLibrary.Models
+namespace MineSweeperClassLibrary.BusinessLogicLayer
 {
-    public class CellModel
+    public class BoardLogic
     {
 
     }
