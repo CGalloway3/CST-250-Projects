@@ -7,14 +7,10 @@
  * References:
  */
 
-namespace MineSweeperClassLibrary.Tests
+namespace MineSweeperClassLibrary.Models
 {
-    public class MineSweeperLogicTests
+    internal class BoardModel
     {
-        [Fact]
-        public void Test1()
-        {
 
-        }
     }
 }

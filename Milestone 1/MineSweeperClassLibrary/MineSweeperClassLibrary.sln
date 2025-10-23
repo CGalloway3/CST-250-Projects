@@ -5,6 +5,8 @@ VisualStudioVersion = 17.14.36603.0 d17.14
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MineSweeperClassLibrary", "MineSweeperClassLibrary\MineSweeperClassLibrary.csproj", "{3F1F3592-1C0D-4C8A-9C8F-3668B7337E2E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MineSweeperClassLibrary.Tests", "MineSweeperClassLibrary.Tests\MineSweeperClassLibrary.Tests.csproj", "{E0426DB6-AD26-4471-96C1-8081C3E558BE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{3F1F3592-1C0D-4C8A-9C8F-3668B7337E2E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3F1F3592-1C0D-4C8A-9C8F-3668B7337E2E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3F1F3592-1C0D-4C8A-9C8F-3668B7337E2E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E0426DB6-AD26-4471-96C1-8081C3E558BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E0426DB6-AD26-4471-96C1-8081C3E558BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E0426DB6-AD26-4471-96C1-8081C3E558BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E0426DB6-AD26-4471-96C1-8081C3E558BE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
