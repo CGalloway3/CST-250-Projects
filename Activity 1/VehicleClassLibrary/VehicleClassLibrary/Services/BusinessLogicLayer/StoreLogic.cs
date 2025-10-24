@@ -80,7 +80,7 @@ namespace VehicleClassLibrary.Services.BusinessLogicLayer
         /// <summary>
         /// Write the inventory to a text file
         /// </summary>
-        public void WriteInventoryT()
+        public void WriteInventory()
         {
             // Call the WriteInventory method in the DAO
             _storeDAO.WriteInventory();
