@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.14.36603.0 d17.14
+VisualStudioVersion = 17.14.36603.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VehicleClassLibrary", "VehicleClassLibrary\VehicleClassLibrary.csproj", "{EF383F98-99A8-4C8E-80F0-9889FAE94D6D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VehicleClassLibrary.Tests", "VehicleClassLibrary.Tests\VehicleClassLibrary.Tests.csproj", "{98B41C34-38B9-49A1-A9ED-7F409D6D90CC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VehicleStoreConsoleApp", "VehicleStoreConsoleApp\VehicleStoreConsoleApp.csproj", "{CE53A04B-C8C9-4281-AC8B-609E123A0141}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{98B41C34-38B9-49A1-A9ED-7F409D6D90CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{98B41C34-38B9-49A1-A9ED-7F409D6D90CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{98B41C34-38B9-49A1-A9ED-7F409D6D90CC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CE53A04B-C8C9-4281-AC8B-609E123A0141}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE53A04B-C8C9-4281-AC8B-609E123A0141}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE53A04B-C8C9-4281-AC8B-609E123A0141}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE53A04B-C8C9-4281-AC8B-609E123A0141}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
