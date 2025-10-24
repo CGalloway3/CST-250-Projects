@@ -7,39 +7,93 @@
  * References:
  */
 using VehicleClassLibrary.Models;
+using VehicleClassLibrary.Services.DataAccessLayer;
 
 namespace VehicleClassLibrary.Services.BusinessLogicLayer
 {
     public class StoreLogic
     {
-        // Business logic methods will be implemented here
+        // Declare class level variables
+        private StoreDAO _storeDAO;
 
-        public StoreLogic() { }
-
-        // Empty method stubs
-        public int AddVehicleToCart(int id)
+        /// <summary>
+        /// Default constructor for the StoreLogic class
+        /// </summary>
+        public StoreLogic() 
         {
-            throw new NotImplementedException();
+            // Initialize the DAO variable
+            _storeDAO = new StoreDAO();
         }
 
-        public void AddVehicleToInventory(object vehicle)
+        /// <summary>
+        /// Add a vehicle to the shopping cart based on the vehicle id
+        /// </summary>
+        /// <param name="vehicleId"></param>
+        /// <returns></returns>
+        public int AddVehicleToCart(int vehicleId)
         {
-            throw new NotImplementedException();
+            // Call the AddVehicleToCart method in the DAO
+            return _storeDAO.AddVehicleToCart(vehicleId);
         }
 
+        /// <summary>
+        /// Add a new vehicle to the inventory
+        /// </summary>
+        /// <param name="vehicle"></param>
+        /// <returns></returns>
+        public int AddVehicleToInventory(VehicleModel vehicle)
+        {
+            // Call the AddVehicleToInventory method in the DAO
+            return _storeDAO.AddVehicleToInventory(vehicle);
+        }
+
+        /// <summary>
+        /// Get the total of the users shopping cart and clear the cart
+        /// </summary>
+        /// <returns></returns>
         public decimal Checkout()
         {
-            throw new NotImplementedException();
+            // Call and return the Checkout method in the DAO
+            return _storeDAO.Checkout();
         }
 
+        /// <summary>
+        /// Get a list of vehicles in the inventory
+        /// </summary>
+        /// <returns></returns>
         public List<VehicleModel> GetInventory()
         {
-            throw new NotImplementedException();
+            // Call and return the GetInventory method in the DAO
+            return _storeDAO.GetInventory();
         }
 
+        /// <summary>
+        /// Get a list of vehicles in the users shopping cart
+        /// </summary>
+        /// <returns></returns>
         public List<VehicleModel> GetShoppingCart()
         {
-            throw new NotImplementedException();
+            // Call and return the GetShoppingCart method in the DAO
+            return _storeDAO.GetShoppingCart();
+        }
+
+        /// <summary>
+        /// Write the inventory to a text file
+        /// </summary>
+        public void WriteInventoryT()
+        {
+            // Call the WriteInventory method in the DAO
+            _storeDAO.WriteInventory();
+        }
+
+        /// <summary>
+        /// Read the list of vehicles from a text file
+        /// </summary>
+        /// <returns></returns>
+        public List<VehicleModel> ReadInventory()
+        {
+            // Call and return the ReadInventory method in the DAO
+            return _storeDAO.ReadInventory();
         }
     }
 }
