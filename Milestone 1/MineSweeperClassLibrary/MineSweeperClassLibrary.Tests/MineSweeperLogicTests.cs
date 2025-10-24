@@ -154,7 +154,8 @@ namespace MineSweeperClassLibrary.Tests
             var boardModel = boardField.GetValue(boardLogic) as BoardModel;
 
             // Manually place bombs for controlled testing
-            boardModel.Cells[1, 1].IsBomb = true;
+            //boardModel.Cells[1, 1].IsBomb = true;
+            boardLogic.GetCellAt(1, 1).IsBomb = true; // New implementation tested to remove reflection in program.cs
             boardModel.Cells[2, 2].IsBomb = true;
             boardModel.Cells[3, 3].IsBomb = true;
 

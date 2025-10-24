@@ -111,6 +111,19 @@ namespace MineSweeperClassLibrary.BusinessLogicLayer
             }
 
         }
+        public CellModel GetCellAt(int row, int col)
+        {
+            return _board.Cells[row, col];
+        }
+        public int GetBoardSize()
+        {
+            return _board.Size;
+        }
+
+        public void SetDifficulty(int difficulty)
+        {
+            _board.Difficulty = difficulty;
+        }
 
         public string DetermineGameState()
         {
