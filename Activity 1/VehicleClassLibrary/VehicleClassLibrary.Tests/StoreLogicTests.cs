@@ -1,4 +1,7 @@
-﻿namespace VehicleClassLibrary.Tests
+﻿using VehicleClassLibrary.Models;
+using VehicleClassLibrary.Services.BusinessLogicLayer;
+
+namespace VehicleClassLibrary.Tests
 {
     public class StoreLogicTests
     {
