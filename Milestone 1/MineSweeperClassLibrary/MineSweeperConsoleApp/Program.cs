@@ -16,11 +16,11 @@ using MineSweeperClassLibrary.Models;
 
 // Some variable setup this will be moved to a user input loop later.
 BoardLogic board1 = new BoardLogic(10);
-board1.SetDifficulty(3);
+board1.SetDifficulty(1);
 board1.SetupBombs();
 board1.CountBombsNearby();
 BoardLogic board2 = new BoardLogic(15);
-board2.SetDifficulty(3);
+board2.SetDifficulty(1);
 board2.SetupBombs();
 board2.CountBombsNearby();
 
