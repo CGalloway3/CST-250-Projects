@@ -119,26 +119,26 @@ namespace VehicleClassLibrary.Services.DataAccessLayer
                                 //Cast the vehicle to a car
                                 CarModel car = (CarModel)vehicle;
                                 // Write the car to the file
-                                writer.WriteLine($"Car, {car.Make}, {car.Model}, {car.Year}, {car.Price}, {car.NumWheels}, {car.IsConvertible}, {car.TrunkSize}");
+                                writer.WriteLine($"Car, {car.Make}, {car.Model}, {car.Color}, {car.Year}, {car.Price}, {car.NumWheels}, {car.EngineSize}, {car.IsConvertible}, {car.TrunkSize}");
                                 break;
 
                             case "MotorcycleModel":
                                 // Cast the vehicle to a motorcycle
                                 MotorcycleModel motorcycle = (MotorcycleModel)vehicle;
                                 // Write the motorcycle to the file
-                                writer.WriteLine($"Motorcycle, {motorcycle.Make}, {motorcycle.Model}, {motorcycle.Year}, {motorcycle.Price}, {motorcycle.NumWheels}, {motorcycle.HasSideCar}, {motorcycle.SeatHeight}");
+                                writer.WriteLine($"Motorcycle, {motorcycle.Make}, {motorcycle.Model}, {motorcycle.Color}, {motorcycle.Year}, {motorcycle.Price}, {motorcycle.NumWheels}, {motorcycle.EngineSize},{motorcycle.HasSideCar}, {motorcycle.SeatHeight}");
                                 break;
 
                             case "PickupModel":
                                 // Cast the vehicle to a pickup
                                 PickupModel pickup = (PickupModel)vehicle;
                                 // Write the pickup to the file
-                                writer.WriteLine($"Pickup, {pickup.Make}, {pickup.Model}, {pickup.Year}, {pickup.Price}, {pickup.NumWheels}, {pickup.HasBedCover}, {pickup.BedSize}");
+                                writer.WriteLine($"Pickup, {pickup.Make}, {pickup.Model}, {pickup.Color}, {pickup.Year}, {pickup.Price}, {pickup.NumWheels}, {pickup.EngineSize}, {pickup.HasBedCover}, {pickup.BedSize}");
                                 break;
 
                             default:
                                 // Write the vehicle to the file
-                                writer.WriteLine($"Vehicle, {vehicle.Make}, {vehicle.Model}, {vehicle.Year}, {vehicle.Price}, {vehicle.NumWheels}");
+                                writer.WriteLine($"Vehicle, {vehicle.Make}, {vehicle.Model}, {vehicle.Color}, {vehicle.Year}, {vehicle.Price}, {vehicle.NumWheels}, {vehicle.EngineSize}");
                                 break;
                         }
                     }
@@ -162,9 +162,9 @@ namespace VehicleClassLibrary.Services.DataAccessLayer
             // Declare and Initialize
             string? line = "";
             string[] parts = [];
-            string make = "", model = "";
+            string make = "", model = "", color = "";
             int year = 0, numWheels = 0;
-            decimal price = 0m;
+            decimal price = 0m, engineSize = 0m;
             // specialty vehicle variables
             bool isConvertible = false, hasSideCar = false, hasBedCover = false;
             decimal trunkSize = 0m, seatHeight = 0m, bedSize = 0m;
@@ -187,51 +187,54 @@ namespace VehicleClassLibrary.Services.DataAccessLayer
                             // Use the parts array to get the common data (make, model, year,price,numWheels)
                             make = parts[1];
                             model = parts[2];
+                            color = parts[3];
                             // Parse the year of the vehicle
-                            year = ParseInteger(parts[3]);
+                            year = ParseInteger(parts[4]);
                             // Parse the price of the vehicle
-                            price = ParseDecimal(parts[4]);
+                            price = ParseDecimal(parts[5]);
                             // Parse the number of wheels
-                            numWheels = ParseInteger(parts[5]);
+                            numWheels = ParseInteger(parts[6]);
+                            // Parse the engine size
+                            engineSize = ParseDecimal(parts[7]);
 
                             // Use the first part of the data to create a switch for the specific model
                             switch (parts[0])
                             {
                                 case "Car":
                                     // Parse the convertible status for the car
-                                    isConvertible = ParseBoolean(parts[6]);
+                                    isConvertible = ParseBoolean(parts[8]);
                                     // Parse the trunk size for the car
-                                    trunkSize = ParseDecimal(parts[7]);
+                                    trunkSize = ParseDecimal(parts[9]);
                                     // Create a new car model and add it to the inventory
-                                    CarModel car = new CarModel(0, make, model, year, price, numWheels, isConvertible, trunkSize);
+                                    CarModel car = new CarModel(0, make, model, color, year, price, numWheels, engineSize, isConvertible, trunkSize);
                                     // Add the car to the inventory
                                     AddVehicleToInventory(car);
                                     break;
 
                                 case "Motorcycle":
                                     // Parse the side car status for the motorcycle
-                                    hasSideCar = ParseBoolean(parts[6]);
+                                    hasSideCar = ParseBoolean(parts[8]);
                                     // Parse the seat height for the motorcycle
-                                    seatHeight = ParseDecimal(parts[7]);
+                                    seatHeight = ParseDecimal(parts[9]);
                                     // Create a new motorcycle using the read properties
-                                    MotorcycleModel motorcycle = new MotorcycleModel(0, make, model, year, price, numWheels, hasSideCar, seatHeight);
+                                    MotorcycleModel motorcycle = new MotorcycleModel(0, make, model, color, year, price, numWheels, engineSize, hasSideCar, seatHeight);
                                     // Add the motorcycle to the inventory
                                     AddVehicleToInventory(motorcycle);
                                     break;
 
                                 case "Pickup":
                                     // Parse the bed cover status for the pickup
-                                    hasBedCover = ParseBoolean(parts[6]);
+                                    hasBedCover = ParseBoolean(parts[8]);
                                     // Parse the bed size for the pickup
-                                    bedSize = ParseDecimal(parts[7]);
+                                    bedSize = ParseDecimal(parts[9]);
                                     // Create a new pickup using the read properties
-                                    PickupModel pickup = new PickupModel(0, make, model, year, price, numWheels, hasBedCover, bedSize);
+                                    PickupModel pickup = new PickupModel(0, make, model, color, year, price, numWheels, engineSize, hasBedCover, bedSize);
                                     AddVehicleToInventory(pickup);
                                     break;
 
                                 default:
                                     // Create a new vehicle using the read properties
-                                    VehicleModel vehicle = new VehicleModel(0, make, model, year, price, numWheels);
+                                    VehicleModel vehicle = new VehicleModel(0, make, model, color, year, price, numWheels, engineSize);
                                     AddVehicleToInventory(vehicle);
                                     break;
                             }

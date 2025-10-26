@@ -23,20 +23,22 @@ namespace VehicleClassLibrary.Models
             HasBedCover = false;
             BedSize = 0m;
         }
-        
+
         /// <summary>
         /// Parameterized constructor for pickup model
         /// </summary>
         /// <param name="id"></param>
         /// <param name="make"></param>
         /// <param name="model"></param>
+        /// <param name="color"></param>
         /// <param name="year"></param>
         /// <param name="price"></param>
         /// <param name="numWheels"></param>
+        /// <param name="engineSize"></param>
         /// <param name="hasBedCover"></param>
         /// <param name="bedSize"></param>
-        public PickupModel(int id, string make, string model, int year, decimal price, int numWheels, bool hasBedCover, decimal bedSize)
-            : base(id, make, model, year, price, numWheels)
+        public PickupModel(int id, string make, string model, string color, int year, decimal price, int numWheels, decimal engineSize, bool hasBedCover, decimal bedSize)
+            : base(id, make, model, color, year, price, numWheels, engineSize)
         {
             HasBedCover = hasBedCover;
             BedSize = bedSize;
@@ -50,7 +52,7 @@ namespace VehicleClassLibrary.Models
 
             // Print the pickup in the following format
             // 1: 2001 Toyota Tundra with 4 wheels and a 8.3 cubic foot bed with(out) a bed cover - $5000.00
-            return $"{Id}: {Year} {Make} {Model} with {NumWheels} wheels and a {BedSize} cubic foot bed {bedCover} a bed cover - {Price:C2}";
+            return $"{Id}: {Color} {Year} {Make} {Model} with {NumWheels} wheels, a {EngineSize:F1}ltr engine, and a {BedSize} cubic foot bed {bedCover} a bed cover - {Price:C2}";
         }
     }
 }
