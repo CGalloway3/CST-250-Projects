@@ -81,6 +81,9 @@ namespace VehicleStoreGUIApp
             // Show the specialty decimal label and text box
             lblSpecialtyDecimal.Visible = true;
             txtSpecialtyDecimal.Visible = true;
+
+            // Validate the car type selection
+            ValidateVehicleType();
         }
 
         /// <summary>
@@ -105,6 +108,9 @@ namespace VehicleStoreGUIApp
             // Show the specialty decimal label and text box
             lblSpecialtyDecimal.Visible = true;
             txtSpecialtyDecimal.Visible = true;
+
+            // Validate the motorcycle type selection
+            ValidateVehicleType();
         }
 
         /// <summary>
@@ -129,6 +135,9 @@ namespace VehicleStoreGUIApp
             // Show the specialty decimal label and text box
             lblSpecialtyDecimal.Visible = true;
             txtSpecialtyDecimal.Visible = true;
+
+            // Validate the pickup type selection
+            ValidateVehicleType();
         }
 
         /// <summary>
@@ -148,8 +157,20 @@ namespace VehicleStoreGUIApp
             // Hide the specialty decimal label and text box
             lblSpecialtyDecimal.Visible = false;
             txtSpecialtyDecimal.Visible = false;
+
+            // Validate the vehicle type selection
+            ValidateVehicleType();
         }
 
+        private void RdoSpecialtyBooleanClickEH(object sender, EventArgs e)
+        {
+            // Validate the specialty boolean selection
+            ValidateSpecialtyBoolean();
+        }
+
+        /// <summary>
+        /// Create Button click event handler
+        /// </summary>
         private void BtnCreateClickEH(object sender, EventArgs e)
         {
             // Declare and Initialize variables
@@ -225,6 +246,9 @@ namespace VehicleStoreGUIApp
 
                 //Refresh the list controls
                 _inventoryBindingSource.ResetBindings(false);
+
+                // Display first warning label for vehicle type radio buttons
+                lblTypeWarning.Visible = true;
             }
         }
 
@@ -513,6 +537,54 @@ namespace VehicleStoreGUIApp
             return specialtyDecimalValue;
         }
 
-        #endregion        
+        #endregion
+
+        private void TxtMakeLeaveEH(object sender, EventArgs e)
+        {
+            // Validate the make textbox
+            ValidateTxtMake();
+        }
+
+        private void TxtModelLeaveEH(object sender, EventArgs e)
+        {
+            // Validate the model textbox
+            ValidateTxtModel();
+        }
+
+        private void TxtColorLeaveEH(object sender, EventArgs e)
+        {
+            // Validate the color textbox
+            ValidateTxtColor();
+        }
+
+        private void TxtYearLeaveEH(object sender, EventArgs e)
+        {
+            // Validate the year textbox
+            ValidateTxtYear();
+        }
+
+        private void TxtPriceLeaveEH(object sender, EventArgs e)
+        {
+            // Validate the price textbox
+            ValidateTxtPrice();
+        }
+
+        private void TxtWheelsLeaveEH(object sender, EventArgs e)
+        {
+            // Validate the wheels textbox
+            ValidateTxtWheels();
+        }
+
+        private void TxtEngineSizeLeaveEH(object sender, EventArgs e)
+        {
+            // Validate the engine size textbox
+            ValidateTxtEngineSize();
+        }
+
+        private void TxtSpecialLeaveEH(object sender, EventArgs e)
+        {
+            // Validate the specialty decimal textbox
+            ValidateSpecialtyDecimal();
+        }
     }
 }

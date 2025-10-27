@@ -208,6 +208,7 @@
             txtWheels.Name = "txtWheels";
             txtWheels.Size = new Size(130, 23);
             txtWheels.TabIndex = 13;
+            txtWheels.Leave += TxtWheelsLeaveEH;
             // 
             // txtEngineSize
             // 
@@ -215,6 +216,7 @@
             txtEngineSize.Name = "txtEngineSize";
             txtEngineSize.Size = new Size(130, 23);
             txtEngineSize.TabIndex = 14;
+            txtEngineSize.Leave += TxtEngineSizeLeaveEH;
             // 
             // lblEngineSize
             // 
@@ -244,6 +246,7 @@
             txtMake.Name = "txtMake";
             txtMake.Size = new Size(130, 23);
             txtMake.TabIndex = 10;
+            txtMake.Leave += TxtMakeLeaveEH;
             // 
             // txtModel
             // 
@@ -251,6 +254,7 @@
             txtModel.Name = "txtModel";
             txtModel.Size = new Size(130, 23);
             txtModel.TabIndex = 10;
+            txtModel.Leave += TxtModelLeaveEH;
             // 
             // txtColor
             // 
@@ -258,6 +262,7 @@
             txtColor.Name = "txtColor";
             txtColor.Size = new Size(130, 23);
             txtColor.TabIndex = 10;
+            txtColor.Leave += TxtColorLeaveEH;
             // 
             // txtYear
             // 
@@ -265,6 +270,7 @@
             txtYear.Name = "txtYear";
             txtYear.Size = new Size(130, 23);
             txtYear.TabIndex = 10;
+            txtYear.Leave += TxtYearLeaveEH;
             // 
             // txtPrice
             // 
@@ -272,6 +278,7 @@
             txtPrice.Name = "txtPrice";
             txtPrice.Size = new Size(130, 23);
             txtPrice.TabIndex = 10;
+            txtPrice.Leave += TxtPriceLeaveEH;
             // 
             // btnCreate
             // 
@@ -434,6 +441,7 @@
             rdoSpecialtyNo.TabStop = true;
             rdoSpecialtyNo.Text = "No";
             rdoSpecialtyNo.UseVisualStyleBackColor = true;
+            rdoSpecialtyNo.Click += RdoSpecialtyBooleanClickEH;
             // 
             // rdoSpecialtyYes
             // 
@@ -445,6 +453,7 @@
             rdoSpecialtyYes.TabStop = true;
             rdoSpecialtyYes.Text = "Yes";
             rdoSpecialtyYes.UseVisualStyleBackColor = true;
+            rdoSpecialtyYes.Click += RdoSpecialtyBooleanClickEH;
             // 
             // txtSpecialtyDecimal
             // 
@@ -452,6 +461,7 @@
             txtSpecialtyDecimal.Name = "txtSpecialtyDecimal";
             txtSpecialtyDecimal.Size = new Size(79, 23);
             txtSpecialtyDecimal.TabIndex = 2;
+            txtSpecialtyDecimal.Leave += TxtSpecialLeaveEH;
             // 
             // lblSpecialtyDecimal
             // 
