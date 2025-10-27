@@ -65,7 +65,7 @@ namespace VehicleClassLibrary.Services.DataAccessLayer
             // Loop through the inventory and compare properties
             for (int i = 0; i < _inventory.Count; i++)
             {
-                if (_inventory[i].Make == vehicle.Make && _inventory[1].Model == vehicle.Model && _inventory[i].Color == vehicle.Color
+                if (_inventory[i].Make == vehicle.Make && _inventory[i].Model == vehicle.Model && _inventory[i].Color == vehicle.Color
                     && _inventory[i].Year == vehicle.Year && _inventory[i].Price == vehicle.Price && _inventory[i].NumWheels == vehicle.NumWheels
                     && _inventory[i].EngineSize == vehicle.EngineSize)
                 {
@@ -84,7 +84,7 @@ namespace VehicleClassLibrary.Services.DataAccessLayer
                             break;
 
                         case "MotorcycleModel":
-                            //Cast the vehicle and current inventory item to a car
+                            //Cast the vehicle and current inventory item to a motor cycle
                             MotorcycleModel newMotorcycle = (MotorcycleModel)vehicle;
                             MotorcycleModel oldMotorcycle = (MotorcycleModel)_inventory[i];
                             // Check last two properties
@@ -95,7 +95,7 @@ namespace VehicleClassLibrary.Services.DataAccessLayer
                             break;
 
                         case "PickupModel":
-                            //Cast the vehicle and current inventory item to a car
+                            //Cast the vehicle and current inventory item to a Pickup
                             PickupModel newPickup = (PickupModel)vehicle;
                             PickupModel oldPickup = (PickupModel)_inventory[i];
                             // Check last two properties
