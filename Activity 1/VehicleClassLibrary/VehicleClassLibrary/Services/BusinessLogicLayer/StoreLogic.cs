@@ -45,11 +45,11 @@ namespace VehicleClassLibrary.Services.BusinessLogicLayer
             return _storeDAO.GetShoppingCart();
         }
 
-       /// <summary>
+        /// <summary>
         /// Add a new vehicle to the inventory
         /// </summary>
         /// <param name="vehicle"></param>
-        /// <returns></returns>
+        /// <returns> The id of the added vehicle or -1 for a duplicate vehicle that was not added.</returns>
         public int AddVehicleToInventory(VehicleModel vehicle)
         {
             // Call the AddVehicleToInventory method in the DAO
@@ -65,6 +65,16 @@ namespace VehicleClassLibrary.Services.BusinessLogicLayer
         {
             // Call the AddVehicleToCart method in the DAO
             return _storeDAO.AddVehicleToCart(vehicleId);
+        }
+
+        /// <summary>
+        /// Removes a vehicle from the shopping cart based on the specified vehicle identifier.
+        /// </summary>
+        /// <param name="vehicleId">The unique identifier of the vehicle to be removed from the cart. Must be a valid and existing vehicle ID.</param>
+        /// <returns>The number of vehicles remaining in the cart after the removal operation.</returns>
+        public int RemoveVehicleFromCart(int vehicleId)
+        {
+            return _storeDAO.RemoveVehicleFromCart(vehicleId);
         }
 
         /// <summary>

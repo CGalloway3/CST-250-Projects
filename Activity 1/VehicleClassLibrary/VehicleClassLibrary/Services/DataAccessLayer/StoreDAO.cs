@@ -58,13 +58,66 @@ namespace VehicleClassLibrary.Services.DataAccessLayer
         /// Add a new vehicle to the inventory
         /// </summary>
         /// <param name="vehicle"></param>
-        /// <returns></returns>
+        /// <returns> The id of the added vehicle or -1 for a duplicate vehicle that was not added.</returns>
         public int AddVehicleToInventory(VehicleModel vehicle)
         {
+            // Prohibit duplicate vehicle entry into the inventory
+            // Loop through the inventory and compare properties
+            for (int i = 0; i < _inventory.Count; i++)
+            {
+                if (_inventory[i].Make == vehicle.Make && _inventory[1].Model == vehicle.Model && _inventory[i].Color == vehicle.Color
+                    && _inventory[i].Year == vehicle.Year && _inventory[i].Price == vehicle.Price && _inventory[i].NumWheels == vehicle.NumWheels
+                    && _inventory[i].EngineSize == vehicle.EngineSize)
+                {
+                    Type vehicleType = vehicle.GetType();
+                    switch (vehicleType.Name)
+                    {
+                        case "CarModel":
+                            //Cast the vehicle and current inventory item to a car
+                            CarModel newCar = (CarModel)vehicle;
+                            CarModel oldCar = (CarModel)_inventory[i];
+                            // Check last two properties
+                            if (oldCar.IsConvertible == newCar.IsConvertible && oldCar.TrunkSize == newCar.TrunkSize)
+                            {
+                                return -1;
+                            }
+                            break;
+
+                        case "MotorcycleModel":
+                            //Cast the vehicle and current inventory item to a car
+                            MotorcycleModel newMotorcycle = (MotorcycleModel)vehicle;
+                            MotorcycleModel oldMotorcycle = (MotorcycleModel)_inventory[i];
+                            // Check last two properties
+                            if (oldMotorcycle.HasSideCar == newMotorcycle.HasSideCar && oldMotorcycle.SeatHeight == newMotorcycle.SeatHeight)
+                            {
+                                return -1;
+                            }
+                            break;
+
+                        case "PickupModel":
+                            //Cast the vehicle and current inventory item to a car
+                            PickupModel newPickup = (PickupModel)vehicle;
+                            PickupModel oldPickup = (PickupModel)_inventory[i];
+                            // Check last two properties
+                            if (oldPickup.HasBedCover == newPickup.HasBedCover && oldPickup.BedSize == newPickup.BedSize)
+                            {
+                                return -1;
+                            }
+                            break;
+
+                        default:
+                            return -1;
+
+                    }
+                }
+            }
+
+            // If the code reaches this point the vehicle is not an exact duplicate and we are going to add it.
             // Set the id for the new vehicle
             vehicle.Id = _inventory.Count + 1;
             // Add the vehicle to the inventory list
             _inventory.Add(vehicle);
+
             // Return  the id of the new vehicle
             return vehicle.Id;
         }
@@ -84,6 +137,30 @@ namespace VehicleClassLibrary.Services.DataAccessLayer
                 {
                     // If so, add the vehicle to the shopping cart
                     _shoppingCart.Add(_inventory[i]);
+                }
+            }
+            // Return the number of vehicles in the shopping cart
+            return _shoppingCart.Count;
+        }
+
+        /// <summary>
+        /// Removes a vehicle from the shopping cart based on the specified vehicle ID.
+        /// </summary>
+        /// <remarks>If multiple vehicles with the same ID exist in the cart, only the first occurrence is
+        /// removed.</remarks>
+        /// <param name="vehicleId">The unique identifier of the vehicle to be removed from the cart.</param>
+        /// <returns>The total number of vehicles remaining in the shopping cart after the removal.</returns>
+        public int RemoveVehicleFromCart(int vehicleId)
+        {
+            // Loop through the shopping cart to find the correct vehicle
+            for (int i = 0; i < _shoppingCart.Count; i++)
+            {
+                // Check if the shopping cart vehicle id matches the parameters
+                if (_shoppingCart[i].Id == vehicleId)
+                {
+                    // If so, remove the vehicle to the shopping cart
+                    _shoppingCart.Remove(_shoppingCart[i]);
+                    break; // exit for loop so only one vehicle is removed at a time
                 }
             }
             // Return the number of vehicles in the shopping cart
@@ -331,3 +408,4 @@ namespace VehicleClassLibrary.Services.DataAccessLayer
         }
     }
 }
+

@@ -72,6 +72,9 @@
             btnCheckout = new Button();
             lblTotalLabel = new Label();
             lblTotalAmount = new Label();
+            btnRemoveFromCart = new Button();
+            btnLoad = new Button();
+            btnSave = new Button();
             gbxCreate.SuspendLayout();
             gbxSpecialty.SuspendLayout();
             gbxInventory.SuspendLayout();
@@ -509,6 +512,7 @@
             btnAddToCart.TabIndex = 3;
             btnAddToCart.Text = "Add to Cart";
             btnAddToCart.UseVisualStyleBackColor = true;
+            btnAddToCart.Click += BtnAddToCartClickEH;
             // 
             // gbxCart
             // 
@@ -531,18 +535,19 @@
             // btnCheckout
             // 
             btnCheckout.Font = new Font("Segoe UI", 12F);
-            btnCheckout.Location = new Point(502, 534);
+            btnCheckout.Location = new Point(674, 527);
             btnCheckout.Name = "btnCheckout";
             btnCheckout.Size = new Size(95, 37);
             btnCheckout.TabIndex = 5;
             btnCheckout.Text = "Checkout";
             btnCheckout.UseVisualStyleBackColor = true;
+            btnCheckout.Click += BtnCheckoutClickEH;
             // 
             // lblTotalLabel
             // 
             lblTotalLabel.AutoSize = true;
             lblTotalLabel.Font = new Font("Segoe UI", 12F);
-            lblTotalLabel.Location = new Point(492, 574);
+            lblTotalLabel.Location = new Point(664, 567);
             lblTotalLabel.Name = "lblTotalLabel";
             lblTotalLabel.Size = new Size(45, 21);
             lblTotalLabel.TabIndex = 6;
@@ -552,17 +557,50 @@
             // 
             lblTotalAmount.AutoSize = true;
             lblTotalAmount.Font = new Font("Segoe UI", 12F);
-            lblTotalAmount.Location = new Point(546, 575);
+            lblTotalAmount.Location = new Point(718, 568);
             lblTotalAmount.Name = "lblTotalAmount";
             lblTotalAmount.Size = new Size(28, 21);
             lblTotalAmount.TabIndex = 7;
             lblTotalAmount.Text = "$0";
+            // 
+            // btnRemoveFromCart
+            // 
+            btnRemoveFromCart.Location = new Point(512, 276);
+            btnRemoveFromCart.Name = "btnRemoveFromCart";
+            btnRemoveFromCart.Size = new Size(71, 56);
+            btnRemoveFromCart.TabIndex = 8;
+            btnRemoveFromCart.Text = "Remove from Cart";
+            btnRemoveFromCart.UseVisualStyleBackColor = true;
+            btnRemoveFromCart.Click += BtnRemoveFromCartClickEH;
+            // 
+            // btnLoad
+            // 
+            btnLoad.Location = new Point(274, 543);
+            btnLoad.Name = "btnLoad";
+            btnLoad.Size = new Size(87, 46);
+            btnLoad.TabIndex = 9;
+            btnLoad.Text = "Load Inventory";
+            btnLoad.UseVisualStyleBackColor = true;
+            btnLoad.Click += BtnLoadClickEH;
+            // 
+            // btnSave
+            // 
+            btnSave.Location = new Point(387, 543);
+            btnSave.Name = "btnSave";
+            btnSave.Size = new Size(87, 46);
+            btnSave.TabIndex = 9;
+            btnSave.Text = "Save Inventory";
+            btnSave.UseVisualStyleBackColor = true;
+            btnSave.Click += BtnSaveClickEH;
             // 
             // FrmVehicleStore
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(868, 609);
+            Controls.Add(btnSave);
+            Controls.Add(btnLoad);
+            Controls.Add(btnRemoveFromCart);
             Controls.Add(lblTotalAmount);
             Controls.Add(lblTotalLabel);
             Controls.Add(btnCheckout);
@@ -573,6 +611,7 @@
             Controls.Add(gbxCreate);
             Name = "FrmVehicleStore";
             Text = "Vehicel Store";
+            Click += BtnRemoveFromCartClickEH;
             gbxCreate.ResumeLayout(false);
             gbxCreate.PerformLayout();
             gbxSpecialty.ResumeLayout(false);
@@ -629,5 +668,8 @@
         private Label lblBooleanWarning;
         private Label lblTotalLabel;
         private Label lblTotalAmount;
+        private Button btnRemoveFromCart;
+        private Button btnLoad;
+        private Button btnSave;
     }
 }

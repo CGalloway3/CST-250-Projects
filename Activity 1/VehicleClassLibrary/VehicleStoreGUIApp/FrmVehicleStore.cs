@@ -162,10 +162,66 @@ namespace VehicleStoreGUIApp
             ValidateVehicleType();
         }
 
+        /// <summary>
+        /// Click event handler for both of the specialty boolean radio buttons
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void RdoSpecialtyBooleanClickEH(object sender, EventArgs e)
         {
             // Validate the specialty boolean selection
             ValidateSpecialtyBoolean();
+        }
+
+        /// <summary>
+        /// Click event handler for the add to cart button.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void BtnAddToCartClickEH(object sender, EventArgs e)
+        {
+            // Get the selected vehicle from the inventory list
+            VehicleModel selectedVehicle = (VehicleModel)lstInventory.SelectedItem;
+            if (selectedVehicle != null)
+            {
+                // Add the selected vehicle to the shopping cart
+                _storeLogic.AddVehicleToCart(selectedVehicle.Id);
+                // Refresh the shopping cart list control
+                _shoppingCartBindingSource.ResetBindings(false);
+
+            }
+        }
+
+        /// <summary>
+        /// Click event handler for the remove from cart button
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void BtnRemoveFromCartClickEH(object sender, EventArgs e)
+        {
+            // Get the selected vehicle from the shopping cart list
+            VehicleModel selectedVehicle = (VehicleModel)lstShoppingCart.SelectedItem;
+
+            if (selectedVehicle != null)
+            {
+                _storeLogic.RemoveVehicleFromCart(selectedVehicle.Id);
+            }
+            _shoppingCartBindingSource.ResetBindings(false);
+        }
+
+        /// <summary>
+        /// Click event handler for the checkout button
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void BtnCheckoutClickEH(object sender, EventArgs e)
+        {
+            // Perform the checkout operation
+            decimal total = _storeLogic.Checkout();
+            // Display the total to lblTotalAmount with the currency format
+            lblTotalAmount.Text = total.ToString("C");
+            // Reset the bindings for the shopping cart binding source
+            _shoppingCartBindingSource.ResetBindings(false);
         }
 
         /// <summary>
@@ -225,6 +281,7 @@ namespace VehicleStoreGUIApp
                         vehicle = new VehicleModel(id, make, model, color, year, price, wheels, engineSize);
                         break;
                 }
+                
                 // Add the vehicle to the inventory
                 _storeLogic.AddVehicleToInventory(vehicle);
 
@@ -252,11 +309,91 @@ namespace VehicleStoreGUIApp
             }
         }
 
-        /////////////////////////////////
+        /// <summary>
+        /// Click event handler for the load inventory button
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void BtnLoadClickEH(object sender, EventArgs e)
+        {
+            // Read in from file
+            _storeLogic.ReadInventory();
+
+            //Refresh the list controls
+            _inventoryBindingSource.ResetBindings(false);
+        }
+
+        /// <summary>
+        /// Click event Handler for the save inventory button.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void BtnSaveClickEH(object sender, EventArgs e)
+        {
+            // Write out to file
+            _storeLogic.WriteInventory();
+
+            // Refresh the list controls
+            _inventoryBindingSource.ResetBindings(false);
+        }
+
         /// <summary>                 ///
         /// Validation Checks region  ///
-        /// </summary>                ///
-        /////////////////////////////////        
+        /// </summary>                ///  
+
+        #region Leave event handlers for validation
+
+        private void TxtMakeLeaveEH(object sender, EventArgs e)
+        {
+            // Validate the make textbox
+            ValidateTxtMake();
+        }
+
+        private void TxtModelLeaveEH(object sender, EventArgs e)
+        {
+            // Validate the model textbox
+            ValidateTxtModel();
+        }
+
+        private void TxtColorLeaveEH(object sender, EventArgs e)
+        {
+            // Validate the color textbox
+            ValidateTxtColor();
+        }
+
+        private void TxtYearLeaveEH(object sender, EventArgs e)
+        {
+            // Validate the year textbox
+            ValidateTxtYear();
+        }
+
+        private void TxtPriceLeaveEH(object sender, EventArgs e)
+        {
+            // Validate the price textbox
+            ValidateTxtPrice();
+        }
+
+        private void TxtWheelsLeaveEH(object sender, EventArgs e)
+        {
+            // Validate the wheels textbox
+            ValidateTxtWheels();
+        }
+
+        private void TxtEngineSizeLeaveEH(object sender, EventArgs e)
+        {
+            // Validate the engine size textbox
+            ValidateTxtEngineSize();
+        }
+
+        private void TxtSpecialLeaveEH(object sender, EventArgs e)
+        {
+            // Validate the specialty decimal textbox
+            ValidateSpecialtyDecimal();
+        }
+
+
+        #endregion
+
         #region Validation Checks
 
         /// <summary>
@@ -538,53 +675,5 @@ namespace VehicleStoreGUIApp
         }
 
         #endregion
-
-        private void TxtMakeLeaveEH(object sender, EventArgs e)
-        {
-            // Validate the make textbox
-            ValidateTxtMake();
-        }
-
-        private void TxtModelLeaveEH(object sender, EventArgs e)
-        {
-            // Validate the model textbox
-            ValidateTxtModel();
-        }
-
-        private void TxtColorLeaveEH(object sender, EventArgs e)
-        {
-            // Validate the color textbox
-            ValidateTxtColor();
-        }
-
-        private void TxtYearLeaveEH(object sender, EventArgs e)
-        {
-            // Validate the year textbox
-            ValidateTxtYear();
-        }
-
-        private void TxtPriceLeaveEH(object sender, EventArgs e)
-        {
-            // Validate the price textbox
-            ValidateTxtPrice();
-        }
-
-        private void TxtWheelsLeaveEH(object sender, EventArgs e)
-        {
-            // Validate the wheels textbox
-            ValidateTxtWheels();
-        }
-
-        private void TxtEngineSizeLeaveEH(object sender, EventArgs e)
-        {
-            // Validate the engine size textbox
-            ValidateTxtEngineSize();
-        }
-
-        private void TxtSpecialLeaveEH(object sender, EventArgs e)
-        {
-            // Validate the specialty decimal textbox
-            ValidateSpecialtyDecimal();
-        }
     }
 }
