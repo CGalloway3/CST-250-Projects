@@ -29,23 +29,23 @@
         private void InitializeComponent()
         {
             gbxCreate = new GroupBox();
-            lblEngineSizewarning = new Label();
-            lblwheelswarning = new Label();
+            lblEngineSizeWarning = new Label();
+            lblWheelsWarning = new Label();
             lblPriceWarning = new Label();
             lblYearWarning = new Label();
             lblColorWarning = new Label();
             lblModelWarning = new Label();
             lblMakeWarning = new Label();
             lblTypeWarning = new Label();
-            textBox6 = new TextBox();
-            textBox7 = new TextBox();
+            txtWheels = new TextBox();
+            txtEngineSize = new TextBox();
             lblEngineSize = new Label();
             lblWheels = new Label();
-            textBox5 = new TextBox();
-            textBox4 = new TextBox();
-            textBox3 = new TextBox();
-            textBox2 = new TextBox();
-            textBox1 = new TextBox();
+            txtMake = new TextBox();
+            txtModel = new TextBox();
+            txtColor = new TextBox();
+            txtYear = new TextBox();
+            txtPrice = new TextBox();
             btnCreate = new Button();
             lblPrice = new Label();
             lblYear = new Label();
@@ -68,7 +68,7 @@
             lstInventory = new ListBox();
             btnAddToCart = new Button();
             gbxCart = new GroupBox();
-            lstCart = new ListBox();
+            lstShoppingCart = new ListBox();
             btnCheckout = new Button();
             lblTotalLabel = new Label();
             lblTotalAmount = new Label();
@@ -80,23 +80,23 @@
             // 
             // gbxCreate
             // 
-            gbxCreate.Controls.Add(lblEngineSizewarning);
-            gbxCreate.Controls.Add(lblwheelswarning);
+            gbxCreate.Controls.Add(lblEngineSizeWarning);
+            gbxCreate.Controls.Add(lblWheelsWarning);
             gbxCreate.Controls.Add(lblPriceWarning);
             gbxCreate.Controls.Add(lblYearWarning);
             gbxCreate.Controls.Add(lblColorWarning);
             gbxCreate.Controls.Add(lblModelWarning);
             gbxCreate.Controls.Add(lblMakeWarning);
             gbxCreate.Controls.Add(lblTypeWarning);
-            gbxCreate.Controls.Add(textBox6);
-            gbxCreate.Controls.Add(textBox7);
+            gbxCreate.Controls.Add(txtWheels);
+            gbxCreate.Controls.Add(txtEngineSize);
             gbxCreate.Controls.Add(lblEngineSize);
             gbxCreate.Controls.Add(lblWheels);
-            gbxCreate.Controls.Add(textBox5);
-            gbxCreate.Controls.Add(textBox4);
-            gbxCreate.Controls.Add(textBox3);
-            gbxCreate.Controls.Add(textBox2);
-            gbxCreate.Controls.Add(textBox1);
+            gbxCreate.Controls.Add(txtMake);
+            gbxCreate.Controls.Add(txtModel);
+            gbxCreate.Controls.Add(txtColor);
+            gbxCreate.Controls.Add(txtYear);
+            gbxCreate.Controls.Add(txtPrice);
             gbxCreate.Controls.Add(btnCreate);
             gbxCreate.Controls.Add(lblPrice);
             gbxCreate.Controls.Add(lblYear);
@@ -114,27 +114,27 @@
             gbxCreate.TabStop = false;
             gbxCreate.Text = "Create a Vehicle";
             // 
-            // lblEngineSizewarning
+            // lblEngineSizeWarning
             // 
-            lblEngineSizewarning.AutoSize = true;
-            lblEngineSizewarning.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            lblEngineSizewarning.ForeColor = Color.Red;
-            lblEngineSizewarning.Location = new Point(33, 383);
-            lblEngineSizewarning.Name = "lblEngineSizewarning";
-            lblEngineSizewarning.Size = new Size(180, 15);
-            lblEngineSizewarning.TabIndex = 22;
-            lblEngineSizewarning.Text = "Please enter a valid Engine Size";
+            lblEngineSizeWarning.AutoSize = true;
+            lblEngineSizeWarning.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            lblEngineSizeWarning.ForeColor = Color.Red;
+            lblEngineSizeWarning.Location = new Point(33, 383);
+            lblEngineSizeWarning.Name = "lblEngineSizeWarning";
+            lblEngineSizeWarning.Size = new Size(180, 15);
+            lblEngineSizeWarning.TabIndex = 22;
+            lblEngineSizeWarning.Text = "Please enter a valid Engine Size";
             // 
-            // lblwheelswarning
+            // lblWheelsWarning
             // 
-            lblwheelswarning.AutoSize = true;
-            lblwheelswarning.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            lblwheelswarning.ForeColor = Color.Red;
-            lblwheelswarning.Location = new Point(27, 338);
-            lblwheelswarning.Name = "lblwheelswarning";
-            lblwheelswarning.Size = new Size(188, 15);
-            lblwheelswarning.TabIndex = 21;
-            lblwheelswarning.Text = "Please enter a valid Wheel count";
+            lblWheelsWarning.AutoSize = true;
+            lblWheelsWarning.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            lblWheelsWarning.ForeColor = Color.Red;
+            lblWheelsWarning.Location = new Point(27, 338);
+            lblWheelsWarning.Name = "lblWheelsWarning";
+            lblWheelsWarning.Size = new Size(188, 15);
+            lblWheelsWarning.TabIndex = 21;
+            lblWheelsWarning.Text = "Please enter a valid Wheel count";
             // 
             // lblPriceWarning
             // 
@@ -202,19 +202,19 @@
             lblTypeWarning.TabIndex = 15;
             lblTypeWarning.Text = "Please Choose a Vehicle Type";
             // 
-            // textBox6
+            // txtWheels
             // 
-            textBox6.Location = new Point(86, 311);
-            textBox6.Name = "textBox6";
-            textBox6.Size = new Size(130, 23);
-            textBox6.TabIndex = 13;
+            txtWheels.Location = new Point(86, 311);
+            txtWheels.Name = "txtWheels";
+            txtWheels.Size = new Size(130, 23);
+            txtWheels.TabIndex = 13;
             // 
-            // textBox7
+            // txtEngineSize
             // 
-            textBox7.Location = new Point(86, 356);
-            textBox7.Name = "textBox7";
-            textBox7.Size = new Size(130, 23);
-            textBox7.TabIndex = 14;
+            txtEngineSize.Location = new Point(86, 356);
+            txtEngineSize.Name = "txtEngineSize";
+            txtEngineSize.Size = new Size(130, 23);
+            txtEngineSize.TabIndex = 14;
             // 
             // lblEngineSize
             // 
@@ -238,49 +238,50 @@
             lblWheels.Text = "Wheels:";
             lblWheels.TextAlign = ContentAlignment.MiddleRight;
             // 
-            // textBox5
+            // txtMake
             // 
-            textBox5.Location = new Point(86, 84);
-            textBox5.Name = "textBox5";
-            textBox5.Size = new Size(130, 23);
-            textBox5.TabIndex = 10;
+            txtMake.Location = new Point(86, 84);
+            txtMake.Name = "txtMake";
+            txtMake.Size = new Size(130, 23);
+            txtMake.TabIndex = 10;
             // 
-            // textBox4
+            // txtModel
             // 
-            textBox4.Location = new Point(86, 129);
-            textBox4.Name = "textBox4";
-            textBox4.Size = new Size(130, 23);
-            textBox4.TabIndex = 10;
+            txtModel.Location = new Point(86, 129);
+            txtModel.Name = "txtModel";
+            txtModel.Size = new Size(130, 23);
+            txtModel.TabIndex = 10;
             // 
-            // textBox3
+            // txtColor
             // 
-            textBox3.Location = new Point(86, 174);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(130, 23);
-            textBox3.TabIndex = 10;
+            txtColor.Location = new Point(86, 174);
+            txtColor.Name = "txtColor";
+            txtColor.Size = new Size(130, 23);
+            txtColor.TabIndex = 10;
             // 
-            // textBox2
+            // txtYear
             // 
-            textBox2.Location = new Point(86, 219);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(130, 23);
-            textBox2.TabIndex = 10;
+            txtYear.Location = new Point(86, 219);
+            txtYear.Name = "txtYear";
+            txtYear.Size = new Size(130, 23);
+            txtYear.TabIndex = 10;
             // 
-            // textBox1
+            // txtPrice
             // 
-            textBox1.Location = new Point(86, 264);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(130, 23);
-            textBox1.TabIndex = 10;
+            txtPrice.Location = new Point(86, 264);
+            txtPrice.Name = "txtPrice";
+            txtPrice.Size = new Size(130, 23);
+            txtPrice.TabIndex = 10;
             // 
             // btnCreate
             // 
-            btnCreate.Location = new Point(83, 407);
+            btnCreate.Location = new Point(83, 403);
             btnCreate.Name = "btnCreate";
             btnCreate.Size = new Size(75, 23);
             btnCreate.TabIndex = 9;
             btnCreate.Text = "Create";
             btnCreate.UseVisualStyleBackColor = true;
+            btnCreate.Click += BtnCreateClickEH;
             // 
             // lblPrice
             // 
@@ -347,6 +348,7 @@
             rdoVehicle.TabStop = true;
             rdoVehicle.Text = "Vehicle";
             rdoVehicle.UseVisualStyleBackColor = true;
+            rdoVehicle.Click += RdoVehicleClickEH;
             // 
             // rdoPickup
             // 
@@ -358,6 +360,7 @@
             rdoPickup.TabStop = true;
             rdoPickup.Text = "Pickup";
             rdoPickup.UseVisualStyleBackColor = true;
+            rdoPickup.Click += RdoPickupClickEH;
             // 
             // rdoMotorcycle
             // 
@@ -369,6 +372,7 @@
             rdoMotorcycle.TabStop = true;
             rdoMotorcycle.Text = "Motorcycle";
             rdoMotorcycle.UseVisualStyleBackColor = true;
+            rdoMotorcycle.Click += RdoMotorcycleClickEH;
             // 
             // rdoCar
             // 
@@ -444,9 +448,9 @@
             // 
             // txtSpecialtyDecimal
             // 
-            txtSpecialtyDecimal.Location = new Point(159, 92);
+            txtSpecialtyDecimal.Location = new Point(134, 92);
             txtSpecialtyDecimal.Name = "txtSpecialtyDecimal";
-            txtSpecialtyDecimal.Size = new Size(54, 23);
+            txtSpecialtyDecimal.Size = new Size(79, 23);
             txtSpecialtyDecimal.TabIndex = 2;
             // 
             // lblSpecialtyDecimal
@@ -498,7 +502,7 @@
             // 
             // gbxCart
             // 
-            gbxCart.Controls.Add(lstCart);
+            gbxCart.Controls.Add(lstShoppingCart);
             gbxCart.Location = new Point(589, 12);
             gbxCart.Name = "gbxCart";
             gbxCart.Size = new Size(261, 503);
@@ -506,18 +510,18 @@
             gbxCart.TabStop = false;
             gbxCart.Text = "Shopping Cart";
             // 
-            // lstCart
+            // lstShoppingCart
             // 
-            lstCart.FormattingEnabled = true;
-            lstCart.Location = new Point(6, 16);
-            lstCart.Name = "lstCart";
-            lstCart.Size = new Size(250, 484);
-            lstCart.TabIndex = 0;
+            lstShoppingCart.FormattingEnabled = true;
+            lstShoppingCart.Location = new Point(6, 16);
+            lstShoppingCart.Name = "lstShoppingCart";
+            lstShoppingCart.Size = new Size(250, 484);
+            lstShoppingCart.TabIndex = 0;
             // 
             // btnCheckout
             // 
             btnCheckout.Font = new Font("Segoe UI", 12F);
-            btnCheckout.Location = new Point(669, 529);
+            btnCheckout.Location = new Point(502, 534);
             btnCheckout.Name = "btnCheckout";
             btnCheckout.Size = new Size(95, 37);
             btnCheckout.TabIndex = 5;
@@ -528,7 +532,7 @@
             // 
             lblTotalLabel.AutoSize = true;
             lblTotalLabel.Font = new Font("Segoe UI", 12F);
-            lblTotalLabel.Location = new Point(659, 569);
+            lblTotalLabel.Location = new Point(492, 574);
             lblTotalLabel.Name = "lblTotalLabel";
             lblTotalLabel.Size = new Size(45, 21);
             lblTotalLabel.TabIndex = 6;
@@ -538,7 +542,7 @@
             // 
             lblTotalAmount.AutoSize = true;
             lblTotalAmount.Font = new Font("Segoe UI", 12F);
-            lblTotalAmount.Location = new Point(713, 570);
+            lblTotalAmount.Location = new Point(546, 575);
             lblTotalAmount.Name = "lblTotalAmount";
             lblTotalAmount.Size = new Size(28, 21);
             lblTotalAmount.TabIndex = 7;
@@ -548,7 +552,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(878, 609);
+            ClientSize = new Size(868, 609);
             Controls.Add(lblTotalAmount);
             Controls.Add(lblTotalLabel);
             Controls.Add(btnCheckout);
@@ -581,15 +585,15 @@
         private RadioButton rdoPickup;
         private RadioButton rdoMotorcycle;
         private RadioButton rdoCar;
-        private TextBox textBox5;
-        private TextBox textBox4;
-        private TextBox textBox3;
-        private TextBox textBox2;
-        private TextBox textBox1;
+        private TextBox txtMake;
+        private TextBox txtModel;
+        private TextBox txtColor;
+        private TextBox txtYear;
+        private TextBox txtPrice;
         private Button btnCreate;
         private GroupBox gbxSpecialty;
-        private TextBox textBox6;
-        private TextBox textBox7;
+        private TextBox txtWheels;
+        private TextBox txtEngineSize;
         private Label lblEngineSize;
         private Label lblWheels;
         private RadioButton rdoSpecialtyNo;
@@ -601,10 +605,10 @@
         private ListBox lstInventory;
         private Button btnAddToCart;
         private GroupBox gbxCart;
-        private ListBox lstCart;
+        private ListBox lstShoppingCart;
         private Button btnCheckout;
-        private Label lblEngineSizewarning;
-        private Label lblwheelswarning;
+        private Label lblEngineSizeWarning;
+        private Label lblWheelsWarning;
         private Label lblPriceWarning;
         private Label lblYearWarning;
         private Label lblColorWarning;
