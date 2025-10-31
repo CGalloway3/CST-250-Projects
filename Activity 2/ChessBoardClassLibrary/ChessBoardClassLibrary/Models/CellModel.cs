@@ -20,7 +20,7 @@ namespace ChessBoardClassLibrary.Models
         // These properties need to be both readable and writable from outside the model,
         // so we use public getters and setters. This is appropriate for properties
         // where external components (e.g., the board logic) are responsible for updating them.
-        public string PieceOccupyingCell { get; set; }
+        public ChessPiece PieceOccupyingCell { get; set; }
         public bool IsLegalNextMove { get; set; }
 
         /// <summary>
@@ -33,7 +33,7 @@ namespace ChessBoardClassLibrary.Models
             Row = row;
             Col = col;
             // Set default values for the other properties
-            PieceOccupyingCell = "";
+            PieceOccupyingCell = new ChessPiece();
             IsLegalNextMove = false;
         }
     }
