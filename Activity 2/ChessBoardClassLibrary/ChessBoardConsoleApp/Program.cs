@@ -9,14 +9,20 @@
 
 using ChessBoardClassLibrary.Enums;
 using ChessBoardClassLibrary.Models;
+using ChessBoardClassLibrary.Services.BusinessLogicLayer;
+using System.Xml.XPath;
 
 //-----------------------------------
 // Start of Main Method
 //-----------------------------------
 
 // Declare and Initialize
-string piece = "";
+string pieceType = "";
+string pieceColor = "";
+PieceType resultType = PieceType.None;
+PieceColor resultColor = PieceColor.None;
 Tuple<int, int>? result;
+BoardLogic boardLogic = new BoardLogic();
 
 // Print a welcome message for the user
 Console.WriteLine("Hello, Chess Players!");
@@ -28,15 +34,21 @@ BoardModel board = new BoardModel(8);
 Utility.PrintBoard(board);
 
 // Prompt the user for the type of chess piece
-Console.Write("Enter the type of piece you want to place (Knight, Rook, Bishop, Queen, King): ");
-piece = Console.ReadLine();
+Console.Write("Enter the type of piece you want to place (Pawn, Knight, Rook, Bishop, Queen, King): ");
+pieceType = Console.ReadLine();
+Console.Write("Enter the color (Black White): ");
+pieceColor = Console.ReadLine();
+resultType = PieceTypeConverter.ConvertStringToPieceType(pieceType);
+resultColor = PieceColorConverter.ConvertStringToPieceColor(pieceColor);
 
 // Prompt the user for the location of the chess piece
 result = Utility.GetRowAndCol();
 
 // Mark the legal moves based on the input
+board = boardLogic.MarkLegalMoves(board, board.Grid[result.Item1, result.Item2], resultType, resultColor);
 
 // Print out the new chess board
+Utility.PrintBoard(board);
 
 //-----------------------------------
 // End of Main Method
@@ -71,7 +83,7 @@ public static class Utility
                 else if (cell.PieceOccupyingCell.SignifyingLetter != "")
                 {
                     // Print the chess piece letter
-                    Console.Write($"{cell.PieceOccupyingCell.SignifyingLetter} ");
+                    Console.Write($" {cell.PieceOccupyingCell.SignifyingLetter}");
                 }
                 else
                 {

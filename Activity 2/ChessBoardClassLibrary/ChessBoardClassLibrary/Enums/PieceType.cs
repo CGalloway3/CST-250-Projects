@@ -27,4 +27,31 @@ namespace ChessBoardClassLibrary.Enums
         Queen = 5,
         King = 6
     }
+
+    /// <summary>
+    /// Static class to handle safe conversion of strings to the PieceType enum.
+    /// </summary>
+    public static class PieceTypeConverter
+    {
+        /// <summary>
+        /// Converts a string representation of a piece type (e.g., "Pawn" or "knight") 
+        /// into the corresponding PieceType enum value.
+        /// </summary>
+        /// <param name="pieceString">The string to convert (case-insensitive).</param>
+        /// <returns>The matching PieceType, or PieceType.None if the conversion fails.</returns>
+        public static PieceType ConvertStringToPieceType(string pieceString)
+        {
+            // Use Enum.TryParse for safe conversion.
+            // true ignores case (so "pawn", "Pawn", and "PAWN" all work).
+            if (Enum.TryParse(pieceString, true, out PieceType result))
+            {
+                // Conversion succeeded, return the result.
+                return result;
+            }
+
+            // Conversion failed (e.g., the string was "dragon").
+            // Return PieceType.None as a safe default/error state.
+            return PieceType.None;
+        }
+    }
 }
