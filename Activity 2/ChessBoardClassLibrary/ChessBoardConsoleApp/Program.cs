@@ -7,15 +7,36 @@
  * References:
  */
 
+using ChessBoardClassLibrary.Enums;
+using ChessBoardClassLibrary.Models;
+
 //-----------------------------------
 // Start of Main Method
 //-----------------------------------
 
-// Print a welcome message for the user
-using ChessBoardClassLibrary.Enums;
-using ChessBoardClassLibrary.Models;
+// Declare and Initialize
+string piece = "";
+Tuple<int, int>? result;
 
+// Print a welcome message for the user
 Console.WriteLine("Hello, Chess Players!");
+
+// Create a new chess board
+BoardModel board = new BoardModel(8);
+
+// Show the empty board
+Utility.PrintBoard(board);
+
+// Prompt the user for the type of chess piece
+Console.Write("Enter the type of piece you want to place (Knight, Rook, Bishop, Queen, King): ");
+piece = Console.ReadLine();
+
+// Prompt the user for the location of the chess piece
+result = Utility.GetRowAndCol();
+
+// Mark the legal moves based on the input
+
+// Print out the new chess board
 
 //-----------------------------------
 // End of Main Method
@@ -47,7 +68,7 @@ public static class Utility
                     Console.Write(" +");
                 }
                 // Check if there is a piece occupying the cell
-                else if (cell.PieceOccupyingCell.Type != PieceType.None)
+                else if (cell.PieceOccupyingCell.SignifyingLetter != "")
                 {
                     // Print the chess piece letter
                     Console.Write($"{cell.PieceOccupyingCell.SignifyingLetter} ");
@@ -62,4 +83,22 @@ public static class Utility
             Console.WriteLine();
         }
     } // End of PrintBoard method
+
+    /// <summary>
+    /// Get the row and column for the piece
+    /// </summary>
+    /// <returns></returns>
+    internal static Tuple<int, int> GetRowAndCol()
+    {
+        // Get the row from the user
+        Console.Write("Enter the row number of the piece: ");
+        int row = int.Parse(Console.ReadLine());
+
+        // Get the column from the user
+        Console.Write("Enter the column number of the piece: ");
+        int col = int.Parse(Console.ReadLine());
+
+        // Return the data
+        return Tuple.Create(row, col);
+    }
 }
