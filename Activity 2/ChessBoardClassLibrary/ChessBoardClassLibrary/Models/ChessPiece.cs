@@ -55,7 +55,7 @@ namespace ChessBoardClassLibrary.Models
                     break;
 
                 case PieceType.King:
-                    SignifyingLetter = "k";
+                    SignifyingLetter = "K";
                     break;
 
                 default:

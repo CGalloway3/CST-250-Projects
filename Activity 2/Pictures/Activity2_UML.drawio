@@ -1,6 +1,6 @@
 <mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36" version="28.2.8">
   <diagram name="Page-1" id="tsHHCG1otfEHiUiGUumg">
-    <mxGraphModel dx="1426" dy="743" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="1678" dy="874" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -40,17 +40,17 @@
         <mxCell id="fw58HAAdcJAM5Pez11N_-12" value="- ResetBoard(BoardModel): BoardModel&lt;div&gt;- ClearLegalMoves(BoardModel): BoardModel&lt;br&gt;&lt;div&gt;- IsOnBoard(BoardModel, int, int): bool&lt;/div&gt;&lt;div&gt;- MarkValidNonSlidingPiecsMoves(BoardModel, CellModel, (int, int)[]): BoardModel&lt;/div&gt;&lt;div&gt;- MarkValidSlidingPieceMoves(&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;BoardModel, CellModel, (int, int)[]): BoardModel&lt;/span&gt;&lt;/div&gt;&lt;div&gt;- MarkValidPawnMoves(BoardModel, CellModel): BoardModel&lt;/div&gt;&lt;div&gt;+ MarkLegalMoves(BoardModel, CellModel, PieceType, PieceColor): BoardModel&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="fw58HAAdcJAM5Pez11N_-9" vertex="1">
           <mxGeometry y="34" width="470" height="116" as="geometry" />
         </mxCell>
-        <mxCell id="fw58HAAdcJAM5Pez11N_-13" value="Utilities" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-          <mxGeometry x="520" y="930" width="160" height="86" as="geometry" />
+        <mxCell id="fw58HAAdcJAM5Pez11N_-13" value="Utility" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="570" y="820" width="220" height="90" as="geometry" />
         </mxCell>
-        <mxCell id="fw58HAAdcJAM5Pez11N_-14" value="+ field: type" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="fw58HAAdcJAM5Pez11N_-13" vertex="1">
-          <mxGeometry y="26" width="160" height="26" as="geometry" />
+        <mxCell id="fw58HAAdcJAM5Pez11N_-14" value="&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="fw58HAAdcJAM5Pez11N_-13" vertex="1">
+          <mxGeometry y="26" width="220" height="14" as="geometry" />
         </mxCell>
         <mxCell id="fw58HAAdcJAM5Pez11N_-15" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" parent="fw58HAAdcJAM5Pez11N_-13" vertex="1">
-          <mxGeometry y="52" width="160" height="8" as="geometry" />
+          <mxGeometry y="40" width="220" height="8" as="geometry" />
         </mxCell>
-        <mxCell id="fw58HAAdcJAM5Pez11N_-16" value="+ method(type): type" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="fw58HAAdcJAM5Pez11N_-13" vertex="1">
-          <mxGeometry y="60" width="160" height="26" as="geometry" />
+        <mxCell id="fw58HAAdcJAM5Pez11N_-16" value="~ &lt;u&gt;PrintBoard(BoardModel): void&lt;/u&gt;&lt;div&gt;~ &lt;u&gt;GetRowAndCol(): &amp;lt;int, int&amp;gt;&lt;/u&gt;&amp;nbsp;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="fw58HAAdcJAM5Pez11N_-13" vertex="1">
+          <mxGeometry y="48" width="220" height="42" as="geometry" />
         </mxCell>
         <mxCell id="fw58HAAdcJAM5Pez11N_-17" value="FrmChessBoard" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="180" y="920" width="160" height="86" as="geometry" />
