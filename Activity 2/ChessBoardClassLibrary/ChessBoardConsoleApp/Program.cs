@@ -51,10 +51,10 @@ Utility.PrintBoard(board);
 // Prompt the user for the type of chess piece
 Console.Write("Enter the type of piece you want to place (Pawn, Knight, Rook, Bishop, Queen, or King): ");
 // Wait for a correct response while storing results in pieceType and resultType. The addition of int try parse is to
-// force errors in the entry value when integers are entered because in enums an int is a valid entry.
+// force errors in the entry value when integers are entered because in enums, an int is a valid entry.
 // (PieceType.Pawn == 1) will evaluate to true so I need to prevent integers from being entered on these lines.
 // out _ simply discards the out value
-while (int.TryParse((pieceType = Console.ReadLine()), out _) || (resultType = PieceTypeConverter.ConvertStringToPieceType(pieceType)) == PieceType.None)
+while (int.TryParse((pieceType = Console.ReadLine()), out _) || (resultType = PieceTypeConverter.ConvertStringToPieceType(pieceType)) == PieceType.None) // While int or non valid entry, loop
 {            
     // Display user message if input is invalid                   
     Console.ForegroundColor = ConsoleColor.Red;
@@ -62,8 +62,13 @@ while (int.TryParse((pieceType = Console.ReadLine()), out _) || (resultType = Pi
     Console.ResetColor();
 }
 
+// Prompt the user for the color of chess piece
 Console.Write("Enter the color (Black or White): ");
-while (int.TryParse((pieceColor = Console.ReadLine()), out _) || (resultColor = PieceColorConverter.ConvertStringToPieceColor(pieceColor)) == PieceColor.None)
+// Wait for a correct response while storing results in pieceColor and resultColor. The addition of int try parse is to
+// force errors in the entry value when integers are entered because in enums, an int is a valid entry.
+// (PieceColor.Black == 1) will evaluate to true so I need to prevent integers from being entered on these lines.
+// out _ simply discards the out value
+while (int.TryParse((pieceColor = Console.ReadLine()), out _) || (resultColor = PieceColorConverter.ConvertStringToPieceColor(pieceColor)) == PieceColor.None) // While int or non valid entry, loop
 {
     // Display user message if input is invalid                   
     Console.ForegroundColor = ConsoleColor.Red;
@@ -98,11 +103,8 @@ public static class Utility
         // Print the header row (column numbers)
         Console.Write("  "); // Spacer for the row index column
         for (int col = 0; col < board.Size; col++)
-        {
-            if (col < 11)
-                Console.Write($"   {col}");
-            else
-                Console.Write($"  {col}");
+        {            
+            Console.Write($"   {col}");          
         }
         Console.WriteLine();
 
@@ -118,10 +120,7 @@ public static class Utility
         for (int row = 0; row < board.Size; row++)
         {
             // Print the row index
-            if (row < 10)
-                Console.Write($" {row} |");
-            else
-                Console.Write($"{row} |");
+            Console.Write($" {row} |");
 
             // Loop over the columns of the board
             for (int col = 0; col < board.Size; col++)
@@ -137,21 +136,27 @@ public static class Utility
                     { 
                         Console.ForegroundColor = ConsoleColor.Red;
                     }
-                    Console.Write(" +");
+                    Console.Write(" + ");
                     Console.ResetColor();
                 }
                 // Check if there is a piece occupying the cell
                 else if (cell.PieceOccupyingCell.SignifyingLetter != "")
                 {
                     // Print the chess piece letter
-                    Console.Write($" {cell.PieceOccupyingCell.SignifyingLetter}");
+                    if (cell.PieceOccupyingCell.Color == PieceColor.White)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Black;
+                        Console.BackgroundColor = ConsoleColor.White;
+                    }
+                    Console.Write($" {cell.PieceOccupyingCell.SignifyingLetter} ");
+                    Console.ResetColor();
                 }
                 else
                 {
                     // Print a . for anything else
-                    Console.Write(" .");
+                    Console.Write(" . ");
                 }
-                Console.Write(" |");
+                Console.Write("|");
 
             }
             // Start a new line after every row

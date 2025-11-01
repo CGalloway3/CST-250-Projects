@@ -4,7 +4,13 @@
  * 11/02/2020
  * Chess Board Project
  * Activity 2
- * References:
+ * References: ChatGPT and Gemini were consulted heavily on the MarkValidSlidingPieceMoves method. I was originally manually 
+ *             tracking every possible move in each direction and I didn't like that approach. I knew there had to be something 
+ *             simpler that I just wasn't seeing. The AI models suggested using a direction vector and a multiplication step 
+ *             counter to make things easier. I just needed to create an array of vectors using tuples. The implementation allowed 
+ *             me to turn several different methods that tracked multiple different directions into a much simpler singular direction 
+ *             tracking method for all the sliding pieces. Once I had this initial method laid out I used what I learn there 
+ *             to write the non sliding and pawn methods.
  */
 
 using ChessBoardClassLibrary.Enums;
