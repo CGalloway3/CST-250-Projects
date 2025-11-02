@@ -89,13 +89,13 @@
             // 
             // cmbChessPieces
             // 
+            cmbChessPieces.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbChessPieces.FormattingEnabled = true;
-            cmbChessPieces.Items.AddRange(new object[] { "None", "King", "Queen", "Bishop", "Knight", "Rook", "Pawn" });
+            cmbChessPieces.Items.AddRange(new object[] { "None (Delete)", "King", "Queen", "Bishop", "Knight", "Rook", "Pawn" });
             cmbChessPieces.Location = new Point(69, 22);
             cmbChessPieces.Name = "cmbChessPieces";
             cmbChessPieces.Size = new Size(101, 23);
             cmbChessPieces.TabIndex = 0;
-            cmbChessPieces.Text = "None (Delete)";
             // 
             // lblDescription
             // 
@@ -125,13 +125,13 @@
             // 
             // cmbColor
             // 
+            cmbColor.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbColor.FormattingEnabled = true;
-            cmbColor.Items.AddRange(new object[] { "None", "Black", "White" });
+            cmbColor.Items.AddRange(new object[] { "Black", "White" });
             cmbColor.Location = new Point(69, 51);
             cmbColor.Name = "cmbColor";
             cmbColor.Size = new Size(101, 23);
             cmbColor.TabIndex = 4;
-            cmbColor.Text = "Black";
             // 
             // lblColor
             // 
@@ -645,23 +645,25 @@
             // 
             // btnCustomWhite
             // 
+            btnCustomWhite.Font = new Font("Segoe UI", 8F);
             btnCustomWhite.ForeColor = Color.Fuchsia;
-            btnCustomWhite.Location = new Point(116, 73);
+            btnCustomWhite.Location = new Point(113, 73);
             btnCustomWhite.Name = "btnCustomWhite";
-            btnCustomWhite.Size = new Size(70, 50);
+            btnCustomWhite.Size = new Size(73, 50);
             btnCustomWhite.TabIndex = 16;
-            btnCustomWhite.Text = "Piece Two Color";
+            btnCustomWhite.Text = "White Piece Color";
             btnCustomWhite.UseVisualStyleBackColor = true;
             btnCustomWhite.Click += BtnPieceTwoColorClickEH;
             // 
             // btnCustomBlack
             // 
+            btnCustomBlack.Font = new Font("Segoe UI", 8F);
             btnCustomBlack.ForeColor = Color.DodgerBlue;
-            btnCustomBlack.Location = new Point(116, 23);
+            btnCustomBlack.Location = new Point(113, 23);
             btnCustomBlack.Name = "btnCustomBlack";
-            btnCustomBlack.Size = new Size(70, 50);
+            btnCustomBlack.Size = new Size(73, 50);
             btnCustomBlack.TabIndex = 13;
-            btnCustomBlack.Text = "Piece One Color";
+            btnCustomBlack.Text = "Black Piece Color";
             btnCustomBlack.UseVisualStyleBackColor = true;
             btnCustomBlack.Click += BtnPieceOneColorClickEH;
             // 
@@ -671,7 +673,7 @@
             pnlPaletteCustom.Controls.Add(btnCustom1);
             pnlPaletteCustom.Controls.Add(btnCustom3);
             pnlPaletteCustom.Controls.Add(btnCustom4);
-            pnlPaletteCustom.Location = new Point(9, 22);
+            pnlPaletteCustom.Location = new Point(6, 22);
             pnlPaletteCustom.Name = "pnlPaletteCustom";
             pnlPaletteCustom.Size = new Size(102, 102);
             pnlPaletteCustom.TabIndex = 9;

@@ -36,6 +36,8 @@ namespace ChessBoardGUIApp
             _board = new BoardModel(8);
             _boardLogic = new BoardLogic();
             _buttons = new Button[8, 8];
+            cmbChessPieces.SelectedIndex = 0;
+            cmbColor.SelectedIndex = 0;
 
             // Set up the panel with buttons
             SetUpButtons();
@@ -125,11 +127,21 @@ namespace ChessBoardGUIApp
         private void BtnSquareClickEH(object sender, EventArgs e)
         {
             // Declare and initialize
+            PieceType pieceType;
             Button button = (Button)sender;
             Point point = (Point)button.Tag;
             int row = point.X;
             int col = point.Y;
-            PieceType pieceType = (PieceType)Enum.Parse(typeof(PieceType), cmbChessPieces.Text);
+            
+            // Find the piece type and handle cases out of bounds
+            try
+            {
+                pieceType = (PieceType)Enum.Parse(typeof(PieceType), cmbChessPieces.Text);
+            }
+            catch (Exception ex) 
+            {
+                pieceType = PieceType.None;
+            }
             PieceColor pieceColor = (PieceColor)Enum.Parse(typeof(PieceColor), cmbColor.Text);
 
             // Show the user their choice
@@ -337,6 +349,9 @@ namespace ChessBoardGUIApp
                     {
                         button.ForeColor = _board.BlackPieceColorValue;
                     }
+
+                    // highlight legal moves
+                    button.BackColor = Color.LightYellow;
                 }
             }
         }
