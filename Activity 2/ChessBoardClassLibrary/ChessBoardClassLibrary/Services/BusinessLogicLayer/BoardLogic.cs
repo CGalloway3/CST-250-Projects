@@ -17,6 +17,7 @@ using ChessBoardClassLibrary.Enums;
 using ChessBoardClassLibrary.Models;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Drawing;
 
 namespace ChessBoardClassLibrary.Services.BusinessLogicLayer
 {
@@ -79,6 +80,12 @@ namespace ChessBoardClassLibrary.Services.BusinessLogicLayer
             return IsRowSafe && IsColumnSafe;
         }
 
+        public BoardModel MarkLegalMoves(BoardModel board, CellModel currentCell, string piece)
+        {
+            ChessPiece chessPiece = new ChessPiece(piece);
+            return MarkLegalMoves(board, currentCell, chessPiece.Type, chessPiece.Color);
+        }
+        
         /// <summary>
         /// Mark the legal moves for the given piece and location
         /// </summary>

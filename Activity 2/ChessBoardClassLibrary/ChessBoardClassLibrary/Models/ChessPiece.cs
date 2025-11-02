@@ -17,6 +17,10 @@ namespace ChessBoardClassLibrary.Models
         public PieceColor Color { get; private set; }
         public string SignifyingLetter { get; private set; }
 
+        public ChessPiece(string name) : this((PieceType)Enum.Parse(typeof(PieceType), name), PieceColor.White)
+        {
+            
+        }
         public ChessPiece(PieceType type = PieceType.None, PieceColor color = PieceColor.None) 
         {
             // Set values
