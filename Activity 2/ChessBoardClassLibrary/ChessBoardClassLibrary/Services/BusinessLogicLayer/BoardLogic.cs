@@ -79,12 +79,6 @@ namespace ChessBoardClassLibrary.Services.BusinessLogicLayer
             // Return true if both row and column are safe
             return IsRowSafe && IsColumnSafe;
         }
-
-        public BoardModel MarkLegalMoves(BoardModel board, CellModel currentCell, string piece)
-        {
-            ChessPiece chessPiece = new ChessPiece(piece);
-            return MarkLegalMoves(board, currentCell, chessPiece.Type, chessPiece.Color);
-        }
         
         /// <summary>
         /// Mark the legal moves for the given piece and location
@@ -101,15 +95,15 @@ namespace ChessBoardClassLibrary.Services.BusinessLogicLayer
         /// displaying legal moves dependent on the pieces the user picks to move.
         /// For example in a console this method may lay the groundwork to change background or foreground
         /// colors of console texts elements to signify legal moves.</remarks>
-        public BoardModel MarkLegalMoves(BoardModel board, CellModel currentCell, PieceType type, PieceColor color)
+        public BoardModel MarkLegalMoves(BoardModel board, CellModel currentCell, ChessPiece piece)
         {
             // Reset the board
             board = ClearLegalMoves(board);
             // Place the piece
-            board.Grid[currentCell.Row, currentCell.Col].PieceOccupyingCell = new ChessPiece(type, color);
+            board.Grid[currentCell.Row, currentCell.Col].PieceOccupyingCell = piece;
 
             // Use a switch statement to determine the behavior of the piece
-            switch (type)
+            switch (piece.Type)
             {
                 case PieceType.Knight:
                     // Set the moves for the Knight piece

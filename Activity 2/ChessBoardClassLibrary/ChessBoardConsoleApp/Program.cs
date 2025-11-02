@@ -22,7 +22,7 @@ using System.Xml.XPath;
 string pieceType = "";
 string pieceColor = "";
 PieceType resultType = PieceType.None;
-PieceColor resultColor = PieceColor.None;
+PieceColor resultColor;
 Tuple<int, int>? result;
 BoardLogic boardLogic = new BoardLogic();
 
@@ -54,12 +54,14 @@ Console.Write("Enter the type of piece you want to place (Pawn, Knight, Rook, Bi
 // force errors in the entry value when integers are entered because in enums, an int is a valid entry.
 // (PieceType.Pawn == 1) will evaluate to true so I need to prevent integers from being entered on these lines.
 // out _ simply discards the out value
-while (int.TryParse((pieceType = Console.ReadLine()), out _) || (resultType = PieceTypeConverter.ConvertStringToPieceType(pieceType)) == PieceType.None) // While int or non valid entry, loop
+while (int.TryParse(pieceType = Console.ReadLine(), out _) || !Enum.TryParse(pieceType, true, out resultType) || resultType == PieceType.None) // While int or non valid entry, loop
 {            
     // Display user message if input is invalid                   
     Console.ForegroundColor = ConsoleColor.Red;
     Console.Write($"Invalid input. {pieceType} is not a valid piece type. \nPlease enter a Valid chess piece type: ");
     Console.ResetColor();
+
+
 }
 
 // Prompt the user for the color of chess piece
@@ -68,7 +70,7 @@ Console.Write("Enter the color (Black or White): ");
 // force errors in the entry value when integers are entered because in enums, an int is a valid entry.
 // (PieceColor.Black == 1) will evaluate to true so I need to prevent integers from being entered on these lines.
 // out _ simply discards the out value
-while (int.TryParse((pieceColor = Console.ReadLine()), out _) || (resultColor = PieceColorConverter.ConvertStringToPieceColor(pieceColor)) == PieceColor.None) // While int or non valid entry, loop
+while (int.TryParse(pieceColor = Console.ReadLine(), out _) || !Enum.TryParse(pieceColor, true, out resultColor) || resultColor == PieceColor.None) // While int or non valid entry, loop
 {
     // Display user message if input is invalid                   
     Console.ForegroundColor = ConsoleColor.Red;
@@ -76,11 +78,14 @@ while (int.TryParse((pieceColor = Console.ReadLine()), out _) || (resultColor = 
     Console.ResetColor();
 }
 
+Console.Write($"Type {pieceType} == {resultType} \n color {pieceColor} == {resultColor}");
+
 // Prompt the user for the location of the chess piece
 result = Utility.GetRowAndCol();
 
 // Mark the legal moves based on the input
-board = boardLogic.MarkLegalMoves(board, board.Grid[result.Item1, result.Item2], resultType, resultColor);
+ChessPiece piece = new ChessPiece(resultType, resultColor);
+board = boardLogic.MarkLegalMoves(board, board.Grid[result.Item1, result.Item2], piece);
 
 // Print out the new chess board
 Utility.PrintBoard(board);
@@ -140,7 +145,7 @@ public static class Utility
                     Console.ResetColor();
                 }
                 // Check if there is a piece occupying the cell
-                else if (cell.PieceOccupyingCell.SignifyingLetter != "")
+                else if (cell.PieceOccupyingCell.Type != PieceType.None)
                 {
                     // Print the chess piece letter
                     if (cell.PieceOccupyingCell.Color == PieceColor.White)
@@ -148,7 +153,7 @@ public static class Utility
                         Console.ForegroundColor = ConsoleColor.Black;
                         Console.BackgroundColor = ConsoleColor.White;
                     }
-                    Console.Write($" {cell.PieceOccupyingCell.SignifyingLetter} ");
+                    Console.Write($" {cell.PieceOccupyingCell.Type.ToChar()} ");
                     Console.ResetColor();
                 }
                 else

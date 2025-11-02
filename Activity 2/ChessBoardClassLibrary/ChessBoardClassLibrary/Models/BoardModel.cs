@@ -8,6 +8,8 @@
  */
 
 
+using System.Drawing;
+
 namespace ChessBoardClassLibrary.Models
 {
     public class BoardModel
@@ -18,6 +20,14 @@ namespace ChessBoardClassLibrary.Models
         // This is an example of encapsulation: internal details are hidden and controlled.
         public int Size { get; private set; }
         public CellModel[,] Grid { get; private set; }
+
+        // Provides functionality to color the boards squares
+        public Color BlackSquareColorValue { get; set; } = Color.Black;
+        public Color WhiteSquareColorValue { get; set; } = Color.White;
+
+        // Provides Functionality to color the boards pieces
+        public Color BlackPieceColorValue { get; set; } = Color.DodgerBlue;
+        public Color WhitePieceColorValue { get; set; } = Color.Fuchsia;
 
         /// <summary>
         /// Parameterized Constructor for BoardModel
