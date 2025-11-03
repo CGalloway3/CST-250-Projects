@@ -36,7 +36,7 @@ Console.WriteLine("Good Luck!!");
 
 // Create the board
 BoardLogic board = new BoardLogic(boardSize);
-board.SetDifficulty( difficulty );
+board.SetDifficulty(difficulty);
 board.SetupBombs();
 board.CountBombsNearby();
 
