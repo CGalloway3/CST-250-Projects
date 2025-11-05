@@ -41,7 +41,7 @@ while (!int.TryParse(input, out choice))
 Utility.ResetCallCount();
 result = Utility.CountToOne(choice);
 Console.WriteLine($"The end number is {result}");
-Console.WriteLine($"The number {choice} took {Utility.GetCount()} calls to reduce to one.");
+Console.WriteLine($"The number {choice} took {Utility.GetCallCount()} calls to reduce to one.");
 
 //==================================================
 // End of the Main Method
@@ -103,7 +103,7 @@ static class Utility
         } 
     }
 
-    internal static int GetCount()
+    internal static int GetCallCount()
     {
         return callCount;   
     }
