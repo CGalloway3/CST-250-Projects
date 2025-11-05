@@ -12,6 +12,9 @@
 //==================================================
 
 // Declare and Initialize
+
+using System.Web;
+
 int choice = 0, result = 0;
 string input = "";
 
@@ -19,18 +22,26 @@ string input = "";
 Console.Write("Enter a positive number: ");
 // Get the users input
 input = Console.ReadLine();
+
 // See if the user entered valid input
-while (!int.TryParse(input, out choice) && choice > 0)
+while (!int.TryParse(input, out choice))
 {
+    // Display error
+    Console.ForegroundColor = ConsoleColor.Red;
     Console.WriteLine("Invalid number");
+    Console.ResetColor();
+
     // Re-prompt the user for a number
-    Console.WriteLine("Enter a positive number: ");
+    Console.Write("Enter a positive number: ");
+
     // Get the user input
     input = Console.ReadLine();
 }
 // Call the CountToOne
+Utility.ResetCallCount();
 result = Utility.CountToOne(choice);
 Console.WriteLine($"The end number is {result}");
+Console.WriteLine($"The number {choice} took {Utility.GetCount()} calls to reduce to one.");
 
 //==================================================
 // End of the Main Method
@@ -43,6 +54,10 @@ Console.WriteLine($"The end number is {result}");
 //==================================================
 static class Utility
 {
+    // Declare and Initialize
+    static int callCount = 0;
+    static int OddNumberShiftValue = 0;
+    
     /// <summary>
     /// Count to one using recursion
     /// </summary>
@@ -50,12 +65,25 @@ static class Utility
     /// <returns></returns>
     internal static int CountToOne(int num)
     {
+        // increment call counter
+        callCount++;
         // Print out the current number
-        Console.WriteLine($"");
-        // Check if the number is 1: Base Case
-        if (num == 1)
+        Console.WriteLine($"The current number is {num}");
+        
+        // Toggle odd number modifier (shift value) between plus one and minus one depending on the value of num
+        if (num > 0)
         {
-            return 1;
+            OddNumberShiftValue = -1; 
+        }
+        else
+        {
+            OddNumberShiftValue = 1;
+        }
+
+        // Check if the number is 0: Base Case
+        if (num == 0)
+        {
+            return 0;
         }
         else
         {
@@ -68,10 +96,20 @@ static class Utility
             }
             else
             {
-                Console.WriteLine("");
+                Console.WriteLine("The number is odd. Shifting 1 number closer to zero");
                 // Add 1 and call the function (recursion)
-                return CountToOne(num + 1);
+                return CountToOne(num + OddNumberShiftValue);
             }
         } 
+    }
+
+    internal static int GetCount()
+    {
+        return callCount;   
+    }
+
+    internal static void ResetCallCount()
+    {
+        callCount = 0;
     }
 }
