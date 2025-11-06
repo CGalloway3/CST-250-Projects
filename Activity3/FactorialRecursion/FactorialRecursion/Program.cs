@@ -19,6 +19,19 @@ FactorialLogic factorialLogic = new FactorialLogic();
 int input = 0;
 BigInteger iterativeAns = 0, recursiveAns = 0;
 
+// Additional Time tracking variables
+DateTime iterationStart = DateTime.Now;
+DateTime iterationEnd = DateTime.Now;
+
+DateTime recursionStart = DateTime.Now;
+DateTime recursionEnd = DateTime.Now;
+
+TimeSpan recursionTime;
+TimeSpan iterationTime;
+
+TimeSpan totalIterationTime = TimeSpan.Zero;
+TimeSpan totalRecursionTime = TimeSpan.Zero;
+
 // Prompt the user
 Console.Write("Enter a positive number: ");
 
@@ -27,13 +40,223 @@ input = Utility.ReadIntFromConsole();
 
 // Solve the factorial using iteration
 Console.WriteLine("Solving the factorial using iteration...");
+iterationStart = DateTime.Now;
 iterativeAns = factorialLogic.SolveIterativeFactorial(input);
-Console.WriteLine($"Answer: {iterativeAns}");
+iterationEnd = DateTime.Now;
+iterationTime = iterationEnd - iterationStart;
+Console.WriteLine($"Answer: {iterativeAns} it took {iterationTime.Microseconds} microseconds");
+//totalIterationTime = totalIterationTime + iterationTime;
 
 // Solve the factorial using recursion
 Console.WriteLine("Solving the factorial using recursion...");
+recursionStart = DateTime.Now;
 recursiveAns = factorialLogic.SolveRecursiveFactorial(input);
-Console.WriteLine($"Answer: {recursiveAns}");
+recursionEnd = DateTime.Now;
+recursionTime = recursionEnd - recursionStart;
+Console.WriteLine($"Answer: {recursiveAns} it took {recursionTime.Microseconds} microseconds");
+//totalRecursionTime = totalRecursionTime + recursionTime;
+
+// Solve the factorial using iteration
+Console.WriteLine("Solving the factorial using iteration...");
+iterationStart = DateTime.Now;
+iterativeAns = factorialLogic.SolveIterativeFactorial(input);
+iterationEnd = DateTime.Now;
+iterationTime = iterationEnd - iterationStart;
+Console.WriteLine($"Answer: {iterativeAns} it took {iterationTime.Microseconds} microseconds");
+totalIterationTime = totalIterationTime + iterationTime;
+
+// Solve the factorial using recursion
+Console.WriteLine("Solving the factorial using recursion...");
+recursionStart = DateTime.Now;
+recursiveAns = factorialLogic.SolveRecursiveFactorial(input);
+recursionEnd = DateTime.Now;
+recursionTime = recursionEnd - recursionStart;
+Console.WriteLine($"Answer: {recursiveAns} it took {recursionTime.Microseconds} microseconds");
+totalRecursionTime = totalRecursionTime + recursionTime;
+
+// Solve the factorial using iteration
+Console.WriteLine("Solving the factorial using iteration...");
+iterationStart = DateTime.Now;
+iterativeAns = factorialLogic.SolveIterativeFactorial(input);
+iterationEnd = DateTime.Now;
+iterationTime = iterationEnd - iterationStart;
+Console.WriteLine($"Answer: {iterativeAns} it took {iterationTime.Microseconds} microseconds");
+totalIterationTime = totalIterationTime + iterationTime;
+
+// Solve the factorial using recursion
+Console.WriteLine("Solving the factorial using recursion...");
+recursionStart = DateTime.Now;
+recursiveAns = factorialLogic.SolveRecursiveFactorial(input);
+recursionEnd = DateTime.Now;
+recursionTime = recursionEnd - recursionStart;
+Console.WriteLine($"Answer: {recursiveAns} it took {recursionTime.Microseconds} microseconds");
+totalRecursionTime = totalRecursionTime + recursionTime;
+
+// Solve the factorial using iteration
+Console.WriteLine("Solving the factorial using iteration...");
+iterationStart = DateTime.Now;
+iterativeAns = factorialLogic.SolveIterativeFactorial(input);
+iterationEnd = DateTime.Now;
+iterationTime = iterationEnd - iterationStart;
+Console.WriteLine($"Answer: {iterativeAns} it took {iterationTime.Microseconds} microseconds");
+totalIterationTime = totalIterationTime + iterationTime;
+
+// Solve the factorial using recursion
+Console.WriteLine("Solving the factorial using recursion...");
+recursionStart = DateTime.Now;
+recursiveAns = factorialLogic.SolveRecursiveFactorial(input);
+recursionEnd = DateTime.Now;
+recursionTime = recursionEnd - recursionStart;
+Console.WriteLine($"Answer: {recursiveAns} it took {recursionTime.Microseconds} microseconds");
+totalRecursionTime = totalRecursionTime + recursionTime;
+
+// Solve the factorial using iteration
+Console.WriteLine("Solving the factorial using iteration...");
+iterationStart = DateTime.Now;
+iterativeAns = factorialLogic.SolveIterativeFactorial(input);
+iterationEnd = DateTime.Now;
+iterationTime = iterationEnd - iterationStart;
+Console.WriteLine($"Answer: {iterativeAns} it took {iterationTime.Microseconds} microseconds");
+totalIterationTime = totalIterationTime + iterationTime;
+
+// Solve the factorial using recursion
+Console.WriteLine("Solving the factorial using recursion...");
+recursionStart = DateTime.Now;
+recursiveAns = factorialLogic.SolveRecursiveFactorial(input);
+recursionEnd = DateTime.Now;
+recursionTime = recursionEnd - recursionStart;
+Console.WriteLine($"Answer: {recursiveAns} it took {recursionTime.Microseconds} microseconds");
+totalRecursionTime = totalRecursionTime + recursionTime;
+
+// Solve the factorial using iteration
+Console.WriteLine("Solving the factorial using iteration...");
+iterationStart = DateTime.Now;
+iterativeAns = factorialLogic.SolveIterativeFactorial(input);
+iterationEnd = DateTime.Now;
+iterationTime = iterationEnd - iterationStart;
+Console.WriteLine($"Answer: {iterativeAns} it took {iterationTime.Microseconds} microseconds");
+totalIterationTime = totalIterationTime + iterationTime;
+
+// Solve the factorial using recursion
+Console.WriteLine("Solving the factorial using recursion...");
+recursionStart = DateTime.Now;
+recursiveAns = factorialLogic.SolveRecursiveFactorial(input);
+recursionEnd = DateTime.Now;
+recursionTime = recursionEnd - recursionStart;
+Console.WriteLine($"Answer: {recursiveAns} it took {recursionTime.Microseconds} microseconds");
+totalRecursionTime = totalRecursionTime + recursionTime;
+
+// Solve the factorial using iteration
+Console.WriteLine("Solving the factorial using iteration...");
+iterationStart = DateTime.Now;
+iterativeAns = factorialLogic.SolveIterativeFactorial(input);
+iterationEnd = DateTime.Now;
+iterationTime = iterationEnd - iterationStart;
+Console.WriteLine($"Answer: {iterativeAns} it took {iterationTime.Microseconds} microseconds");
+totalIterationTime = totalIterationTime + iterationTime;
+
+// Solve the factorial using recursion
+Console.WriteLine("Solving the factorial using recursion...");
+recursionStart = DateTime.Now;
+recursiveAns = factorialLogic.SolveRecursiveFactorial(input);
+recursionEnd = DateTime.Now;
+recursionTime = recursionEnd - recursionStart;
+Console.WriteLine($"Answer: {recursiveAns} it took {recursionTime.Microseconds} microseconds");
+totalRecursionTime = totalRecursionTime + recursionTime;
+
+// Solve the factorial using iteration
+Console.WriteLine("Solving the factorial using iteration...");
+iterationStart = DateTime.Now;
+iterativeAns = factorialLogic.SolveIterativeFactorial(input);
+iterationEnd = DateTime.Now;
+iterationTime = iterationEnd - iterationStart;
+Console.WriteLine($"Answer: {iterativeAns} it took {iterationTime.Microseconds} microseconds");
+totalIterationTime = totalIterationTime + iterationTime;
+
+// Solve the factorial using recursion
+Console.WriteLine("Solving the factorial using recursion...");
+recursionStart = DateTime.Now;
+recursiveAns = factorialLogic.SolveRecursiveFactorial(input);
+recursionEnd = DateTime.Now;
+recursionTime = recursionEnd - recursionStart;
+Console.WriteLine($"Answer: {recursiveAns} it took {recursionTime.Microseconds} microseconds");
+totalRecursionTime = totalRecursionTime + recursionTime;
+
+// Solve the factorial using iteration
+Console.WriteLine("Solving the factorial using iteration...");
+iterationStart = DateTime.Now;
+iterativeAns = factorialLogic.SolveIterativeFactorial(input);
+iterationEnd = DateTime.Now;
+iterationTime = iterationEnd - iterationStart;
+Console.WriteLine($"Answer: {iterativeAns} it took {iterationTime.Microseconds} microseconds");
+totalIterationTime = totalIterationTime + iterationTime;
+
+// Solve the factorial using recursion
+Console.WriteLine("Solving the factorial using recursion...");
+recursionStart = DateTime.Now;
+recursiveAns = factorialLogic.SolveRecursiveFactorial(input);
+recursionEnd = DateTime.Now;
+recursionTime = recursionEnd - recursionStart;
+Console.WriteLine($"Answer: {recursiveAns} it took {recursionTime.Microseconds} microseconds");
+totalRecursionTime = totalRecursionTime + recursionTime;
+
+// Solve the factorial using iteration
+Console.WriteLine("Solving the factorial using iteration...");
+iterationStart = DateTime.Now;
+iterativeAns = factorialLogic.SolveIterativeFactorial(input);
+iterationEnd = DateTime.Now;
+iterationTime = iterationEnd - iterationStart;
+Console.WriteLine($"Answer: {iterativeAns} it took {iterationTime.Microseconds} microseconds");
+totalIterationTime = totalIterationTime + iterationTime;
+
+// Solve the factorial using recursion
+Console.WriteLine("Solving the factorial using recursion...");
+recursionStart = DateTime.Now;
+recursiveAns = factorialLogic.SolveRecursiveFactorial(input);
+recursionEnd = DateTime.Now;
+recursionTime = recursionEnd - recursionStart;
+Console.WriteLine($"Answer: {recursiveAns} it took {recursionTime.Microseconds} microseconds");
+totalRecursionTime = totalRecursionTime + recursionTime;
+
+// Solve the factorial using iteration
+Console.WriteLine("Solving the factorial using iteration...");
+iterationStart = DateTime.Now;
+iterativeAns = factorialLogic.SolveIterativeFactorial(input);
+iterationEnd = DateTime.Now;
+iterationTime = iterationEnd - iterationStart;
+Console.WriteLine($"Answer: {iterativeAns} it took {iterationTime.Microseconds} microseconds");
+totalIterationTime = totalIterationTime + iterationTime;
+
+// Solve the factorial using recursion
+Console.WriteLine("Solving the factorial using recursion...");
+recursionStart = DateTime.Now;
+recursiveAns = factorialLogic.SolveRecursiveFactorial(input);
+recursionEnd = DateTime.Now;
+recursionTime = recursionEnd - recursionStart;
+Console.WriteLine($"Answer: {recursiveAns} it took {recursionTime.Microseconds} microseconds");
+totalRecursionTime = totalRecursionTime + recursionTime;
+
+// Solve the factorial using iteration
+Console.WriteLine("Solving the factorial using iteration...");
+iterationStart = DateTime.Now;
+iterativeAns = factorialLogic.SolveIterativeFactorial(input);
+iterationEnd = DateTime.Now;
+iterationTime = iterationEnd - iterationStart;
+Console.WriteLine($"Answer: {iterativeAns} it took {iterationTime.Microseconds} microseconds");
+totalIterationTime = totalIterationTime + iterationTime;
+
+// Solve the factorial using recursion
+Console.WriteLine("Solving the factorial using recursion...");
+recursionStart = DateTime.Now;
+recursiveAns = factorialLogic.SolveRecursiveFactorial(input);
+recursionEnd = DateTime.Now;
+recursionTime = recursionEnd - recursionStart;
+Console.WriteLine($"Answer: {recursiveAns} it took {recursionTime.Microseconds} microseconds");
+totalRecursionTime = totalRecursionTime + recursionTime;
+
+
+Console.WriteLine($"Iteration time: {totalIterationTime.TotalSeconds} decimal seconds which is {totalIterationTime.Milliseconds} milliseconds and {totalIterationTime.Microseconds} microseconds");
+Console.WriteLine($"Recursion time: {totalRecursionTime.TotalSeconds} decimal seconds which is {totalRecursionTime.Milliseconds} milliseconds and {totalRecursionTime.Microseconds} microseconds");
 
 //-----------------------------------------------
 // End of the Main Method
