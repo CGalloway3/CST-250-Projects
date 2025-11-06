@@ -11,7 +11,14 @@
 // Start of the Main Method
 //-----------------------------------------------
 
+// Declare and Initialize
+int number1 = 440, number2 = 80, result = 0;
 
+// Call the GCD
+result = Utility.GreatestCommonDivisor(number1, number2);
+
+// Print the result to the user
+Console.WriteLine($"The GCD of {number1} and {number2} is {result}");
 
 //-----------------------------------------------
 // End of the Main Method
