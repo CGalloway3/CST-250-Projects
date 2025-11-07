@@ -1,9 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Numerics;
-using System.Text;
-using System.Threading.Tasks;
+﻿/*
+ * Chad Galloway
+ * CST - 250 Programming in C# II
+ * 11/09/2020
+ * Greatest Common Divisor Recursion
+ * Activity 3 Part 3
+ * References:
+ */
 
 namespace GreatestCommonDivisorRecursion.Services.BusinessLogicLayer
 {
