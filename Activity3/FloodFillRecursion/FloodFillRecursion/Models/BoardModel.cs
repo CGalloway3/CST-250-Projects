@@ -69,6 +69,7 @@ namespace FloodFillRecursion.Models
                     // Right Wall
                     Grid[row + offset, col + shapeSize - 1].Contents = "W";
                 }
+            }
         } // End of PlaceShapes method
     }
 }
