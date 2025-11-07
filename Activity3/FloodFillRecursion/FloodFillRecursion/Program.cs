@@ -178,17 +178,17 @@ static class Utility
 
         // Improve the visual effect of the flood fill
         // Comment out to have program history
-        // Console.Clear();
+        Console.Clear();
 
         // Print the current board
         Console.WriteLine();
         PrintBoard(board);
 
         // Print a message indicating the next flood fill direction
-        Console.ForegroundColor = ConsoleColor.Blue;
-        Console.Write("North to: ");
-        // Call the flood fill method to the north
-        board = FloodFill(board, row - 1, col);
+        Console.ForegroundColor = ConsoleColor.Cyan;
+        Console.Write("West to:  ");
+        // Call the flood fill method to the west
+        board = FloodFill(board, row, col - 1);
 
         // Print a message indicating the next flood fill direction
         Console.ForegroundColor = ConsoleColor.Yellow;
@@ -203,10 +203,34 @@ static class Utility
         board = FloodFill(board, row + 1, col);
 
         // Print a message indicating the next flood fill direction
+        Console.ForegroundColor = ConsoleColor.Blue;
+        Console.Write("North to: ");
+        // Call the flood fill method to the north
+        board = FloodFill(board, row - 1, col);
+
+        // Print a message indicating the next flood fill direction
         Console.ForegroundColor = ConsoleColor.Cyan;
-        Console.Write("West to:  ");
+        Console.Write("NorthWest to:  ");
         // Call the flood fill method to the west
-        board = FloodFill(board, row, col - 1);
+        board = FloodFill(board, row - 1, col - 1);
+
+        // Print a message indicating the next flood fill direction
+        Console.ForegroundColor = ConsoleColor.Yellow;
+        Console.Write("NorthEast to:  ");
+        // Call the flood fill method to the east
+        board = FloodFill(board, row - 1, col + 1);
+
+        // Print a message indicating the next flood fill direction
+        Console.ForegroundColor = ConsoleColor.Magenta;
+        Console.Write("SouthWest to: ");
+        // Call the flood fill method to the south
+        board = FloodFill(board, row + 1, col - 1);
+
+        // Print a message indicating the next flood fill direction
+        Console.ForegroundColor = ConsoleColor.Blue;
+        Console.Write("SouthEast to: ");
+        // Call the flood fill method to the north
+        board = FloodFill(board, row + 1, col + 1);
 
         // Return the board
         return board;
@@ -231,6 +255,7 @@ static class Utility
         return num;
     }
 }
+
 //---------------------------------------------
-// Start of the Utility class
+// End of the Utility class
 //---------------------------------------------

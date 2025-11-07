@@ -49,7 +49,7 @@ namespace FloodFillRecursion.Models
             // Declare and Initialize
             // Random object to generate numbers
             Random random = new Random();
-            int shapeSize = Size / 2, row = 0, col = 0;
+            int shapeSize = Size / 3, row = 0, col = 0;
 
             // Create three shapes
             for (int shapes = 0; shapes < NumShapes; shapes++)
@@ -61,13 +61,21 @@ namespace FloodFillRecursion.Models
                 for (int offset = 0; offset < shapeSize; offset++)
                 {
                     // Top Wall
-                    Grid[row, col + offset].Contents = "W";
-                    // Bottom Wall
-                    Grid[row + shapeSize - 1, col + offset].Contents = "W";
+                    Grid[row + offset, col + offset].Contents = "W";
                     // Left Wall
                     Grid[row + offset, col].Contents = "W";
+                    // Bottom Wall
+                    try
+                    {
+                        Grid[row + shapeSize - 1 + offset, col + offset].Contents = "W";
+                    }
+                    catch (IndexOutOfRangeException e)  
+                    {
+                        // catch out of bounds and continue to next iteration
+                        continue;
+                    }
                     // Right Wall
-                    Grid[row + offset, col + shapeSize - 1].Contents = "W";
+                    Grid[row + offset + shapeSize - 1, col + shapeSize - 1].Contents = "W";
                 }
             }
         } // End of PlaceShapes method
