@@ -1,4 +1,13 @@
-namespace MinesweeperGUIApp
+/*
+ * Chad Galloway
+ * CST - 250 Programming in C# II
+ * 11/16/2025
+ * Mine Sweeper Class Library
+ * Milestone 4
+ * References:
+ */
+
+namespace MinesweeperGUIApp.Properties
 {
     internal static class Program
     {
@@ -11,7 +20,7 @@ namespace MinesweeperGUIApp
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            Application.Run(new Form1());
+            Application.Run(new UI.Forms.MainForm());
         }
     }
 }
