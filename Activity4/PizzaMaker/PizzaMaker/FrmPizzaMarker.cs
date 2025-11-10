@@ -25,7 +25,12 @@ namespace PizzaMaker
             btnCreatePizza.Enabled = false;
             // Disable the Reset Form button
             btnResetForm.Enabled = false;
+            // Update the price of the pizza
             UpdatePrice();
+
+            // Update the maximums for the hsbSauce and hsbCheese
+            hsbSauce.Maximum = 100 + hsbSauce.LargeChange - 1;
+            hsbCheese.Maximum = 100 + hsbCheese.LargeChange - 1;
         }
 
         /// <summary>
@@ -140,6 +145,38 @@ namespace PizzaMaker
             }
             // Update the price
             UpdatePrice();
+        }
+
+        private void HsbExtraGoodiesValueChangedEH(object sender, EventArgs e)
+        {
+            // Cast  the sender object to an HScrollBar
+            HScrollBar scrollBar = sender as HScrollBar;
+            // Make sure the bar is not null
+            if (scrollBar != null)
+            {
+                // Check if the scroll bar is hsbSauce
+                if (scrollBar == hsbSauce)
+                {
+                    // Update the sauce quantity property using the scroll bars value
+                    _pizza.SauceQty = scrollBar.Value;
+                    // update the label sauce value
+                    lblSauceAmount.Text = scrollBar.Value.ToString();
+                }
+                // Check if the scroll bar is hsbCheese
+                else if (scrollBar == hsbCheese)
+                {
+                    // Update the cheese quantity property using the scroll bars value
+                    _pizza.CheeseQty = scrollBar.Value;
+                    // update the label cheese value
+                    lblCheeseAmount.Text = scrollBar.Value.ToString();
+                }
+            }
+        }
+
+        private void DtpDeliveryTimeValueChangedEH(object sender, EventArgs e)
+        {
+            // Update the delivery time for the pizza
+            _pizza.DeliveryTime = dtpDeliveryTime.Value;
         }
     }
 }
