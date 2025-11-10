@@ -82,6 +82,7 @@
             txtName.Name = "txtName";
             txtName.Size = new Size(181, 26);
             txtName.TabIndex = 1;
+            txtName.Leave += this.TxtNameLeaveEH;
             // 
             // grpIngredients
             // 
