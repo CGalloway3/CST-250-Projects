@@ -54,6 +54,51 @@ namespace PizzaMaker
         }
 
         /// <summary>
+        /// Checked Changed event handler for all the ingredient check boxes
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ChbIngredientsCheckedChangedEH(object sender, EventArgs e)
+        {
+            // Get the check box from the sender parameter
+            CheckBox checkbox = sender as CheckBox;
+
+            // Make sure the checkbox is not null
+            if (checkbox != null)
+            {
+                // If the checkbox is checked, add the ingredient to the pizza
+                if (checkbox.Checked)
+                {
+                    // Add the current ingredient to the pizza
+                    _pizza.Ingredients.Add(checkbox.Text);
+                }
+                // If the checkbox is not checked, remove the ingredient
+                else
+                {
+                    // Remove the current ingredient from the pizza
+                    _pizza.Ingredients.Remove(checkbox.Text);
+                }
+            }
+
+            // Update the price of the pizza
+            UpdatePrice();
+        }
+
+
+        /// <summary>
+        /// Selected Index Changed event handler for lsbStrangeAddOns
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void LsbStrangeAddOnsSelectedIndexChangedEH(object sender, EventArgs e)
+        {
+            // Get the list of the selected  ingredients ad set the strange addons property of the pizza
+            _pizza.StrangeAddOns = lsbStrangeAddOns.SelectedItems.Cast<string>().ToList();
+            // update the price of the pizza    
+            UpdatePrice();
+        }
+
+        /// <summary>
         /// Update the price of the pizza
         /// </summary>
         public void UpdatePrice()
@@ -77,6 +122,24 @@ namespace PizzaMaker
             _pizza.Price = price;
             // Update lblPizzaPrice
             lblPizzaPriceAmount.Text = $"{price:C2}";
+        }
+
+        /// <summary>
+        /// Checked Changed event handler for crust radio buttons
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void RdoCrustCheckedChangedEH(object sender, EventArgs e)
+        {
+            // Get the  radio button from the sender object
+            RadioButton radioButton = sender as RadioButton;
+            // Make sure tthe radio button is not null
+            if (radioButton != null && radioButton.Checked)
+            {
+                _pizza.Crust = radioButton.Text;
+            }
+            // Update the price
+            UpdatePrice();
         }
     }
 }
