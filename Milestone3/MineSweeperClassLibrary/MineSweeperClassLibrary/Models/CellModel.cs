@@ -16,7 +16,6 @@ namespace MineSweeperClassLibrary.Models
         // Public class level variables
         public int Row { get; set; }
         public int Column { get; set; }
-        public CellVisualStates VisualState { get; set; }
         public bool IsVisited { get; set; }
         public bool IsBomb { get; set; }
         public bool IsFlagged { get; set; }
@@ -30,7 +29,6 @@ namespace MineSweeperClassLibrary.Models
         {
             Row = -1;
             Column = -1;
-            VisualState = CellVisualStates.Hidden;
             IsVisited = false;
             IsBomb = false;
             IsFlagged = false;

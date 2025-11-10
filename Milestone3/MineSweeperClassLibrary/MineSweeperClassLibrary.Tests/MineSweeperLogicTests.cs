@@ -43,7 +43,6 @@ namespace MineSweeperClassLibrary.Tests
             Assert.NotNull(cell);
             Assert.Equal(-1, cell.Row);
             Assert.Equal(-1, cell.Column);
-            Assert.Equal(CellVisualStates.Hidden, cell.VisualState);
             Assert.False(cell.IsVisited);
             Assert.False(cell.IsBomb);
             Assert.False(cell.IsFlagged);

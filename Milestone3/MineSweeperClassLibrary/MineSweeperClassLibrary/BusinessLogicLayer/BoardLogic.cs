@@ -10,6 +10,7 @@
 using MineSweeperClassLibrary.Enums;
 using MineSweeperClassLibrary.Models;
 using System.Drawing;
+using System.Security.Claims;
 
 namespace MineSweeperClassLibrary.BusinessLogicLayer
 {
@@ -190,61 +191,103 @@ namespace MineSweeperClassLibrary.BusinessLogicLayer
         /// <returns>Returns a GameState enum</returns>
         public void DetermineGameState(int row, int col, int choice)
         {
-            CellModel cell = _board.Cells[row, col];
+            // Store the users choice in the cell variable
+            CellModel cell = _board.Cells[row - 1, col - 1];
+            // Set the game as in progress
             _board.GameState = GameState.InProgress;
 
-            switch (choice)
+            switch (choice) // What action did the user choose
             {
-                case 1: // Visit
-                    // We visited a bomb game lost
-                    cell.IsVisited = true;
-                    if (cell.IsBomb)
-                    {
-                        _board.GameState = GameState.Lost;
-                        return; // We lost return immediately
-                    }
-                    if (cell.HasSpecialReward)
-                    {
-                        _board.RewardsRemaining++;
-                        _board.GameState = GameState.RewardFound; // We are not returning cause we could find a reward on our very last move and returning would negate the win.
-                    }
+                case 1: // User choose Visit
+                    VisitCell(cell);
                     break;
-                case 2: // Flag
-                    // Catch too many flags used
-                    if (_board.NumberOfBombs > 0 || cell.IsFlagged)
-                    {
-                        cell.IsFlagged = !cell.IsFlagged;
-                        // Update bomb count based on our displayed flags
-                        if (cell.IsFlagged)
-                        {
-                            _board.NumberOfBombs--;
-                            cell.IsVisited = true;
-                        }
-                        else
-                        {
-                            _board.NumberOfBombs++;
-                            cell.IsVisited = false;
-                        }
-                    }
-                    else
-                    {
-                        Console.ForegroundColor = ConsoleColor.Yellow;
-                        Console.WriteLine("You are out of bomb flags remove one and try again.");
-                        Console.ResetColor();
-                    }
 
-                        break;
-                case 3: // reward
+                case 2: // User choose Flag
+                    FlagCell(cell);
+                    break;
+
+                case 3: // User Choose User Reward
                     UseSpecialBonus(cell); // Use Reward
                     break;
+
                 default:
                     break;
             }
-            if (CountRemainingMoves() == 0)
+
+            // Was this the very last cell and have we NOT! lost already?
+            if (CountRemainingMoves() == 0 && _board.GameState != GameState.Lost)
             {
                 _board.GameState = GameState.Won; // If we uncovered everything we just return the win. nothing else matters
             }
         }   
+
+        /// <summary>
+        /// Method to handle cell visit cases
+        /// </summary>
+        /// <param name="cell"></param>
+        public void VisitCell(CellModel cell)
+        {
+            // Check if we have already been here
+            if (cell.IsVisited)
+            {
+                return;
+            }
+
+            // Check for bomb
+            if (cell.IsBomb)
+            {
+                // We visited a bomb game lost
+                _board.GameState = GameState.Lost;
+                return;
+            }
+
+            if (cell.NumberOfBombNeighbors == 0)
+            {
+                // Fill the empty region
+                FloodFill(cell.Row, cell.Column);
+                return;
+            }
+            
+            cell.IsVisited = true;
+
+            // Hand out the reward if one is located
+            if (_board.Cells[cell.Row, cell.Column].HasSpecialReward == true)
+            {
+                ClaimReward(cell.Row, cell.Column);
+            }
+        }
+
+        /// <summary>
+        /// Method to handle cell flagging cases
+        /// </summary>
+        /// <param name="cell"></param>
+        public void FlagCell(CellModel cell)
+        {
+            // Are there bombs still on the board or are we removing a possibly incorrect flag
+            if (_board.NumberOfBombs > 0 || cell.IsFlagged)
+            {
+                // Flip flop the flag state
+                cell.IsFlagged = !cell.IsFlagged;
+
+                // Update bomb count and is visited property based on our displayed flags
+                if (cell.IsFlagged)
+                {
+                    _board.NumberOfBombs--;
+                    cell.IsVisited = true;
+                }
+                else
+                {
+                    _board.NumberOfBombs++;
+                    cell.IsVisited = false;
+                }
+            }
+            else // Catch too many flags used
+            {
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine("You are out of bomb flags remove one and try again.");
+                Console.ResetColor();
+            }
+        }
 
         /// <summary>
         /// Provides functionality for special reward usage
@@ -268,7 +311,7 @@ namespace MineSweeperClassLibrary.BusinessLogicLayer
         /// <summary>
         /// Not yet implemented
         /// </summary>
-        public void DetermineFinalSocre()
+        public void DetermineFinalScore()
         {
             // Implement final score calculation here
         }
@@ -317,6 +360,81 @@ namespace MineSweeperClassLibrary.BusinessLogicLayer
         public GameState GetGameState()
         {
             return _board.GameState;
+        }
+        
+        /// <summary>
+        /// Flood fill algorithm for filling unoccupied squares
+        /// </summary>
+        /// <param name="row"></param>
+        /// <param name="col"></param>
+        public void FloodFill(int row, int col)
+        {
+            // Bounds Check
+            if ( row < 0 || row > _board.Size - 1 || col < 0 || col > _board.Size - 1 )
+            {
+                return; // Not a valid cell
+            }
+
+            // Already visited
+            if (_board.Cells[row, col].IsVisited == true )
+            {
+                return; // Cell has already been probed (visited)
+            }
+
+            // Numbers Check, cell has bomb neighbors?
+            if (_board.Cells[ row, col ].NumberOfBombNeighbors > 0 )
+            {
+                // Mark the cell as visited
+                _board.Cells[row, col].IsVisited = true;                
+                
+                // Hand out the reward if one is located
+                if (_board.Cells[row, col].HasSpecialReward == true)
+                {
+                    ClaimReward(row, col);                    
+                }
+
+                return; // No more automatic neighbor probing because it could be a bomb.
+            }
+
+            // New Valid cell begin recursion logic
+            // Mark the cell as visited
+            _board.Cells[ row, col ].IsVisited = true;          
+
+            // Hand out the reward if one is located
+            if ( _board.Cells[row, col].HasSpecialReward == true )
+            {
+                ClaimReward(row, col);                
+            }
+
+            // Go north west
+            FloodFill(row - 1, col - 1);
+            // Go north
+            FloodFill(row - 1, col);
+            // Go north east
+            FloodFill(row - 1, col + 1);
+            // Go west
+            FloodFill(row, col - 1);
+            // Go east
+            FloodFill(row, col + 1);
+            // Go south west
+            FloodFill(row + 1, col - 1);
+            // Go south
+            FloodFill(row + 1, col);
+            // Go south east
+            FloodFill(row + 1, col + 1);
+        }
+
+        /// <summary>
+        /// Method for setting all the flags when a reward is found
+        /// </summary>
+        /// <param name="row"></param>
+        /// <param name="col"></param>
+        private void ClaimReward(int row, int col)
+        {
+            // Set Flags
+            _board.RewardsRemaining++;
+            _board.GameState = GameState.RewardFound;
+            _board.Cells[row,col].HasSpecialReward = false;
         }
     }
 }

@@ -11,6 +11,7 @@ using MineSweeperClassLibrary.BusinessLogicLayer;
 using MineSweeperClassLibrary.Enums;
 using MineSweeperClassLibrary.Models;
 using System.Data;
+using System.Diagnostics;
 
 //------------------------------------------------------
 // Start of the Main Method
@@ -74,7 +75,7 @@ while (!victory && !death)
     // Print the Board Condition
     PrintBoard(board);
 
-    // Dispaly the results of the Win or loss condition test.
+    // Display the results of the Win or loss condition test.
     switch(board.GetGameState())
     {
         case GameState.InProgress: 
@@ -99,14 +100,17 @@ while (!victory && !death)
 
         case GameState.RewardFound:
             Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("*!* You found a reward *!*");
+            Console.Write("*!* You found a reward *!* ");
             Console.ResetColor();
             break;
 
         default:
             break;
     }
-}
+    Console.ForegroundColor = ConsoleColor.Green;
+    Console.WriteLine($"You have {board.GetNumberOfRewards()} rewards left.");
+    Console.ResetColor();
+    }
 
 //------------------------------------------------------
 // End of Game Loop
@@ -119,6 +123,7 @@ while (!victory && !death)
 //------------------------------------------------------
 // Get User input methods
 //------------------------------------------------------
+
 // Get input for board size
 int GetBoardSize()
 {
@@ -162,8 +167,8 @@ int GetDifficulty()
     // Row input
     while (true)
     {
-        Console.Write("Enter row (0 - " + (size - 1) + "): ");
-        if (int.TryParse(Console.ReadLine(), out row) && row >= 0 && row < size)
+        Console.Write("Enter row (1 - " + (size) + "): ");
+        if (int.TryParse(Console.ReadLine(), out row) && row > 0 && row <= size)
             break;
         Console.WriteLine("Invalid input. Try again.");
     }
@@ -171,8 +176,8 @@ int GetDifficulty()
     // Column input
     while (true)
     {
-        Console.Write("Enter column (0 - " + (size - 1) + "): ");
-        if (int.TryParse(Console.ReadLine(), out col) && col >= 0 && col < size)
+        Console.Write("Enter column (1 - " + (size) + "): ");
+        if (int.TryParse(Console.ReadLine(), out col) && col > 0 && col <= size)
             break;
         Console.WriteLine("Invalid input. Try again.");
     }
@@ -211,18 +216,15 @@ static void PrintAnswers(BoardLogic board)
 
     // 1. Print the header row (column numbers)
     Console.WriteLine("Here is the answer key for the board.");
-    Console.Write("  "); // Spacer for the row index column
+    Console.Write(" "); // Spacer for the row index column
     for (int col = 0; col < size; col++)
     {
-        if (col < 11)
-            Console.Write($"   {col}");
-        else
-            Console.Write($"  {col}");
+        Console.Write($"  {col + 1, 2}");       
     }
     Console.WriteLine();
 
     // 2. Print the top border
-    Console.Write("   +");
+    Console.Write("  +");
     for (int col = 0; col < size; col++)
     {
         Console.Write("---+");
@@ -233,11 +235,8 @@ static void PrintAnswers(BoardLogic board)
     for (int row = 0; row < size; row++)
     {
         // Print the row index
-        if (row < 10)
-            Console.Write($" {row} |");
-        else
-            Console.Write($"{row} |");
-
+            Console.Write($"{row + 1, 2}|");
+       
         // Loop through each column in the current row
         for (int col = 0; col < size; col++)
         {
@@ -317,7 +316,7 @@ static void PrintAnswers(BoardLogic board)
         Console.WriteLine(); // Move to the next line after printing a full row
 
         // Print the row separator border
-        Console.Write("   +");
+        Console.Write("  +");
         for (int col = 0; col < size; col++)
         {
             Console.Write("---+");
@@ -336,18 +335,15 @@ static void PrintBoard(BoardLogic board)
 
     // 1. Print the header row (column numbers)
     Console.WriteLine("Here is the current board.");
-    Console.Write("  "); // Spacer for the row index column
+    Console.Write(" "); // Spacer for the row index column
     for (int col = 0; col < size; col++)
     {
-        if (col < 11)
-            Console.Write($"   {col}");
-        else
-            Console.Write($"  {col}");
+        Console.Write($"  {col + 1, 2}");
     }
     Console.WriteLine();
 
     // 2. Print the top border
-    Console.Write("   +");
+    Console.Write("  +");
     for (int col = 0; col < size; col++)
     {
         Console.Write("---+");
@@ -357,11 +353,8 @@ static void PrintBoard(BoardLogic board)
     // 3. Loop through each row to print the board contents
     for (int row = 0; row < size; row++)
     {
-        // Print the row index
-        if (row < 10)
-            Console.Write($" {row} |");
-        else
-            Console.Write($"{row} |");
+        // Print the row index 
+        Console.Write($"{row + 1, 2}|");      
 
         // Loop through each column in the current row
         for (int col = 0; col < size; col++)
@@ -454,7 +447,7 @@ static void PrintBoard(BoardLogic board)
         Console.WriteLine(); // Move to the next line after printing a full row
 
         // Print the row separator border
-        Console.Write("   +");
+        Console.Write("  +");
         for (int col = 0; col < size; col++)
         {
             Console.Write("---+");
