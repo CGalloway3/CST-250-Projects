@@ -15,6 +15,10 @@ namespace PizzaMaker
     {
         // Class level variable declarations
         private PizzaModel _pizza;
+
+        /// <summary>
+        /// Default constructor for FrmPizzaMaker
+        /// </summary>
         public FrmPizzaMarker()
         {
             InitializeComponent();
@@ -147,6 +151,11 @@ namespace PizzaMaker
             UpdatePrice();
         }
 
+        /// <summary>
+        /// Value changed event handler for the horizontal scroll bars
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void HsbExtraGoodiesValueChangedEH(object sender, EventArgs e)
         {
             // Cast  the sender object to an HScrollBar
@@ -173,10 +182,137 @@ namespace PizzaMaker
             }
         }
 
+        /// <summary>
+        /// Value changed evet handler for the dtpDeliveryTime
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void DtpDeliveryTimeValueChangedEH(object sender, EventArgs e)
         {
             // Update the delivery time for the pizza
             _pizza.DeliveryTime = dtpDeliveryTime.Value;
         }
+
+        /// <summary>
+        /// Click Event handler for the picPizzaBoxColor
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void PicPizzaBoxColorClickEH(object sender, EventArgs e)
+        {
+            // Create a new color dialog object
+            ColorDialog pizzaBoxColorPicler = new ColorDialog();
+            // Call the show dialog method
+            DialogResult result = pizzaBoxColorPicler.ShowDialog();
+            // Check if the color picker returned ok
+            if (result == DialogResult.OK)
+            {
+                // Set the Pizza box color
+                _pizza.PizzaBoxColor = pizzaBoxColorPicler.Color;
+                // Set the color of the picture box
+                picPizzaBoxColor.BackColor = pizzaBoxColorPicler.Color;
+            }
+        }
+
+        /// <summary>
+        /// Click event handler for the btnResetForm
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void BtnResetFormClickEH(object sender, EventArgs e)
+        {
+            // Reset the from
+            ResetForm();
+        }
+
+        /// <summary>
+        /// Reset the Pizza maker form
+        /// </summary>
+        private void ResetForm()
+        {
+            // set the pizza to a new instance
+            _pizza = new PizzaModel();
+            // Reset the controls on the new form
+            ResetControls(this);
+            // Update the price of the of the Pizza
+            UpdatePrice();
+        }
+
+        /// <summary>
+        /// Reset the controls within the parent control
+        /// </summary>
+        /// <param name="parentControl"></param>
+        private void ResetControls(Control parentControl)
+        {
+            // Loop through the controls within the parent control
+            foreach (Control control in parentControl.Controls)
+            {
+                // Get the type of the control
+                Type controlType = control.GetType();
+                // Save the type of the control as a string
+                string type = controlType.Name.ToString();
+
+                // Use a switch case to handle the resets
+                switch (type)
+                {
+                    case "TextBox":
+                        // Cast the control to a textbox
+                        TextBox textbox = (TextBox)control;
+                        // Clear the textbox
+                        textbox.Clear();
+                        break;
+
+                    case "CheckBox":
+                        // Cast the control to a checkbox
+                        CheckBox checkbox = (CheckBox)control;
+                        // Make sure the checkbox is not checked
+                        checkbox.Checked = false;
+                        break;
+
+                    case "ListBox":
+                        // Cast the control to a list box
+                        ListBox listbox = (ListBox)control;
+                        // Clear the selected items in the list box
+                        listbox.ClearSelected();
+                        break;
+
+                    case "RadioButton":
+                        // Cast the control to a radio button
+                        RadioButton radioButton = (RadioButton)control;
+                        // Make sure the radio button is not checked
+                        radioButton.Checked = false;
+                        break;
+
+                    case "HScrollBar":
+                        // Cast the control to a horizontal scroll bar
+                        HScrollBar hScrollBar = (HScrollBar)control;
+                        // Set the scroll bars value to 0
+                        hScrollBar.Value = 0;
+                        break;
+
+                    case "DateTimePicker":
+                        // Cast the control to a date time picker
+                        DateTimePicker dateTimePicker = (DateTimePicker)control;
+                        // Set the date to 1/1/2025 12:00am
+                        dateTimePicker.Value = new DateTime(dateTimePicker.MinDate.Ticks);
+                        break;
+
+                    case "PictureBox":
+                        // Cast the control to a picture box
+                        PictureBox pictureBox = (PictureBox)control;
+                        // Change the picture box back color to the default
+                        pictureBox.BackColor = SystemColors.Control;
+                        break;
+                }
+
+                // Check if the control has controls (children)
+                if (control.HasChildren)
+                {
+                    // Recursively call the Reset method using the current control
+                    ResetControls(control);
+                }
+            }
+        } // End of ResetControls method
+
     }
 }
