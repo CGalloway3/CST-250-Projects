@@ -7,9 +7,11 @@
  * References:
  */
 
-namespace PizzaMaker.Models
+using System.Drawing;
+
+namespace PizzaMakerClassLibrary.Models
 {
-    internal class PizzaModel
+    public class PizzaModel
     {
         // Class properties
         public string ClientName { get; set; }
