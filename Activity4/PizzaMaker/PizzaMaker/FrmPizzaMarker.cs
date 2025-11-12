@@ -1,7 +1,7 @@
 /*
  * Chad Galloway
  * CST - 250 Programming in C# II
- * 11/06/2020
+ * 11/16/2025
  * Pizza Maker
  * Activity 4
  * References:
@@ -16,6 +16,7 @@ namespace PizzaMaker
         // Class level variable declarations
         private PizzaModel _pizza;
 
+        // Public constructor
         /// <summary>
         /// Default constructor for FrmPizzaMaker
         /// </summary>
@@ -37,6 +38,7 @@ namespace PizzaMaker
             hsbCheese.Maximum = 100 + hsbCheese.LargeChange - 1;
         }
 
+        // Public methods
         /// <summary>
         /// Enables the reset and create buttons
         /// for the order pizza form
@@ -49,6 +51,33 @@ namespace PizzaMaker
             btnResetForm.Enabled = true;
         }
 
+        /// <summary>
+        /// Update the price of the pizza
+        /// </summary>
+        public void UpdatePrice()
+        {
+            // Declare and initialize
+            decimal price = 15;
+
+            // Add 50 cents for each ingredient
+            price += (_pizza.Ingredients.Count * .50m);
+
+            // Add 50 cents for each special add on
+            price += (_pizza.StrangeAddOns.Count * .50m);
+
+            // Add $1 if the crust if gluten free
+            if (_pizza.Crust == "Gluten Free")
+            {
+                price += 1;
+            }
+
+            // Update the price of the pizza
+            _pizza.Price = price;
+            // Update lblPizzaPrice
+            lblPizzaPriceAmount.Text = $"{price:C2}";
+        }
+
+        // Private Event handlers
         /// <summary>
         /// Leave Event Handler for txtName
         /// </summary>
@@ -93,7 +122,6 @@ namespace PizzaMaker
             UpdatePrice();
         }
 
-
         /// <summary>
         /// Selected Index Changed event handler for lsbStrangeAddOns
         /// </summary>
@@ -105,32 +133,6 @@ namespace PizzaMaker
             _pizza.StrangeAddOns = lsbStrangeAddOns.SelectedItems.Cast<string>().ToList();
             // update the price of the pizza    
             UpdatePrice();
-        }
-
-        /// <summary>
-        /// Update the price of the pizza
-        /// </summary>
-        public void UpdatePrice()
-        {
-            // Declare and initialize
-            decimal price = 15;
-
-            // Add 50 cents for each ingredient
-            price += (_pizza.Ingredients.Count * .50m);
-
-            // Add 50 cents for each special add on
-            price += (_pizza.StrangeAddOns.Count * .50m);
-
-            // Add $1 if the crust if gluten free
-            if (_pizza.Crust == "Gluten Free")
-            {
-                price += 1;
-            }
-
-            // Update the price of the pizza
-            _pizza.Price = price;
-            // Update lblPizzaPrice
-            lblPizzaPriceAmount.Text = $"{price:C2}";
         }
 
         /// <summary>
@@ -225,6 +227,7 @@ namespace PizzaMaker
             ResetForm();
         }
 
+        // Private methods
         /// <summary>
         /// Reset the Pizza maker form
         /// </summary>
