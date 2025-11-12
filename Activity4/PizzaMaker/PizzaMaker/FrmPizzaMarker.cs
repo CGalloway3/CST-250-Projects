@@ -7,7 +7,8 @@
  * References:
  */
 
-using PizzaMaker.Models;
+using PizzaMakerClassLibrary.Models;
+using PizzaMakerClassLibrary.Services.BusinessLogicLayer;
 
 namespace PizzaMaker
 {
@@ -15,6 +16,7 @@ namespace PizzaMaker
     {
         // Class level variable declarations
         private PizzaModel _pizza;
+        private PizzaLogic _pizzaLogic;
 
         // Public constructor
         /// <summary>
@@ -25,6 +27,8 @@ namespace PizzaMaker
             InitializeComponent();
             // Initialize the current order
             _pizza = new PizzaModel();
+            // Initialize the business logic layer
+            _pizzaLogic = new PizzaLogic();
 
             // Disable the Create Pizza button
             btnCreatePizza.Enabled = false;
@@ -217,6 +221,28 @@ namespace PizzaMaker
         }
 
         /// <summary>
+        /// Click event handler for the create pizza button
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void BtnCreatePizzaClickEH(object sender, EventArgs e)
+        {
+            // Declare and Initialize
+            bool isValidPizza = false;
+            int pizzasInOrder = -1;
+
+            // Use the pizza logic to call add pizza to order
+            (isValidPizza, pizzasInOrder) = _pizzaLogic.AddPizzaToOrder(_pizza);
+
+            // Check if the pizza was valid
+            if (isValidPizza)
+            {
+                // Reset the form
+                ResetForm();
+            }
+        }
+
+        /// <summary>
         /// Click event handler for the btnResetForm
         /// </summary>
         /// <param name="sender"></param>
@@ -316,6 +342,5 @@ namespace PizzaMaker
                 }
             }
         } // End of ResetControls method
-
     }
 }
