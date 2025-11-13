@@ -262,6 +262,25 @@ namespace PizzaMaker
             ResetForm();
         }
 
+        /// <summary>
+        /// Click event handler for btnSeeFullOrder
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void BtnSeeFullOrderClickEH(object sender, EventArgs e)
+        {
+            // Declare and Initialize
+            List<PizzaModel> pizzaList;
+            // Get the pizza list from pizzaLogic
+            pizzaList = _pizzaLogic.GetPizzaOrder();
+            // Create a new form with the pizza list
+            FrmOrderDetails frmOrderDetails = new FrmOrderDetails(pizzaList, _pizzaLogic);
+            // Update the label with the pizza order
+            frmOrderDetails.DisplayPizzas();
+            // Show the form
+            frmOrderDetails.ShowDialog();
+        }
+
         // Private methods
         /// <summary>
         /// Reset the Pizza maker form

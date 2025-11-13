@@ -37,5 +37,11 @@ namespace PizzaMakerClassLibrary.Services.DataAccessLayer
             // Return the number of pizzas in _pizzaOrder
             return _pizzaOrder.Count;
         }
+
+        public List<PizzaModel> GetPizzaOrder()
+        {
+            // Return the pizzaOrder list
+            return _pizzaOrder;
+        }
     }
 }

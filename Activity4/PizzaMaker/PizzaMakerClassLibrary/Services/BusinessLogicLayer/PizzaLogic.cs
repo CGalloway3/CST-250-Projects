@@ -41,5 +41,11 @@ namespace PizzaMakerClassLibrary.Services.BusinessLogicLayer
             // Return the pizzas variable
             return (true, pizzas);
         }
+
+        public List<PizzaModel> GetPizzaOrder()
+        {
+            // Get and return the getPizzaOrder from the DAO
+            return _pizzaDAO.GetPizzaOrder();
+        }
     }
 }
