@@ -70,6 +70,7 @@ namespace PizzaMaker
             lblPizzaPriceAmount = new Label();
             btnResetForm = new Button();
             btnCreatePizza = new Button();
+            btnSeeFullOrder = new Button();
             grpIngredients.SuspendLayout();
             grpCrust.SuspendLayout();
             grpExtraGoodies.SuspendLayout();
@@ -451,11 +452,21 @@ namespace PizzaMaker
             btnCreatePizza.UseVisualStyleBackColor = true;
             btnCreatePizza.Click += BtnCreatePizzaClickEH;
             // 
+            // btnSeeFullOrder
+            // 
+            btnSeeFullOrder.Location = new Point(321, 223);
+            btnSeeFullOrder.Name = "btnSeeFullOrder";
+            btnSeeFullOrder.Size = new Size(144, 25);
+            btnSeeFullOrder.TabIndex = 15;
+            btnSeeFullOrder.Text = "See Full Order";
+            btnSeeFullOrder.UseVisualStyleBackColor = true;
+            // 
             // FrmPizzaMarker
             // 
             AutoScaleDimensions = new SizeF(9F, 18F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(511, 540);
+            Controls.Add(btnSeeFullOrder);
             Controls.Add(btnCreatePizza);
             Controls.Add(btnResetForm);
             Controls.Add(lblPizzaPriceAmount);
@@ -521,5 +532,6 @@ namespace PizzaMaker
         private Label lblPizzaPriceAmount;
         private Button btnResetForm;
         private Button btnCreatePizza;
+        private Button btnSeeFullOrder;
     }
 }
