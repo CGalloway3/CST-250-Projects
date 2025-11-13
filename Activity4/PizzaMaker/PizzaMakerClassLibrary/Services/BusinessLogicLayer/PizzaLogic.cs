@@ -42,10 +42,24 @@ namespace PizzaMakerClassLibrary.Services.BusinessLogicLayer
             return (true, pizzas);
         }
 
+        /// <summary>
+        /// Get the list of pizzas in the current order
+        /// </summary>
+        /// <returns></returns>
         public List<PizzaModel> GetPizzaOrder()
         {
             // Get and return the getPizzaOrder from the DAO
             return _pizzaDAO.GetPizzaOrder();
+        }
+
+        /// <summary>
+        /// Write the pizza order to a text file
+        /// </summary>
+        /// <returns></returns>
+        public bool WriteOrderToFile()
+        {
+            // Get and return write order to file from the DAO
+            return _pizzaDAO.WriteOrderToFile();
         }
     }
 }
