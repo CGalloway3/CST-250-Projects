@@ -223,6 +223,17 @@ namespace PizzaMaker
         }
 
         /// <summary>
+        /// Click event handler for the btnResetForm
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void BtnResetFormClickEH(object sender, EventArgs e)
+        {
+            // Reset the from
+            ResetForm();
+        }
+
+        /// <summary>
         /// Click event handler for the create pizza button
         /// </summary>
         /// <param name="sender"></param>
@@ -249,17 +260,6 @@ namespace PizzaMaker
                 // Display a failure message to the user
                 MessageBox.Show("Your pizza order is not complete.");
             }
-        }
-
-        /// <summary>
-        /// Click event handler for the btnResetForm
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void BtnResetFormClickEH(object sender, EventArgs e)
-        {
-            // Reset the from
-            ResetForm();
         }
 
         /// <summary>

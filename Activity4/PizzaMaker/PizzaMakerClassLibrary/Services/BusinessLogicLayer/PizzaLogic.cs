@@ -17,6 +17,7 @@ namespace PizzaMakerClassLibrary.Services.BusinessLogicLayer
         // Declare class level variables
         private PizzaDAO _pizzaDAO;
         
+        // Public Constructor
         /// <summary>
         /// Default constructor for PizzaLogic
         /// </summary>
@@ -26,6 +27,7 @@ namespace PizzaMakerClassLibrary.Services.BusinessLogicLayer
             _pizzaDAO = new PizzaDAO();
         }
 
+        // Public Methods
         /// <summary>
         /// Add a new pizza to the current order
         /// </summary>

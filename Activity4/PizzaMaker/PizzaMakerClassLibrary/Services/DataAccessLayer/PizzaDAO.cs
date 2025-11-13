@@ -16,6 +16,7 @@ namespace PizzaMakerClassLibrary.Services.DataAccessLayer
         // Class level variables
         private List<PizzaModel> _pizzaOrder;
 
+        // Public Constructor
         /// <summary>
         /// Default constructor for the pizza DAO
         /// </summary>
@@ -25,6 +26,7 @@ namespace PizzaMakerClassLibrary.Services.DataAccessLayer
             _pizzaOrder = new List<PizzaModel> ();
         }
         
+        // Public Methods
         /// <summary>
         /// Add a pizza to the current order
         /// </summary>

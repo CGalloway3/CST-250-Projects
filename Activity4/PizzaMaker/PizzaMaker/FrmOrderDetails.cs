@@ -18,6 +18,7 @@ namespace PizzaMaker
         private List<PizzaModel> _pizzaOrder;
         private PizzaLogic _pizzaLogic;
 
+        // Public Constructor
         /// <summary>
         /// Parameterized constructor for FrmOrderDetails
         /// </summary>
@@ -31,6 +32,7 @@ namespace PizzaMaker
             _pizzaLogic = pizzaBusinessLogic;
         }
 
+        // Public Methods
         /// <summary>
         /// Display the pizzas on the form
         /// </summary>
@@ -55,6 +57,7 @@ namespace PizzaMaker
             }
         }
 
+        // Private Event Handlers
         /// <summary>
         /// Click event handler for the btnSaveOrder
         /// </summary>

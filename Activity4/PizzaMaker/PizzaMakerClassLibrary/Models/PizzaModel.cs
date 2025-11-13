@@ -24,6 +24,7 @@ namespace PizzaMakerClassLibrary.Models
         public Color PizzaBoxColor { get; set; }
         public decimal Price { get; set; }
 
+        // Public Constructor
         /// <summary>
         /// Default Constructor for Pizza Model
         /// </summary>
