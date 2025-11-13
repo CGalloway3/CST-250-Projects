@@ -36,6 +36,8 @@ namespace PizzaMaker
             btnResetForm.Enabled = false;
             // Disable the See Full Order button
             btnSeeFullOrder.Enabled = false;
+            // Disable the checkout button
+            btnCheckout.Enabled = false;
             // Update the price of the pizza
             UpdatePrice();
 
@@ -252,6 +254,10 @@ namespace PizzaMaker
             {
                 // Enable the see full order button
                 btnSeeFullOrder.Enabled = true;
+                btnCheckout.Enabled = true;
+                lblNumberOfPizzasAmount.Text = _pizzaLogic.GetPizzaOrder().Count.ToString();
+                lblTotalOrderPriceAmount.Text = _pizzaLogic.GetOrderPrice().ToString("C");
+                lblOrderNameAmount.Text = _pizza.ClientName;
                 // Reset the form
                 ResetForm();
             }
@@ -279,6 +285,33 @@ namespace PizzaMaker
             frmOrderDetails.DisplayPizzas();
             // Show the form
             frmOrderDetails.ShowDialog();
+        }
+
+        /// <summary>
+        /// Click event handler for the btnCheckout
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void BtnCheckoutClickEH(object sender, EventArgs e)
+        {
+            // Declare and Initialize
+            decimal orderPrice = _pizzaLogic.GetOrderPrice();
+
+            // Try to check out
+            if (_pizzaLogic.Checkout())
+            {
+                btnSeeFullOrder.Enabled = false;
+                btnCheckout.Enabled = false;
+                lblNumberOfPizzasAmount.Text = "";
+                lblTotalOrderPriceAmount.Text = "";
+                lblOrderNameAmount.Text = "";
+
+                MessageBox.Show($"Thank you for your order.\nThe total order price is {orderPrice}.");
+            }
+            else
+            {
+                MessageBox.Show("Checkout failed");
+            }
         }
 
         // Private methods

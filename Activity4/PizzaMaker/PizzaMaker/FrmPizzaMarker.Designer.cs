@@ -71,10 +71,19 @@ namespace PizzaMaker
             btnResetForm = new Button();
             btnCreatePizza = new Button();
             btnSeeFullOrder = new Button();
+            grpOrderInfo = new GroupBox();
+            lblTotalOrderPriceAmount = new Label();
+            lblNumberOfPizzasAmount = new Label();
+            lblOrderNameAmount = new Label();
+            btnCheckout = new Button();
+            lblTotalOrderPrice = new Label();
+            lblNumberOfPizzas = new Label();
+            lblOrderName = new Label();
             grpIngredients.SuspendLayout();
             grpCrust.SuspendLayout();
             grpExtraGoodies.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)picPizzaBoxColor).BeginInit();
+            grpOrderInfo.SuspendLayout();
             SuspendLayout();
             // 
             // lblName
@@ -454,7 +463,7 @@ namespace PizzaMaker
             // 
             // btnSeeFullOrder
             // 
-            btnSeeFullOrder.Location = new Point(321, 223);
+            btnSeeFullOrder.Location = new Point(335, 223);
             btnSeeFullOrder.Name = "btnSeeFullOrder";
             btnSeeFullOrder.Size = new Size(144, 25);
             btnSeeFullOrder.TabIndex = 15;
@@ -462,11 +471,89 @@ namespace PizzaMaker
             btnSeeFullOrder.UseVisualStyleBackColor = true;
             btnSeeFullOrder.Click += BtnSeeFullOrderClickEH;
             // 
+            // grpOrderInfo
+            // 
+            grpOrderInfo.Controls.Add(lblTotalOrderPriceAmount);
+            grpOrderInfo.Controls.Add(lblNumberOfPizzasAmount);
+            grpOrderInfo.Controls.Add(lblOrderNameAmount);
+            grpOrderInfo.Controls.Add(btnCheckout);
+            grpOrderInfo.Controls.Add(lblTotalOrderPrice);
+            grpOrderInfo.Controls.Add(lblNumberOfPizzas);
+            grpOrderInfo.Controls.Add(lblOrderName);
+            grpOrderInfo.Location = new Point(312, 256);
+            grpOrderInfo.Name = "grpOrderInfo";
+            grpOrderInfo.Size = new Size(187, 272);
+            grpOrderInfo.TabIndex = 16;
+            grpOrderInfo.TabStop = false;
+            grpOrderInfo.Text = "Order Info";
+            // 
+            // lblTotalOrderPriceAmount
+            // 
+            lblTotalOrderPriceAmount.AutoSize = true;
+            lblTotalOrderPriceAmount.Location = new Point(32, 171);
+            lblTotalOrderPriceAmount.Name = "lblTotalOrderPriceAmount";
+            lblTotalOrderPriceAmount.Size = new Size(0, 18);
+            lblTotalOrderPriceAmount.TabIndex = 6;
+            // 
+            // lblNumberOfPizzasAmount
+            // 
+            lblNumberOfPizzasAmount.AutoSize = true;
+            lblNumberOfPizzasAmount.Location = new Point(32, 112);
+            lblNumberOfPizzasAmount.Name = "lblNumberOfPizzasAmount";
+            lblNumberOfPizzasAmount.Size = new Size(0, 18);
+            lblNumberOfPizzasAmount.TabIndex = 5;
+            // 
+            // lblOrderNameAmount
+            // 
+            lblOrderNameAmount.AutoSize = true;
+            lblOrderNameAmount.Location = new Point(32, 56);
+            lblOrderNameAmount.Name = "lblOrderNameAmount";
+            lblOrderNameAmount.Size = new Size(0, 18);
+            lblOrderNameAmount.TabIndex = 4;
+            // 
+            // btnCheckout
+            // 
+            btnCheckout.Location = new Point(18, 213);
+            btnCheckout.Name = "btnCheckout";
+            btnCheckout.Size = new Size(147, 45);
+            btnCheckout.TabIndex = 3;
+            btnCheckout.Text = "Checkout";
+            btnCheckout.UseVisualStyleBackColor = true;
+            btnCheckout.Click += BtnCheckoutClickEH;
+            // 
+            // lblTotalOrderPrice
+            // 
+            lblTotalOrderPrice.AutoSize = true;
+            lblTotalOrderPrice.Location = new Point(9, 141);
+            lblTotalOrderPrice.Name = "lblTotalOrderPrice";
+            lblTotalOrderPrice.Size = new Size(136, 18);
+            lblTotalOrderPrice.TabIndex = 2;
+            lblTotalOrderPrice.Text = "Total  Order Price";
+            // 
+            // lblNumberOfPizzas
+            // 
+            lblNumberOfPizzas.AutoSize = true;
+            lblNumberOfPizzas.Location = new Point(9, 82);
+            lblNumberOfPizzas.Name = "lblNumberOfPizzas";
+            lblNumberOfPizzas.Size = new Size(129, 18);
+            lblNumberOfPizzas.TabIndex = 1;
+            lblNumberOfPizzas.Text = "# Pizzas on order";
+            // 
+            // lblOrderName
+            // 
+            lblOrderName.AutoSize = true;
+            lblOrderName.Location = new Point(9, 26);
+            lblOrderName.Name = "lblOrderName";
+            lblOrderName.Size = new Size(139, 18);
+            lblOrderName.TabIndex = 0;
+            lblOrderName.Text = "Name on last pizza";
+            // 
             // FrmPizzaMarker
             // 
             AutoScaleDimensions = new SizeF(9F, 18F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(511, 540);
+            Controls.Add(grpOrderInfo);
             Controls.Add(btnSeeFullOrder);
             Controls.Add(btnCreatePizza);
             Controls.Add(btnResetForm);
@@ -494,6 +581,8 @@ namespace PizzaMaker
             grpExtraGoodies.ResumeLayout(false);
             grpExtraGoodies.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)picPizzaBoxColor).EndInit();
+            grpOrderInfo.ResumeLayout(false);
+            grpOrderInfo.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -534,5 +623,13 @@ namespace PizzaMaker
         private Button btnResetForm;
         private Button btnCreatePizza;
         private Button btnSeeFullOrder;
+        private GroupBox grpOrderInfo;
+        private Label lblTotalOrderPrice;
+        private Label lblNumberOfPizzas;
+        private Label lblOrderName;
+        private Button btnCheckout;
+        private Label lblTotalOrderPriceAmount;
+        private Label lblNumberOfPizzasAmount;
+        private Label lblOrderNameAmount;
     }
 }

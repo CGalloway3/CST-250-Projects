@@ -37,11 +37,26 @@ namespace PizzaMakerClassLibrary.Services.BusinessLogicLayer
         {
             // Declare and initialize
             int pizzas = -1;
+            bool isValidPizza = false;
 
-            // Call the DAO AddPizzaToOrder
-            pizzas = _pizzaDAO.AddPizzaToOrder(newPizza);
+            // Rules that need to be satisfied for a pizza to be added to the order
+            // If the pizza passed in here does not meet all these rules it is not a
+            // valid pizza entry. If it is valid set isValidPizza to true and call AddPizzaToOrder
+            if (newPizza != null &&
+                !string.IsNullOrWhiteSpace(newPizza.ClientName) &&
+                newPizza.ClientName != "Unknown" &&
+                newPizza.Crust != "Unknown" &&
+                (newPizza.Ingredients.Count > 0 || newPizza.StrangeAddOns.Count > 0 ) &&
+                newPizza.SauceQty > 0 &&
+                newPizza.CheeseQty > 0)
+            {
+                // Call the DAO AddPizzaToOrder
+                pizzas = _pizzaDAO.AddPizzaToOrder(newPizza);
+                isValidPizza = true;
+            }
+
             // Return the pizzas variable
-            return (true, pizzas);
+            return (isValidPizza, pizzas);
         }
 
         /// <summary>
@@ -55,6 +70,15 @@ namespace PizzaMakerClassLibrary.Services.BusinessLogicLayer
         }
 
         /// <summary>
+        /// Get the order price
+        /// </summary>
+        /// <returns></returns>
+        public decimal GetOrderPrice()
+        {
+            return _pizzaDAO.GetOrderPrice();
+        }
+
+        /// <summary>
         /// Write the pizza order to a text file
         /// </summary>
         /// <returns></returns>
@@ -62,6 +86,15 @@ namespace PizzaMakerClassLibrary.Services.BusinessLogicLayer
         {
             // Get and return write order to file from the DAO
             return _pizzaDAO.WriteOrderToFile();
+        }
+
+        /// <summary>
+        /// Checkout logic for orders
+        /// </summary>
+        /// <returns></returns>
+        public bool Checkout()
+        {
+            return _pizzaDAO.Checkout();
         }
     }
 }

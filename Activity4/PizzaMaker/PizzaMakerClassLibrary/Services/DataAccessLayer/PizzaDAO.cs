@@ -99,5 +99,36 @@ namespace PizzaMakerClassLibrary.Services.DataAccessLayer
                 return false;
             }
         }
+
+        /// <summary>
+        /// Calculate and return the order price
+        /// </summary>
+        /// <returns></returns>
+        public decimal GetOrderPrice()
+        {
+            // Declare and Initialize
+            decimal priceTotal = 0;
+
+            // Add the price of each pizza to the total
+            foreach (PizzaModel pizza in _pizzaOrder)
+            {
+                priceTotal += pizza.Price;
+            }
+
+            // return the result
+            return priceTotal;
+        }
+
+        /// <summary>
+        /// Checkout method for the data object
+        /// </summary>
+        /// <returns></returns>
+        public bool Checkout()
+        {
+            // Enter logic for checking out at a later date
+
+            _pizzaOrder.Clear();
+            return true;
+        }
     }
 }
