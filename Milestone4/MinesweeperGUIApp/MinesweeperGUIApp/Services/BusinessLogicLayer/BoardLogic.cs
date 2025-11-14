@@ -12,7 +12,7 @@ using MinesweeperGUIApp.Models;
 using System.Drawing;
 using System.Security.Claims;
 
-namespace MinesweeperGUIApp.BusinessLogicLayer
+namespace MinesweeperGUIApp.Services.BusinessLogicLayer
 {
     public class BoardLogic
     {
@@ -237,6 +237,7 @@ namespace MinesweeperGUIApp.BusinessLogicLayer
             if (cell.IsBomb)
             {
                 // We visited a bomb game lost
+                cell.IsVisited = true;
                 _board.GameState = GameState.Lost;
                 return;
             }
@@ -264,13 +265,13 @@ namespace MinesweeperGUIApp.BusinessLogicLayer
         public void FlagCell(CellModel cell)
         {
             // Are there bombs still on the board or are we removing a possibly incorrect flag
-            if (_board.NumberOfBombs > 0 || cell.IsFlagged)
+            if (_board.NumberOfBombs > 0 && !cell.IsVisited || cell.IsFlagged)
             {
                 // Flip flop the flag state
                 cell.IsFlagged = !cell.IsFlagged;
 
                 // Update bomb count and is visited property based on our displayed flags
-                if (cell.IsFlagged)
+                if (cell.IsFlagged && !cell.IsVisited)
                 {
                     _board.NumberOfBombs--;
                     cell.IsVisited = true;
@@ -281,11 +282,13 @@ namespace MinesweeperGUIApp.BusinessLogicLayer
                     cell.IsVisited = false;
                 }
             }
-            else // Catch too many flags used
+            else if (cell.IsVisited)
             {
-                Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.WriteLine("You are out of bomb flags remove one and try again.");
-                Console.ResetColor();
+                MessageBox.Show(" You can't flag an revealed cell. ");
+            }
+            else
+            {
+                MessageBox.Show(" You are out of flags. ");
             }
         }
 
@@ -298,11 +301,11 @@ namespace MinesweeperGUIApp.BusinessLogicLayer
             Console.ForegroundColor = ConsoleColor.DarkBlue;
             if (cell.IsBomb)
             {
-                Console.WriteLine("That cell does have a bomb");
+                MessageBox.Show("That cell does have a bomb");
             }
             else
             {
-                Console.WriteLine("That cell does not have a bomb");
+                MessageBox.Show("That cell does not have a bomb");
             }
             Console.ResetColor();
             _board.RewardsRemaining--;

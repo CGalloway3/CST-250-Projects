@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             pnlMain = new Panel();
-            label1 = new Label();
-            label2 = new Label();
-            label3 = new Label();
-            label4 = new Label();
+            lblBombs = new Label();
+            lblBombsValue = new Label();
+            lblRewards = new Label();
+            lblRewardsValue = new Label();
             btnRestart = new Button();
             SuspendLayout();
             // 
@@ -44,50 +44,54 @@
             pnlMain.Size = new Size(500, 500);
             pnlMain.TabIndex = 0;
             // 
-            // label1
+            // lblBombs
             // 
-            label1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            label1.AutoSize = true;
-            label1.Location = new Point(563, 36);
-            label1.Name = "label1";
-            label1.Size = new Size(38, 15);
-            label1.TabIndex = 1;
-            label1.Text = "label1";
+            lblBombs.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            lblBombs.AutoSize = true;
+            lblBombs.Font = new Font("Segoe UI", 11F);
+            lblBombs.Location = new Point(516, 22);
+            lblBombs.Name = "lblBombs";
+            lblBombs.Size = new Size(134, 20);
+            lblBombs.TabIndex = 1;
+            lblBombs.Text = "Number of Bombs:";
             // 
-            // label2
+            // lblBombsValue
             // 
-            label2.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            label2.AutoSize = true;
-            label2.Location = new Point(554, 57);
-            label2.Name = "label2";
-            label2.Size = new Size(38, 15);
-            label2.TabIndex = 2;
-            label2.Text = "label2";
+            lblBombsValue.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            lblBombsValue.AutoSize = true;
+            lblBombsValue.Font = new Font("Segoe UI", 16F);
+            lblBombsValue.Location = new Point(569, 48);
+            lblBombsValue.Name = "lblBombsValue";
+            lblBombsValue.Size = new Size(37, 30);
+            lblBombsValue.TabIndex = 2;
+            lblBombsValue.Text = "00";
             // 
-            // label3
+            // lblRewards
             // 
-            label3.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            label3.AutoSize = true;
-            label3.Location = new Point(541, 116);
-            label3.Name = "label3";
-            label3.Size = new Size(38, 15);
-            label3.TabIndex = 3;
-            label3.Text = "label3";
+            lblRewards.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            lblRewards.AutoSize = true;
+            lblRewards.Font = new Font("Segoe UI", 11F);
+            lblRewards.Location = new Point(516, 94);
+            lblRewards.Name = "lblRewards";
+            lblRewards.Size = new Size(144, 20);
+            lblRewards.TabIndex = 3;
+            lblRewards.Text = "Number of Rewards:";
             // 
-            // label4
+            // lblRewardsValue
             // 
-            label4.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            label4.AutoSize = true;
-            label4.Location = new Point(541, 138);
-            label4.Name = "label4";
-            label4.Size = new Size(38, 15);
-            label4.TabIndex = 4;
-            label4.Text = "label4";
+            lblRewardsValue.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            lblRewardsValue.AutoSize = true;
+            lblRewardsValue.Font = new Font("Segoe UI", 16F);
+            lblRewardsValue.Location = new Point(569, 127);
+            lblRewardsValue.Name = "lblRewardsValue";
+            lblRewardsValue.Size = new Size(37, 30);
+            lblRewardsValue.TabIndex = 4;
+            lblRewardsValue.Text = "00";
             // 
             // btnRestart
             // 
             btnRestart.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            btnRestart.Location = new Point(549, 183);
+            btnRestart.Location = new Point(549, 171);
             btnRestart.Name = "btnRestart";
             btnRestart.Size = new Size(75, 23);
             btnRestart.TabIndex = 5;
@@ -101,10 +105,10 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(664, 521);
             Controls.Add(btnRestart);
-            Controls.Add(label4);
-            Controls.Add(label3);
-            Controls.Add(label2);
-            Controls.Add(label1);
+            Controls.Add(lblRewardsValue);
+            Controls.Add(lblRewards);
+            Controls.Add(lblBombsValue);
+            Controls.Add(lblBombs);
             Controls.Add(pnlMain);
             Name = "MainForm";
             Text = "Mine Sweeper";
@@ -116,10 +120,10 @@
         #endregion
 
         private Panel pnlMain;
-        private Label label1;
-        private Label label2;
-        private Label label3;
-        private Label label4;
+        private Label lblBombs;
+        private Label lblBombsValue;
+        private Label lblRewards;
+        private Label lblRewardsValue;
         private Button btnRestart;
     }
 }

@@ -7,7 +7,9 @@
  * References:
  */
 
-namespace MinesweeperGUIApp.Properties
+using MinesweeperGUIApp.Properties;
+
+namespace MinesweeperGUIApp
 {
     internal static class Program
     {

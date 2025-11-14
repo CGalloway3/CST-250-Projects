@@ -26,36 +26,57 @@ namespace MinesweeperGUIApp.UI.Forms
             // Declare and Initialize on form creation
             InitializeComponent();
             _setupSettings = settings;
+
+            // Set initial state of the trackbars
+            trbDifficulty.Value = _setupSettings.Difficulty;
+            trbSize.Value = _setupSettings.BoardSize / 4;
         }
 
+        /// <summary>
+        /// On load event handler
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Setup_Load(object sender, EventArgs e)
         {
-            lblSizeValue.Text = (trbSize.Value * 10).ToString();
+            // Update the labels holding the settings values
+            lblSizeValue.Text = (trbSize.Value * 4).ToString();
             lblDifficultyValue.Text = trbDifficulty.Value.ToString();
         }
 
+        /// <summary>
+        /// Play (accept) button click event handler
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BtnAcceptClickEH(object sender, EventArgs e)
         {
-
             // Save the settings
-            _setupSettings.BoardSize = trbSize.Value * 10;
+            _setupSettings.BoardSize = trbSize.Value * 4;
             _setupSettings.Difficulty = trbDifficulty.Value;
             // Close the form, any settings here are saved in the _setting variable
             this.Close();
         }
 
+        /// <summary>
+        /// Event handler for the size track bar scroll
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void TrbSizeScrollEH(object sender, EventArgs e)
         {
-            // Convert the 10 size increments into board size
-            int size = trbSize.Value * 10;
-
-            // Update labels and the settings object variable
-            lblSizeValue.Text = size.ToString();
+            // Update labels text
+            lblSizeValue.Text = (trbSize.Value * 4).ToString();
         }
 
+        /// <summary>
+        /// Event handler for the difficulty track bar scroll
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void TrbDifficultyScrollEH(object sender, EventArgs e)
         {
-            // Update labels and the settings object variable
+            // Update labels text
             lblDifficultyValue.Text = trbDifficulty.Value.ToString();
         }
     }

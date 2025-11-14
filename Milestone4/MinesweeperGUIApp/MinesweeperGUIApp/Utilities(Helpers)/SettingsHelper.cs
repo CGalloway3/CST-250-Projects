@@ -14,13 +14,17 @@ namespace MinesweeperGUIApp.Utilities
     /// </summary>
     public class SettingsHelper
     {
+        // Properties
         public int Difficulty { get; set; }
         public int BoardSize { get; set; }
 
+        /// <summary>
+        /// Default constructor
+        /// </summary>
         public SettingsHelper() 
         { 
             Difficulty = 1;
-            BoardSize = 10;
+            BoardSize = 4;
         }
     }
 }
