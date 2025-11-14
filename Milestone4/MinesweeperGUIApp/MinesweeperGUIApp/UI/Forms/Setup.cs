@@ -8,6 +8,7 @@
  */
 
 using MinesweeperGUIApp.Utilities;
+using System.Drawing;
 
 namespace MinesweeperGUIApp.UI.Forms
 {
@@ -35,6 +36,10 @@ namespace MinesweeperGUIApp.UI.Forms
 
         private void BtnAcceptClickEH(object sender, EventArgs e)
         {
+
+            // Save the settings
+            _setupSettings.BoardSize = trbSize.Value * 10;
+            _setupSettings.Difficulty = trbDifficulty.Value;
             // Close the form, any settings here are saved in the _setting variable
             this.Close();
         }
@@ -46,14 +51,12 @@ namespace MinesweeperGUIApp.UI.Forms
 
             // Update labels and the settings object variable
             lblSizeValue.Text = size.ToString();
-            _setupSettings.BoardSize = size;
         }
 
         private void TrbDifficultyScrollEH(object sender, EventArgs e)
         {
             // Update labels and the settings object variable
             lblDifficultyValue.Text = trbDifficulty.Value.ToString();
-            _setupSettings.Difficulty = trbDifficulty.Value;
         }
     }
 }

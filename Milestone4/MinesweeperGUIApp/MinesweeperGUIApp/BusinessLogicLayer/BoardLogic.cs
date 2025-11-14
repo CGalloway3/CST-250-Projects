@@ -192,7 +192,7 @@ namespace MinesweeperGUIApp.BusinessLogicLayer
         public void DetermineGameState(int row, int col, int choice)
         {
             // Store the users choice in the cell variable
-            CellModel cell = _board.Cells[row - 1, col - 1];
+            CellModel cell = _board.Cells[row, col];
             // Set the game as in progress
             _board.GameState = GameState.InProgress;
 

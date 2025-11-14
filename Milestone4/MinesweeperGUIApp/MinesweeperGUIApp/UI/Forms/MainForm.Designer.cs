@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            panel1 = new Panel();
+            pnlMain = new Panel();
             label1 = new Label();
             label2 = new Label();
             label3 = new Label();
@@ -36,15 +36,17 @@
             btnRestart = new Button();
             SuspendLayout();
             // 
-            // panel1
+            // pnlMain
             // 
-            panel1.Location = new Point(12, 12);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(500, 500);
-            panel1.TabIndex = 0;
+            pnlMain.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            pnlMain.Location = new Point(12, 12);
+            pnlMain.Name = "pnlMain";
+            pnlMain.Size = new Size(500, 500);
+            pnlMain.TabIndex = 0;
             // 
             // label1
             // 
+            label1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             label1.AutoSize = true;
             label1.Location = new Point(563, 36);
             label1.Name = "label1";
@@ -54,6 +56,7 @@
             // 
             // label2
             // 
+            label2.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             label2.AutoSize = true;
             label2.Location = new Point(554, 57);
             label2.Name = "label2";
@@ -63,6 +66,7 @@
             // 
             // label3
             // 
+            label3.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             label3.AutoSize = true;
             label3.Location = new Point(541, 116);
             label3.Name = "label3";
@@ -72,6 +76,7 @@
             // 
             // label4
             // 
+            label4.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             label4.AutoSize = true;
             label4.Location = new Point(541, 138);
             label4.Name = "label4";
@@ -81,6 +86,7 @@
             // 
             // btnRestart
             // 
+            btnRestart.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnRestart.Location = new Point(549, 183);
             btnRestart.Name = "btnRestart";
             btnRestart.Size = new Size(75, 23);
@@ -93,15 +99,15 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(657, 524);
+            ClientSize = new Size(664, 521);
             Controls.Add(btnRestart);
             Controls.Add(label4);
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(label1);
-            Controls.Add(panel1);
+            Controls.Add(pnlMain);
             Name = "MainForm";
-            Text = "MainForm";
+            Text = "Mine Sweeper";
             Load += MainForm_Load;
             ResumeLayout(false);
             PerformLayout();
@@ -109,7 +115,7 @@
 
         #endregion
 
-        private Panel panel1;
+        private Panel pnlMain;
         private Label label1;
         private Label label2;
         private Label label3;
