@@ -84,6 +84,11 @@ namespace PizzaMaker
             }
         }
 
+        /// <summary>
+        /// Event handler for the cancel button
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BtnCancelClickEH(object sender, EventArgs e)
         {
             this.Close();

@@ -70,15 +70,6 @@ namespace PizzaMakerClassLibrary.Services.BusinessLogicLayer
         }
 
         /// <summary>
-        /// Get the order price
-        /// </summary>
-        /// <returns></returns>
-        public decimal GetOrderPrice()
-        {
-            return _pizzaDAO.GetOrderPrice();
-        }
-
-        /// <summary>
         /// Write the pizza order to a text file
         /// </summary>
         /// <returns></returns>
@@ -86,6 +77,15 @@ namespace PizzaMakerClassLibrary.Services.BusinessLogicLayer
         {
             // Get and return write order to file from the DAO
             return _pizzaDAO.WriteOrderToFile();
+        }
+
+        /// <summary>
+        /// Get the order price
+        /// </summary>
+        /// <returns></returns>
+        public decimal GetOrderPrice()
+        {
+            return _pizzaDAO.GetOrderPrice();
         }
 
         /// <summary>

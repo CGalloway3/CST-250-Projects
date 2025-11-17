@@ -50,7 +50,7 @@ namespace MinesweeperGUIApp.UI.Forms
             _mainFormSettings = new SettingsHelper();
 
             // Call the reset button click event handler to open the settings window before main form load.
-            btnRestart_Click(this, EventArgs.Empty);
+            BtnRestartClickEH(this, EventArgs.Empty);
         }
 
         /// <summary>
@@ -78,22 +78,11 @@ namespace MinesweeperGUIApp.UI.Forms
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnRestart_Click(object sender, EventArgs e)
+        private void BtnRestartClickEH(object sender, EventArgs e)
         {
-            Form setup = new UI.Forms.Setup(_mainFormSettings);
+            Form setup = new UI.Forms.SetupForm(_mainFormSettings);
             setup.ShowDialog();
             FillPanelWithCells();
-        }
-
-        /// <summary>
-        /// Main forms load event handler
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void MainForm_Load(object sender, EventArgs e)
-        {
-            // Use system reflection to speed up the painting process of each cell by setting the main panel to Double buffered
-            typeof(Panel).InvokeMember("DoubleBuffered", System.Reflection.BindingFlags.SetProperty | System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic, null, pnlMain, new object[] { true });
         }
 
         /// <summary>
@@ -160,7 +149,7 @@ namespace MinesweeperGUIApp.UI.Forms
             // Capture which button is clicked
             MouseEventArgs args = (MouseEventArgs)e;
             MouseButtons userClicked = args.Button;
-            
+
             // Pull the cells location out of the panels tag
             Panel panel = (Panel)sender;
             Point cellLoc = (Point)panel.Tag;
@@ -266,7 +255,7 @@ namespace MinesweeperGUIApp.UI.Forms
         private void RefreshPanels(Panel primaryPanel)
         {
             // Declare and Initialize
-            Point primaryLoc = (Point)primaryPanel.Tag; 
+            Point primaryLoc = (Point)primaryPanel.Tag;
             CellModel primaryCell = _board.GetCellAt(primaryLoc.X, primaryLoc.Y);
 
             // Short cut check for flood fill, if we have neighbors simply paint the panel.
@@ -286,7 +275,6 @@ namespace MinesweeperGUIApp.UI.Forms
                     PaintPanel(panel, cell);
                 }
             }
-
             // Update the bomb and reward tracking labels
             lblBombsValue.Text = _board.GetNumberOfBombs().ToString("00");
             lblRewardsValue.Text = _board.GetNumberOfRewards().ToString("00");
@@ -304,7 +292,7 @@ namespace MinesweeperGUIApp.UI.Forms
             {
                 panel.BackgroundImage = _flaggedCellImage;
             }
-            // If it is visited alter the image based on the case
+            // If it is visited, alter the image based on the case
             else if (cell.IsVisited)
             {
                 switch (cell.NumberOfBombNeighbors)
@@ -343,7 +331,7 @@ namespace MinesweeperGUIApp.UI.Forms
                         break;
                 }
             }
-            // Cell is not flagged and it is not visited it is hidden.
+            // If a cell is not flagged and it is not visited it is hidden.
             // this became necessary because removing a flag was breaking things
             // I was trying to avoid painting hidden cells every move but I ended up needing to
             else

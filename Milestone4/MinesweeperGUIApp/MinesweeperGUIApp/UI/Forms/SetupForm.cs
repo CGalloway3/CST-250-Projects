@@ -12,7 +12,7 @@ using System.Drawing;
 
 namespace MinesweeperGUIApp.UI.Forms
 {
-    public partial class Setup : Form
+    public partial class SetupForm : Form
     {
         // Class level variable for holding board size and difficulty settings
         private SettingsHelper _setupSettings;
@@ -21,7 +21,7 @@ namespace MinesweeperGUIApp.UI.Forms
         /// Parameterized constructor for the Setup form
         /// </summary>
         /// <param name="settings"></param>
-        public Setup(SettingsHelper settings)
+        public SetupForm(SettingsHelper settings)
         {
             // Declare and Initialize on form creation
             InitializeComponent();

@@ -237,7 +237,7 @@ namespace MinesweeperGUIApp.Services.BusinessLogicLayer
             if (cell.IsBomb)
             {
                 // We visited a bomb game lost
-                cell.IsVisited = true;
+                cell.IsVisited = true; // Added in milestone 4 because a bomb was not showing up if clicked by the user
                 _board.GameState = GameState.Lost;
                 return;
             }
@@ -298,7 +298,6 @@ namespace MinesweeperGUIApp.Services.BusinessLogicLayer
         /// <param name="cell"></param>
         public void UseSpecialBonus(CellModel cell)
         {
-            Console.ForegroundColor = ConsoleColor.DarkBlue;
             if (cell.IsBomb)
             {
                 MessageBox.Show("That cell does have a bomb");
@@ -307,7 +306,6 @@ namespace MinesweeperGUIApp.Services.BusinessLogicLayer
             {
                 MessageBox.Show("That cell does not have a bomb");
             }
-            Console.ResetColor();
             _board.RewardsRemaining--;
         }
 

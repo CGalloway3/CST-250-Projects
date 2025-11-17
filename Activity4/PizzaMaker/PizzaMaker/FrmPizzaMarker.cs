@@ -284,7 +284,7 @@ namespace PizzaMaker
             // Update the label with the pizza order
             frmOrderDetails.DisplayPizzas();
             // Show the form
-            frmOrderDetails.ShowDialog();
+            frmOrderDetails.ShowDialog(this);
         }
 
         /// <summary>

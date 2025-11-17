@@ -1,6 +1,6 @@
 ﻿namespace MinesweeperGUIApp.UI.Forms
 {
-    partial class Setup
+    partial class SetupForm
     {
         /// <summary>
         /// Required designer variable.

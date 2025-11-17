@@ -1,0 +1,157 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36" version="29.0.3">
+  <diagram name="Page-1" id="qh_I3vyfur6p08jQ9FJI">
+    <mxGraphModel dx="1426" dy="743" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="BoEZDI-Vcu4537NNTcXs-31" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="Maa55WUVuVgbbIeWjuT4-1" target="BoEZDI-Vcu4537NNTcXs-2" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Maa55WUVuVgbbIeWjuT4-1" value="Start" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.terminator;whiteSpace=wrap;" parent="1" vertex="1">
+          <mxGeometry x="290" y="40" width="100" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="BoEZDI-Vcu4537NNTcXs-1" value="/*&lt;br&gt; * Chad Galloway&lt;br&gt; * CST - 250 Programming in C# II&lt;br&gt; * 11/16/2025&lt;br&gt; * Wack-a-Mole Game&lt;br&gt; * Activity 4 part 3 week 5 prep&lt;br&gt; * References:&lt;br&gt; */" style="text;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="20" y="20" width="210" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="BoEZDI-Vcu4537NNTcXs-30" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="BoEZDI-Vcu4537NNTcXs-2" target="BoEZDI-Vcu4537NNTcXs-3" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="BoEZDI-Vcu4537NNTcXs-2" value="Display menu" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.display;whiteSpace=wrap;" parent="1" vertex="1">
+          <mxGeometry x="290" y="130" width="100" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="BoEZDI-Vcu4537NNTcXs-12" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="BoEZDI-Vcu4537NNTcXs-3" target="BoEZDI-Vcu4537NNTcXs-5" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="BoEZDI-Vcu4537NNTcXs-39" value="Start" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="BoEZDI-Vcu4537NNTcXs-12" vertex="1" connectable="0">
+          <mxGeometry x="-0.76" y="-2" relative="1" as="geometry">
+            <mxPoint x="22" y="4" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="BoEZDI-Vcu4537NNTcXs-13" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="BoEZDI-Vcu4537NNTcXs-3" target="BoEZDI-Vcu4537NNTcXs-4" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="BoEZDI-Vcu4537NNTcXs-38" value="Exit" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="BoEZDI-Vcu4537NNTcXs-13" vertex="1" connectable="0">
+          <mxGeometry x="-0.3778" relative="1" as="geometry">
+            <mxPoint x="-4" y="-10" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="BoEZDI-Vcu4537NNTcXs-3" value="User Action" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.decision;whiteSpace=wrap;" parent="1" vertex="1">
+          <mxGeometry x="290" y="220" width="100" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="BoEZDI-Vcu4537NNTcXs-4" value="End" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.terminator;whiteSpace=wrap;" parent="1" vertex="1">
+          <mxGeometry x="425" y="240" width="100" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="BoEZDI-Vcu4537NNTcXs-15" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="BoEZDI-Vcu4537NNTcXs-5" target="BoEZDI-Vcu4537NNTcXs-6" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="BoEZDI-Vcu4537NNTcXs-5" value="Create game and start timers" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="290" y="350" width="100" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="BoEZDI-Vcu4537NNTcXs-16" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="BoEZDI-Vcu4537NNTcXs-6" target="BoEZDI-Vcu4537NNTcXs-7" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="BoEZDI-Vcu4537NNTcXs-6" value="Display game state" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.display;whiteSpace=wrap;" parent="1" vertex="1">
+          <mxGeometry x="290" y="480" width="100" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="BoEZDI-Vcu4537NNTcXs-17" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="BoEZDI-Vcu4537NNTcXs-7" target="BoEZDI-Vcu4537NNTcXs-8" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="BoEZDI-Vcu4537NNTcXs-29" value="YES" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="BoEZDI-Vcu4537NNTcXs-17" vertex="1" connectable="0">
+          <mxGeometry x="0.36" relative="1" as="geometry">
+            <mxPoint x="-4" y="-20" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="BoEZDI-Vcu4537NNTcXs-18" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="BoEZDI-Vcu4537NNTcXs-7" target="BoEZDI-Vcu4537NNTcXs-9" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="BoEZDI-Vcu4537NNTcXs-41" value="NO" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="BoEZDI-Vcu4537NNTcXs-18" vertex="1" connectable="0">
+          <mxGeometry x="0.2" y="1" relative="1" as="geometry">
+            <mxPoint x="-21" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="BoEZDI-Vcu4537NNTcXs-7" value="Timer event" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.decision;whiteSpace=wrap;" parent="1" vertex="1">
+          <mxGeometry x="290" y="570" width="100" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="BoEZDI-Vcu4537NNTcXs-33" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="BoEZDI-Vcu4537NNTcXs-8" target="BoEZDI-Vcu4537NNTcXs-11" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="BoEZDI-Vcu4537NNTcXs-8" value="Process timer event." style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="420" y="570" width="100" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="BoEZDI-Vcu4537NNTcXs-22" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="BoEZDI-Vcu4537NNTcXs-9" target="BoEZDI-Vcu4537NNTcXs-10" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="BoEZDI-Vcu4537NNTcXs-42" value="YES" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="BoEZDI-Vcu4537NNTcXs-22" vertex="1" connectable="0">
+          <mxGeometry x="0.28" y="3" relative="1" as="geometry">
+            <mxPoint y="-17" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="BoEZDI-Vcu4537NNTcXs-32" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="BoEZDI-Vcu4537NNTcXs-9" target="BoEZDI-Vcu4537NNTcXs-6" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="250" y="750" />
+              <mxPoint x="250" y="510" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="BoEZDI-Vcu4537NNTcXs-40" value="NO" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="BoEZDI-Vcu4537NNTcXs-32" vertex="1" connectable="0">
+          <mxGeometry x="-0.8812" y="1" relative="1" as="geometry">
+            <mxPoint y="-21" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="BoEZDI-Vcu4537NNTcXs-9" value="User Acted" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.decision;whiteSpace=wrap;" parent="1" vertex="1">
+          <mxGeometry x="290" y="700" width="100" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="BoEZDI-Vcu4537NNTcXs-10" value="Process user action" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="420" y="700" width="100" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="BoEZDI-Vcu4537NNTcXs-35" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;exitPerimeter=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="BoEZDI-Vcu4537NNTcXs-11" target="BoEZDI-Vcu4537NNTcXs-6" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="510" y="510" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="600" y="510" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="BoEZDI-Vcu4537NNTcXs-43" value="NO" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="BoEZDI-Vcu4537NNTcXs-35" vertex="1" connectable="0">
+          <mxGeometry x="-0.8296" relative="1" as="geometry">
+            <mxPoint x="-20" y="13" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="BoEZDI-Vcu4537NNTcXs-36" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="BoEZDI-Vcu4537NNTcXs-11" target="BoEZDI-Vcu4537NNTcXs-2" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="550" y="160" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="680" y="620" />
+              <mxPoint x="680" y="160" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="BoEZDI-Vcu4537NNTcXs-44" value="YES" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="BoEZDI-Vcu4537NNTcXs-36" vertex="1" connectable="0">
+          <mxGeometry x="-0.8436" y="-2" relative="1" as="geometry">
+            <mxPoint x="-22" y="11" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="BoEZDI-Vcu4537NNTcXs-11" value="Game Over?" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.decision;whiteSpace=wrap;" parent="1" vertex="1">
+          <mxGeometry x="550" y="570" width="100" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="BoEZDI-Vcu4537NNTcXs-14" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="BoEZDI-Vcu4537NNTcXs-3" target="BoEZDI-Vcu4537NNTcXs-2" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="210" y="270" />
+              <mxPoint x="210" y="160" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="BoEZDI-Vcu4537NNTcXs-37" value="None" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="BoEZDI-Vcu4537NNTcXs-14" vertex="1" connectable="0">
+          <mxGeometry x="-0.7111" y="-2" relative="1" as="geometry">
+            <mxPoint x="19" y="-8" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="BoEZDI-Vcu4537NNTcXs-34" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="BoEZDI-Vcu4537NNTcXs-10" target="BoEZDI-Vcu4537NNTcXs-11" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

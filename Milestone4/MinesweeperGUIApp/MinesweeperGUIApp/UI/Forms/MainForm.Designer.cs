@@ -97,7 +97,7 @@
             btnRestart.TabIndex = 5;
             btnRestart.Text = "Restart";
             btnRestart.UseVisualStyleBackColor = true;
-            btnRestart.Click += btnRestart_Click;
+            btnRestart.Click += BtnRestartClickEH;
             // 
             // MainForm
             // 
@@ -112,7 +112,6 @@
             Controls.Add(pnlMain);
             Name = "MainForm";
             Text = "Mine Sweeper";
-            Load += MainForm_Load;
             ResumeLayout(false);
             PerformLayout();
         }
