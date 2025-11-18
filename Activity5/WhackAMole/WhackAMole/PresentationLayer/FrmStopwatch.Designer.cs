@@ -39,7 +39,7 @@ namespace WhackAMole
             // 
             // btnStart
             // 
-            btnStart.Location = new Point(102, 80);
+            btnStart.Location = new Point(88, 77);
             btnStart.Name = "btnStart";
             btnStart.Size = new Size(75, 23);
             btnStart.TabIndex = 0;
@@ -49,43 +49,45 @@ namespace WhackAMole
             // 
             // btnStop
             // 
-            btnStop.Location = new Point(102, 127);
+            btnStop.Location = new Point(88, 124);
             btnStop.Name = "btnStop";
             btnStop.Size = new Size(75, 23);
             btnStop.TabIndex = 1;
             btnStop.Text = "Stop";
             btnStop.UseVisualStyleBackColor = true;
-            btnStop.Click += this.BtnStopClickEH;
+            btnStop.Click += BtnStopClickEH;
             // 
             // btnReset
             // 
-            btnReset.Location = new Point(102, 174);
+            btnReset.Location = new Point(88, 171);
             btnReset.Name = "btnReset";
             btnReset.Size = new Size(75, 23);
             btnReset.TabIndex = 2;
             btnReset.Text = "Reset";
             btnReset.UseVisualStyleBackColor = true;
+            btnReset.Click += BtnResetClickEH;
             // 
             // lblTimeElapsed
             // 
             lblTimeElapsed.AutoSize = true;
-            lblTimeElapsed.Location = new Point(120, 41);
+            lblTimeElapsed.Location = new Point(101, 38);
             lblTimeElapsed.Name = "lblTimeElapsed";
-            lblTimeElapsed.Size = new Size(34, 15);
+            lblTimeElapsed.Size = new Size(49, 15);
             lblTimeElapsed.TabIndex = 3;
-            lblTimeElapsed.Text = "00:00";
+            lblTimeElapsed.Text = "00:00:00";
             lblTimeElapsed.TextAlign = ContentAlignment.TopCenter;
             // 
             // tmrStopwatch
             // 
             tmrStopwatch.Enabled = true;
             tmrStopwatch.Interval = 1000;
+            tmrStopwatch.Tick += TmrStopwatchTickEH;
             // 
             // FrmStopwatch
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(268, 279);
+            ClientSize = new Size(239, 230);
             Controls.Add(lblTimeElapsed);
             Controls.Add(btnReset);
             Controls.Add(btnStop);
