@@ -35,11 +35,12 @@ namespace WhackAMole
             btnReset = new Button();
             lblTimeElapsed = new Label();
             tmrStopwatch = new System.Windows.Forms.Timer(components);
+            btnTarget = new Button();
             SuspendLayout();
             // 
             // btnStart
             // 
-            btnStart.Location = new Point(88, 77);
+            btnStart.Location = new Point(12, 426);
             btnStart.Name = "btnStart";
             btnStart.Size = new Size(75, 23);
             btnStart.TabIndex = 0;
@@ -49,7 +50,7 @@ namespace WhackAMole
             // 
             // btnStop
             // 
-            btnStop.Location = new Point(88, 124);
+            btnStop.Location = new Point(93, 426);
             btnStop.Name = "btnStop";
             btnStop.Size = new Size(75, 23);
             btnStop.TabIndex = 1;
@@ -59,7 +60,7 @@ namespace WhackAMole
             // 
             // btnReset
             // 
-            btnReset.Location = new Point(88, 171);
+            btnReset.Location = new Point(174, 426);
             btnReset.Name = "btnReset";
             btnReset.Size = new Size(75, 23);
             btnReset.TabIndex = 2;
@@ -70,7 +71,7 @@ namespace WhackAMole
             // lblTimeElapsed
             // 
             lblTimeElapsed.AutoSize = true;
-            lblTimeElapsed.Location = new Point(101, 38);
+            lblTimeElapsed.Location = new Point(12, 9);
             lblTimeElapsed.Name = "lblTimeElapsed";
             lblTimeElapsed.Size = new Size(49, 15);
             lblTimeElapsed.TabIndex = 3;
@@ -83,11 +84,21 @@ namespace WhackAMole
             tmrStopwatch.Interval = 1000;
             tmrStopwatch.Tick += TmrStopwatchTickEH;
             // 
+            // btnTarget
+            // 
+            btnTarget.Location = new Point(189, 118);
+            btnTarget.Name = "btnTarget";
+            btnTarget.Size = new Size(75, 71);
+            btnTarget.TabIndex = 4;
+            btnTarget.Text = "Target";
+            btnTarget.UseVisualStyleBackColor = true;
+            // 
             // FrmStopwatch
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(239, 230);
+            ClientSize = new Size(694, 461);
+            Controls.Add(btnTarget);
             Controls.Add(lblTimeElapsed);
             Controls.Add(btnReset);
             Controls.Add(btnStop);
@@ -104,5 +115,6 @@ namespace WhackAMole
         private Button btnReset;
         private Label lblTimeElapsed;
         private System.Windows.Forms.Timer tmrStopwatch;
+        private Button btnTarget;
     }
 }
