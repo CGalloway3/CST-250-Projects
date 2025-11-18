@@ -88,10 +88,11 @@ namespace WhackAMole
             // 
             btnTarget.Location = new Point(189, 118);
             btnTarget.Name = "btnTarget";
-            btnTarget.Size = new Size(75, 71);
+            btnTarget.Size = new Size(75, 75);
             btnTarget.TabIndex = 4;
             btnTarget.Text = "Target";
             btnTarget.UseVisualStyleBackColor = true;
+            btnTarget.Click += BtnTargetClickEH;
             // 
             // FrmStopwatch
             // 

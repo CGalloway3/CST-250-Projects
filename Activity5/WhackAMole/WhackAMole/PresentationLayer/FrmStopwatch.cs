@@ -13,6 +13,8 @@ namespace WhackAMole
     {
         // Class level variable to hold the timers time.
         TimeSpan timeElapsed = new TimeSpan();
+        // Create a new Random object to generate numbers
+        Random random = new Random();
 
         public FrmStopwatch()
         {
@@ -44,6 +46,7 @@ namespace WhackAMole
         /// <summary>
         /// Tick even handler for tmrStopwatch
         /// Updates the timeElapsed variable and the label
+        /// Moves btnTarget every three seconds
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -55,7 +58,21 @@ namespace WhackAMole
             timeElapsed = timeElapsed.Add(TimeSpan.FromMilliseconds(interval));
             // Show the timeElapsed om the label
             lblTimeElapsed.Text = timeElapsed.ToString();
-        }
+            // Check if it is time to move the target button
+            if (timeElapsed.Seconds % 3 == 0)
+            {
+                // Select a new location for the top of btnTarget
+                // Randomly generate a location for the top of the button
+                // between 0 and the form height minus the button height
+                btnTarget.Top = random.Next(0, (this.Height - btnTarget.Height));
+                // Select a new location for the left side of btnTarget
+                btnTarget.Left = random.Next(0, this.Width - btnTarget.Width);
+                // Get random numbers for the RGB color for the button
+                btnTarget.BackColor = Color.FromArgb(random.Next(0, 256), random.Next(0, 256), random.Next(0, 256));
+                // Set the target to be visible
+                btnTarget.Visible = true;
+            }
+        } // End of TmrStopwatchTickEH
 
         /// <summary>
         /// Click event handler for the btnReset
@@ -70,6 +87,16 @@ namespace WhackAMole
             timeElapsed = new TimeSpan();
             // Show the reset time on the label.
             lblTimeElapsed.Text = timeElapsed.ToString();
+        }
+
+        /// <summary>
+        /// Click event handler for btnTarget to hide the target
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void BtnTargetClickEH(object sender, EventArgs e)
+        {
+            btnTarget.Visible = false;
         }
     }
 }
