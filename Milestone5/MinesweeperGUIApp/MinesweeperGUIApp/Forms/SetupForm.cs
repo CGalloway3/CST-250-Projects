@@ -7,7 +7,7 @@
  * References:
  */
 
-using MinesweeperGUIApp.DTOs;
+using MinesweeperClassLibrary.Models.DTOs;
 using System.Drawing;
 
 namespace MinesweeperGUIApp.UI.Forms

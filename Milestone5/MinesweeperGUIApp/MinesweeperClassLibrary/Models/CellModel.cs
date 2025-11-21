@@ -7,9 +7,9 @@
  * References:
  */
 
-using MinesweeperGUIApp.Models.Enums;
+using MinesweeperClassLibrary.Models.Enums;
 
-namespace MinesweeperGUIApp.Models
+namespace MinesweeperClassLibrary.Models
 {
     public class CellModel
     {

@@ -3,11 +3,11 @@
  * CST - 250 Programming in C# II
  * 11/16/2025
  * Mine Sweeper Class Library
- * Milestone 4
+ * Milestone 5
  * References:
  */
 
-namespace MinesweeperGUIApp.Utilities
+namespace MinesweeperClassLibrary.Models.DTOs
 {
     /// <summary>
     /// Class to hold the values of the settings page

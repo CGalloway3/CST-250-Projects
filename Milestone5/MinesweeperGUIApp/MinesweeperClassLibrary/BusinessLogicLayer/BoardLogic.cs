@@ -12,12 +12,14 @@ using MinesweeperClassLibrary.Models;
 using System.Drawing;
 using System.Security.Claims;
 
-namespace MinesweeperGUIApp.Services.BusinessLogicLayer
+namespace MinesweeperClassLibrary.BusinessLogicLayer
 {
     public class BoardLogic
     {
         // private class level variables
         private BoardModel _board;
+        public string ErrorMessage { get; private set; }
+
 
         /// <summary>
         /// Public Constructor that takes one param of size
@@ -26,6 +28,7 @@ namespace MinesweeperGUIApp.Services.BusinessLogicLayer
         public BoardLogic(int size)
         {
             _board = new BoardModel(size);
+            ErrorMessage = string.Empty;
         }
 
         /// <summary>
@@ -189,7 +192,7 @@ namespace MinesweeperGUIApp.Services.BusinessLogicLayer
         /// <param name="col"></param>
         /// <param name="choice"></param>
         /// <returns>Returns a GameState enum</returns>
-        public void DetermineGameState(int row, int col, int choice)
+        public bool DetermineGameState(int row, int col, int choice)
         {
             // Store the users choice in the cell variable
             CellModel cell = _board.Cells[row, col];
@@ -203,11 +206,11 @@ namespace MinesweeperGUIApp.Services.BusinessLogicLayer
                     break;
 
                 case 2: // User choose Flag
-                    FlagCell(cell);
+                    return FlagCell(cell);
                     break;
 
                 case 3: // User Choose User Reward
-                    UseSpecialBonus(cell); // Use Reward
+                    return UseSpecialBonus(cell); // Use Reward
                     break;
 
                 default:
@@ -219,6 +222,8 @@ namespace MinesweeperGUIApp.Services.BusinessLogicLayer
             {
                 _board.GameState = GameState.Won; // If we uncovered everything we just return the win. nothing else matters
             }
+
+            return true;
         }   
 
         /// <summary>
@@ -262,7 +267,7 @@ namespace MinesweeperGUIApp.Services.BusinessLogicLayer
         /// Method to handle cell flagging cases
         /// </summary>
         /// <param name="cell"></param>
-        public void FlagCell(CellModel cell)
+        public bool FlagCell(CellModel cell)
         {
             // Are there bombs still on the board or are we removing a possibly incorrect flag
             if (_board.NumberOfBombs > 0 && !cell.IsVisited || cell.IsFlagged)
@@ -284,31 +289,36 @@ namespace MinesweeperGUIApp.Services.BusinessLogicLayer
             }
             else if (cell.IsVisited)
             {
-                MessageBox.Show(" You can't flag an revealed cell. ");
+                ErrorMessage = " You can't flag an revealed cell. ";
+                return false;
             }
             else
             {
-                MessageBox.Show(" You are out of flags. ");
+                ErrorMessage = " You are out of flags. ";
+                return false;
             }
+            return true;
         }
 
         /// <summary>
-        /// Provides functionality for special reward usage
+        /// Provides functionality for special reward usage.
+        /// Note: The calling class is responsible for checking if rewards are available.
         /// </summary>
         /// <param name="cell"></param>
-        public void UseSpecialBonus(CellModel cell)
+        public bool UseSpecialBonus(CellModel cell)
         {
-            Console.ForegroundColor = ConsoleColor.DarkBlue;
+            // "Use" a reward. Decrement the reward count.
+            _board.RewardsRemaining--;
+
+            // Return true if we hit a bomb otherwise false
             if (cell.IsBomb)
             {
-                MessageBox.Show("That cell does have a bomb");
+                return true;
             }
             else
             {
-                MessageBox.Show("That cell does not have a bomb");
+                return false;
             }
-            Console.ResetColor();
-            _board.RewardsRemaining--;
         }
 
         /// <summary>

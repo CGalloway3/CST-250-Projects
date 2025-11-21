@@ -7,10 +7,10 @@
  * References:
  */
 
-using MinesweeperGUIApp.Models;
-using MinesweeperGUIApp.Models.Enums;
-using MinesweeperGUIApp.Services.BusinessLogicLayer;
-using MinesweeperGUIApp.Utilities;
+using MinesweeperClassLibrary.Models;
+using MinesweeperClassLibrary.Models.DTOs;
+using MinesweeperClassLibrary.Models.Enums;
+using MinesweeperClassLibrary.BusinessLogicLayer;
 using System.Windows.Forms;
 
 namespace MinesweeperGUIApp.UI.Forms
@@ -169,11 +169,18 @@ namespace MinesweeperGUIApp.UI.Forms
                 else if (userClicked == MouseButtons.Right) // User Right clicked
                 {
                     // Right click signifies flag. Call DetermineGameState with a flag command of 2
-                    _board.DetermineGameState(cellLoc.X, cellLoc.Y, 2);
-                    // Refresh pnlMain layout
-                    RefreshPanels(panel);
-                    // Remove any border styles applied previously by using rewards
-                    panel.BorderStyle = BorderStyle.None;
+                    if (_board.DetermineGameState(cellLoc.X, cellLoc.Y, 2))
+                    {
+                        // Cell is now flagged. Refresh pnlMain layout
+                        RefreshPanels(panel);
+                        // Remove any border styles applied previously by using rewards
+                        panel.BorderStyle = BorderStyle.None;
+                    }
+                    else
+                    {
+                        // Cell is not flagged (error occurred)
+                        MessageBox.Show(_board.ErrorMessage);
+                    }
                 }
                 else // User clicked any other mouse button (use reward)
                 {
@@ -181,7 +188,16 @@ namespace MinesweeperGUIApp.UI.Forms
                     if (_board.GetNumberOfRewards() > 0)
                     {
                         // Other clicks signify use reward. Call DetermineGameState with a reward command of 3
-                        _board.DetermineGameState(cellLoc.X, cellLoc.Y, 3);
+                        if (_board.DetermineGameState(cellLoc.X, cellLoc.Y, 3))
+                        {
+                            // Bomb exists here
+                            MessageBox.Show(" This cell has a bomb! ");
+                        }
+                        else
+                        {
+                            // Bomb does not exists in cell
+                            MessageBox.Show(" This cell does NOT have a bomb. ");
+                        }
                         // Refresh pnlMain layout
                         RefreshPanels(panel);
                         // Set the panels border property to fixed single so we can remember what cells had reward used on

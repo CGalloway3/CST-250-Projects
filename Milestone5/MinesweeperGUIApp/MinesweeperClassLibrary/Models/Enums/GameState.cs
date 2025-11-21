@@ -7,7 +7,7 @@
  * References:
  */
 
-namespace MinesweeperGUIApp.Models.Enums
+namespace MinesweeperClassLibrary.Models.Enums
 {
     /// <summary>
     /// Used to help determine win and loss conditions
