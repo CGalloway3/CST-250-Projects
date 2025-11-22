@@ -3,7 +3,7 @@
  * CST - 250 Programming in C# II
  * 11/16/2025
  * Mine Sweeper Class Library
- * Milestone 4
+ * Milestone 5
  * References:
  */
 
@@ -12,14 +12,22 @@ using MinesweeperClassLibrary.Models.DTOs;
 using MinesweeperClassLibrary.Models.Enums;
 using MinesweeperClassLibrary.BusinessLogicLayer;
 using System.Windows.Forms;
+using MinesweeperGUIApp.Forms;
+using System.ComponentModel;
 
 namespace MinesweeperGUIApp.UI.Forms
 {
+    /// <summary>
+    /// Main Form for the Minesweeper Game Application
+    /// </summary>
     public partial class MainForm : Form
     {
         // Declare settings and board objects
         private SettingsDto _mainFormSettings;
-        private BoardLogic _board;
+        private BoardLogic _boardLogic;
+        private GameStat _gameStat;
+        private List<GameStat> _leaderboardEntries;
+        private bool _leaderBoardLoaded = false;
 
         // Declare the variables for image resources used to paint cells
         private Image _blankCellImage;
@@ -40,7 +48,7 @@ namespace MinesweeperGUIApp.UI.Forms
         /// </summary>
         public MainForm()
         {
-            // Winforms Init
+            // WinForms Init
             InitializeComponent();
 
             // Initialize the image resources
@@ -48,6 +56,7 @@ namespace MinesweeperGUIApp.UI.Forms
 
             // Initialize the settings object
             _mainFormSettings = new SettingsDto();
+            _leaderboardEntries = new List<GameStat>();
 
             // Call the reset button click event handler to open the settings window before main form load.
             BtnRestartClickEH(this, EventArgs.Empty);
@@ -80,9 +89,15 @@ namespace MinesweeperGUIApp.UI.Forms
         /// <param name="e"></param>
         private void BtnRestartClickEH(object sender, EventArgs e)
         {
+            // Open the setup form to get new settings
             Form setup = new UI.Forms.SetupForm(_mainFormSettings);
             setup.ShowDialog();
+
+            // After setup form is closed fill the main panel with cells
             FillPanelWithCells();
+
+            // Reset the game stat object
+            _gameStat = new GameStat();
         }
 
         /// <summary>
@@ -96,16 +111,15 @@ namespace MinesweeperGUIApp.UI.Forms
 
             // Declare and Initialize
             pnlMain.Controls.Clear();
-            _board = new BoardLogic(_mainFormSettings.BoardSize);
+            _boardLogic = new BoardLogic(_mainFormSettings.BoardSize);
 
             // Setup the board
-            _board.SetDifficulty(_mainFormSettings.Difficulty);
-            _board.SetupBombs();
-            _board.CountBombsNearby();
+            _boardLogic.SetupBoardAtDifficulty(_mainFormSettings.Difficulty);
+            _boardLogic.SetLeaderboardLoadedStatus(_leaderBoardLoaded);
 
             // Initialize the values of the labels holding bomb and reward data
-            lblBombsValue.Text = _board.GetNumberOfBombs().ToString("00");
-            lblRewardsValue.Text = _board.GetNumberOfRewards().ToString("00");
+            lblBombsValue.Text = _boardLogic.GetNumberOfBombs().ToString("00");
+            lblRewardsValue.Text = _boardLogic.GetNumberOfRewards().ToString("00");
 
             // Adjust the size of the form depending on the size of the board. if-else to
             // catch super small boards and make them big enough to fit all the other controls
@@ -121,9 +135,9 @@ namespace MinesweeperGUIApp.UI.Forms
             // Pause pnlMain layout until we add all the children
             pnlMain.SuspendLayout();
             // Iterate over all the cells and add the appropriate panel
-            for (int row = 0; row < _board.GetBoardSize(); row++)
+            for (int row = 0; row < _boardLogic.GetBoardSize(); row++)
             {
-                for (int col = 0; col < _board.GetBoardSize(); col++)
+                for (int col = 0; col < _boardLogic.GetBoardSize(); col++)
                 {
                     Panel panel = new Panel();
                     panel.Size = new Size(25, 25);
@@ -146,6 +160,12 @@ namespace MinesweeperGUIApp.UI.Forms
         /// <param name="e"></param>
         private void PanelCellsClickEH(object? sender, EventArgs e)
         {
+            // If the game is starting initialize a new game stat object
+            if (_boardLogic.GetGameState() == GameState.Starting)
+            {
+                _gameStat = new GameStat();
+            }
+
             // Capture which button is clicked
             MouseEventArgs args = (MouseEventArgs)e;
             MouseButtons userClicked = args.Button;
@@ -154,13 +174,13 @@ namespace MinesweeperGUIApp.UI.Forms
             Panel panel = (Panel)sender;
             Point cellLoc = (Point)panel.Tag;
 
-            // If the game is still in progress use mouse button to determine the proper next action.
-            if (_board.GetGameState() == GameState.InProgress)
+            // If the game is still in progress or starting use mouse button to determine the proper next action.
+            if (_boardLogic.GetGameState() == GameState.InProgress || _boardLogic.GetGameState() == GameState.Starting)
             {
                 if (userClicked == MouseButtons.Left) // User Left clicked
                 {
                     // Left click signifies visit. Call DetermineGameState with a visit command of 1
-                    _board.DetermineGameState(cellLoc.X, cellLoc.Y, 1);
+                    _boardLogic.DetermineGameState(cellLoc.X, cellLoc.Y, 1);
                     // Refresh pnlMain layout
                     RefreshPanels(panel);
                     // Remove any border styles applied previously by using rewards
@@ -169,7 +189,7 @@ namespace MinesweeperGUIApp.UI.Forms
                 else if (userClicked == MouseButtons.Right) // User Right clicked
                 {
                     // Right click signifies flag. Call DetermineGameState with a flag command of 2
-                    if (_board.DetermineGameState(cellLoc.X, cellLoc.Y, 2))
+                    if (_boardLogic.DetermineGameState(cellLoc.X, cellLoc.Y, 2))
                     {
                         // Cell is now flagged. Refresh pnlMain layout
                         RefreshPanels(panel);
@@ -179,16 +199,16 @@ namespace MinesweeperGUIApp.UI.Forms
                     else
                     {
                         // Cell is not flagged (error occurred)
-                        MessageBox.Show(_board.ErrorMessage);
+                        MessageBox.Show(_boardLogic.ErrorMessage);
                     }
                 }
                 else // User clicked any other mouse button (use reward)
                 {
                     // Make sure there are rewards left
-                    if (_board.GetNumberOfRewards() > 0)
+                    if (_boardLogic.GetNumberOfRewards() > 0)
                     {
                         // Other clicks signify use reward. Call DetermineGameState with a reward command of 3
-                        if (_board.DetermineGameState(cellLoc.X, cellLoc.Y, 3))
+                        if (_boardLogic.DetermineGameState(cellLoc.X, cellLoc.Y, 3))
                         {
                             // Bomb exists here
                             MessageBox.Show(" This cell has a bomb! ");
@@ -211,12 +231,13 @@ namespace MinesweeperGUIApp.UI.Forms
                     }
                 }
             }
+            
             // Check state for win loss
             StateCheck();
-            // call visit again to clear reward game states
-            if (_board.GetGameState() == GameState.RewardFound)
+            // Call visit again to clear reward game states
+            if (_boardLogic.GetGameState() == GameState.RewardFound)
             {
-                _board.DetermineGameState(cellLoc.X, cellLoc.Y, 1);
+                _boardLogic.DetermineGameState(cellLoc.X, cellLoc.Y, 1);
             }
         }
 
@@ -225,16 +246,31 @@ namespace MinesweeperGUIApp.UI.Forms
         /// </summary>
         private void StateCheck()
         {
-            switch (_board.GetGameState())
+            switch (_boardLogic.GetGameState())
             {
                 case GameState.Lost:
                     // Reveal all the bombs on the board for the user after a loss
                     RevealAllBombs();
-                    MessageBox.Show(" You lost try again.");
+                    MessageBox.Show(" Sorry, you have hit a bomb. ", " Game Over. ");
                     break;
 
                 case GameState.Won:
-                    MessageBox.Show(" You Won!! Great Job.");
+                    // Update the game stat object with final stats
+                    _gameStat.Score = _boardLogic.GetScore();
+                    // Show win notification form and store the players name.
+                    FrmWinNotification winNotification = new FrmWinNotification(_gameStat);
+                    winNotification.ShowDialog();
+
+                    // Store the game stat in the leaderboard entries list
+                    _gameStat.DatePlayed = _boardLogic.GetStartTime();
+                    _gameStat.Id = _leaderboardEntries.Count + 1;
+                    _leaderboardEntries.Add(_gameStat);
+
+                    // After win notification is closed and stats are stored show the leaderboard.
+                    ShowLeaderboard();
+
+                    // Reset the board after a win
+                    BtnRestartClickEH(this, EventArgs.Empty);
                     break;
 
                 case GameState.RewardFound:
@@ -247,6 +283,20 @@ namespace MinesweeperGUIApp.UI.Forms
         }
 
         /// <summary>
+        /// Method to show the leaderboard form
+        /// </summary>
+        /// <exception cref="NotImplementedException"></exception>
+        private void ShowLeaderboard()
+        {
+            // Declare and Initialize
+            Form leaderboardForm = new FrmLeaderboard(_gameStat, _leaderboardEntries, _boardLogic);
+            leaderboardForm.ShowDialog();
+
+            // Set leaderboard loaded flag on the main form
+            _leaderBoardLoaded = _boardLogic.IsLeaderboardLoaded();
+        }
+
+        /// <summary>
         /// Show all bomb locations to the user after a loss
         /// </summary>
         private void RevealAllBombs()
@@ -255,7 +305,7 @@ namespace MinesweeperGUIApp.UI.Forms
             {
                 // Get the board cell from the panel tag
                 Point cellLoc = (Point)panel.Tag;
-                CellModel cell = _board.GetCellAt(cellLoc.X, cellLoc.Y);
+                CellModel cell = _boardLogic.GetCellAt(cellLoc.X, cellLoc.Y);
 
                 if (cell.IsBomb)
                 {
@@ -272,7 +322,7 @@ namespace MinesweeperGUIApp.UI.Forms
         {
             // Declare and Initialize
             Point primaryLoc = (Point)primaryPanel.Tag;
-            CellModel primaryCell = _board.GetCellAt(primaryLoc.X, primaryLoc.Y);
+            CellModel primaryCell = _boardLogic.GetCellAt(primaryLoc.X, primaryLoc.Y);
 
             // Short cut check for flood fill, if we have neighbors simply paint the panel.
             // Else we found a void and will iterate over all the panels to update them all.
@@ -286,15 +336,15 @@ namespace MinesweeperGUIApp.UI.Forms
                 {
                     // Get the board cell from the panel tag
                     Point cellLoc = (Point)panel.Tag;
-                    CellModel cell = _board.GetCellAt(cellLoc.X, cellLoc.Y);
+                    CellModel cell = _boardLogic.GetCellAt(cellLoc.X, cellLoc.Y);
 
                     PaintPanel(panel, cell);
                 }
             }
 
             // Update the bomb and reward tracking labels
-            lblBombsValue.Text = _board.GetNumberOfBombs().ToString("00");
-            lblRewardsValue.Text = _board.GetNumberOfRewards().ToString("00");
+            lblBombsValue.Text = _boardLogic.GetNumberOfBombs().ToString("00");
+            lblRewardsValue.Text = _boardLogic.GetNumberOfRewards().ToString("00");
         }
 
         /// <summary>

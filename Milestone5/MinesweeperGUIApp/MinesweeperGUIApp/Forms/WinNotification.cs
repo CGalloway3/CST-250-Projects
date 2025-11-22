@@ -8,13 +8,17 @@
  */
 
 using MinesweeperClassLibrary.BusinessLogicLayer;
+using MinesweeperClassLibrary.Models.DTOs;
 
 namespace MinesweeperGUIApp.Forms
 {
+    /// <summary>
+    /// Form displayed when the player wins the game, showing their score and allowing them to enter their name.
+    /// </summary>
     public partial class FrmWinNotification : Form
     {
-        // Reference to the BoardLogic instance that will be passed in
-        private BoardLogic _boardLogic;
+        // Reference to the current game statistics
+        private GameStat _gameStat;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="FrmWinNotification"/> class, displaying the current score.
@@ -23,14 +27,14 @@ namespace MinesweeperGUIApp.Forms
         /// provided <see cref="BoardLogic"/> instance. Ensure that the <paramref name="board"/> parameter is not null
         /// before calling this constructor.</remarks>
         /// <param name="board">The <see cref="BoardLogic"/> instance used to retrieve the current score.</param>
-        public FrmWinNotification(BoardLogic board)
+        public FrmWinNotification(GameStat game)
         {
             InitializeComponent();
 
-            // Store the reference to the BoardLogic instance
-            _boardLogic = board;
+            // Store the reference to the GameStat instance
+            _gameStat = game;
             // Set the score label to display the current score
-            lblScoreValue.Text = _boardLogic.GetScore().ToString();
+            lblScoreValue.Text = _gameStat.Score.ToString();
         }
 
         /// <summary>
@@ -44,11 +48,16 @@ namespace MinesweeperGUIApp.Forms
         private void BtnOKClickEH(object sender, EventArgs e)
         {
             // Save the player's name in the GameStat
-            _boardLogic.SetName(txtName.Text);
+            _gameStat.Name = txtName.Text;
             // Close the notification form
             this.Close();
         }
 
+        /// <summary>
+        /// Form closing event handler to validate the player's name input.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void FrmWinNotificationFormClosingEH(object sender, FormClosingEventArgs e)
         {
             // Validate that the name is not empty or whitespace
