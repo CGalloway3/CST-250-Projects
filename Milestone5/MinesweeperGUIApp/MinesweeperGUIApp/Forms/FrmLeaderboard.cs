@@ -1,7 +1,7 @@
 ﻿/*
  * Chad Galloway
  * CST - 250 Programming in C# II
- * 11/16/2025
+ * 11/23/2025
  * Mine Sweeper Class Library
  * Milestone 5
  * References:
@@ -290,7 +290,8 @@ namespace MinesweeperGUIApp.Forms
         }
 
         /// <summary>
-        /// Cloumn header mouse click event handler for sorting the leaderboard entries based on the clicked column.
+        /// Column header mouse click event handler for sorting the leaderboard entries based on the clicked column.
+        /// All sorting menu items call this method to perform the sort.
         /// </summary>
         /// <param name="sender">The source of the event, typically the column header that was clicked.</param>
         /// <param name="e">An <see cref="DataGridViewCellMouseEventArgs"/> instance containing the event data </param>

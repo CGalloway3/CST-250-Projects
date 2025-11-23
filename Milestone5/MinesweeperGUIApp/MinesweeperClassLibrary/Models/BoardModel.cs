@@ -114,6 +114,10 @@ namespace MinesweeperClassLibrary.Models
             return false;
         }
 
+        /// <summary>
+        /// Returns the time the current game started
+        /// </summary>
+        /// <returns></returns>
         public DateTime GetStartTime()
         {
             return _startTime;
