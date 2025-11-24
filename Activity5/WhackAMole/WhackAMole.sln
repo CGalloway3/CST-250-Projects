@@ -1,9 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.14.36705.20 d17.14
+VisualStudioVersion = 17.14.36705.20
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WhackAMole", "WhackAMole\WhackAMole.csproj", "{91A85BD4-7979-4320-A04A-2BFC8685AE89}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WhackAMoleGUI", "WhackAMoleGUI\WhackAMoleGUI.csproj", "{91A85BD4-7979-4320-A04A-2BFC8685AE89}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WhackAMoleTests", "WhackAMoleTests\WhackAMoleTests.csproj", "{94D6F2B6-6324-41DD-A433-A74688FAE7B8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WhackAMoleClassLibrary", "WhackAMoleClassLibrary\WhackAMoleClassLibrary.csproj", "{010FF563-1A31-4BE9-B561-B681F9F4CD14}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{91A85BD4-7979-4320-A04A-2BFC8685AE89}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{91A85BD4-7979-4320-A04A-2BFC8685AE89}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{91A85BD4-7979-4320-A04A-2BFC8685AE89}.Release|Any CPU.Build.0 = Release|Any CPU
+		{94D6F2B6-6324-41DD-A433-A74688FAE7B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{94D6F2B6-6324-41DD-A433-A74688FAE7B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{94D6F2B6-6324-41DD-A433-A74688FAE7B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{94D6F2B6-6324-41DD-A433-A74688FAE7B8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{010FF563-1A31-4BE9-B561-B681F9F4CD14}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{010FF563-1A31-4BE9-B561-B681F9F4CD14}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{010FF563-1A31-4BE9-B561-B681F9F4CD14}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{010FF563-1A31-4BE9-B561-B681F9F4CD14}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
