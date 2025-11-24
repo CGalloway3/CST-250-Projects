@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36705.20 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileIOAndLINQ", "FileIOAndLINQ\FileIOAndLINQ.csproj", "{35333FCB-45BC-4653-8608-28F9C7925BCF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{35333FCB-45BC-4653-8608-28F9C7925BCF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{35333FCB-45BC-4653-8608-28F9C7925BCF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{35333FCB-45BC-4653-8608-28F9C7925BCF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{35333FCB-45BC-4653-8608-28F9C7925BCF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5336992A-F89E-4753-B420-E3970B28867C}
+	EndGlobalSection
+EndGlobal
