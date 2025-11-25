@@ -34,6 +34,14 @@
             tsmLoad = new ToolStripMenuItem();
             tsmExit = new ToolStripMenuItem();
             grpAddVerse = new GroupBox();
+            lblImportanceError = new Label();
+            lblMeaningError = new Label();
+            lblTextError = new Label();
+            lblVerseError = new Label();
+            lblChapterError = new Label();
+            lblBookError = new Label();
+            btnAddVerse = new Button();
+            nudVerseImportance = new NumericUpDown();
             txtVerseMeaning = new TextBox();
             txtVerseText = new TextBox();
             txtVerseVerse = new TextBox();
@@ -45,18 +53,10 @@
             lblVerse = new Label();
             lblChapter = new Label();
             lblBook = new Label();
-            nudVerseImportance = new NumericUpDown();
-            btnAddVerse = new Button();
-            lblBookError = new Label();
-            lblChapterError = new Label();
-            lblVerseError = new Label();
-            lblTextError = new Label();
-            lblMeaningError = new Label();
-            lblImportanceError = new Label();
             grpFilterAndSort = new GroupBox();
-            rdoShowAll = new RadioButton();
-            rdoShowLeastImportant = new RadioButton();
             rdoShowMostImportant = new RadioButton();
+            rdoShowLeastImportant = new RadioButton();
+            rdoShowAll = new RadioButton();
             trbNumberToShow = new TrackBar();
             dgvVerseDisplay = new DataGridView();
             mnsFileActions.SuspendLayout();
@@ -129,6 +129,82 @@
             grpAddVerse.TabStop = false;
             grpAddVerse.Text = "Add A Bible Verse";
             // 
+            // lblImportanceError
+            // 
+            lblImportanceError.AutoSize = true;
+            lblImportanceError.ForeColor = Color.Red;
+            lblImportanceError.Location = new Point(83, 348);
+            lblImportanceError.Name = "lblImportanceError";
+            lblImportanceError.Size = new Size(96, 15);
+            lblImportanceError.TabIndex = 18;
+            lblImportanceError.Text = "Importance Error";
+            // 
+            // lblMeaningError
+            // 
+            lblMeaningError.AutoSize = true;
+            lblMeaningError.ForeColor = Color.Red;
+            lblMeaningError.Location = new Point(83, 304);
+            lblMeaningError.Name = "lblMeaningError";
+            lblMeaningError.Size = new Size(82, 15);
+            lblMeaningError.TabIndex = 17;
+            lblMeaningError.Text = "Meaning Error";
+            // 
+            // lblTextError
+            // 
+            lblTextError.AutoSize = true;
+            lblTextError.ForeColor = Color.Red;
+            lblTextError.Location = new Point(83, 223);
+            lblTextError.Name = "lblTextError";
+            lblTextError.Size = new Size(56, 15);
+            lblTextError.TabIndex = 16;
+            lblTextError.Text = "Text Error";
+            // 
+            // lblVerseError
+            // 
+            lblVerseError.AutoSize = true;
+            lblVerseError.ForeColor = Color.Red;
+            lblVerseError.Location = new Point(83, 142);
+            lblVerseError.Name = "lblVerseError";
+            lblVerseError.Size = new Size(62, 15);
+            lblVerseError.TabIndex = 15;
+            lblVerseError.Text = "Verse Error";
+            // 
+            // lblChapterError
+            // 
+            lblChapterError.AutoSize = true;
+            lblChapterError.ForeColor = Color.Red;
+            lblChapterError.Location = new Point(83, 98);
+            lblChapterError.Name = "lblChapterError";
+            lblChapterError.Size = new Size(77, 15);
+            lblChapterError.TabIndex = 14;
+            lblChapterError.Text = "Chapter Error";
+            // 
+            // lblBookError
+            // 
+            lblBookError.AutoSize = true;
+            lblBookError.ForeColor = Color.Red;
+            lblBookError.Location = new Point(83, 54);
+            lblBookError.Name = "lblBookError";
+            lblBookError.Size = new Size(62, 15);
+            lblBookError.TabIndex = 13;
+            lblBookError.Text = "Book Error";
+            // 
+            // btnAddVerse
+            // 
+            btnAddVerse.Location = new Point(103, 369);
+            btnAddVerse.Name = "btnAddVerse";
+            btnAddVerse.Size = new Size(75, 23);
+            btnAddVerse.TabIndex = 12;
+            btnAddVerse.Text = "Add";
+            btnAddVerse.UseVisualStyleBackColor = true;
+            // 
+            // nudVerseImportance
+            // 
+            nudVerseImportance.Location = new Point(81, 322);
+            nudVerseImportance.Name = "nudVerseImportance";
+            nudVerseImportance.Size = new Size(189, 23);
+            nudVerseImportance.TabIndex = 11;
+            // 
             // txtVerseMeaning
             // 
             txtVerseMeaning.Location = new Point(81, 241);
@@ -158,6 +234,7 @@
             txtVerseChapter.Name = "txtVerseChapter";
             txtVerseChapter.Size = new Size(189, 23);
             txtVerseChapter.TabIndex = 7;
+            txtVerseChapter.Leave += TxtVerseChapterLeaveEH;
             // 
             // cmbVerseBook
             // 
@@ -166,6 +243,7 @@
             cmbVerseBook.Name = "cmbVerseBook";
             cmbVerseBook.Size = new Size(189, 23);
             cmbVerseBook.TabIndex = 6;
+            cmbVerseBook.Leave += CmbVerseBookLeaveEH;
             // 
             // lblImportance
             // 
@@ -227,82 +305,6 @@
             lblBook.Text = "Book:";
             lblBook.TextAlign = ContentAlignment.MiddleRight;
             // 
-            // nudVerseImportance
-            // 
-            nudVerseImportance.Location = new Point(81, 322);
-            nudVerseImportance.Name = "nudVerseImportance";
-            nudVerseImportance.Size = new Size(189, 23);
-            nudVerseImportance.TabIndex = 11;
-            // 
-            // btnAddVerse
-            // 
-            btnAddVerse.Location = new Point(103, 369);
-            btnAddVerse.Name = "btnAddVerse";
-            btnAddVerse.Size = new Size(75, 23);
-            btnAddVerse.TabIndex = 12;
-            btnAddVerse.Text = "Add";
-            btnAddVerse.UseVisualStyleBackColor = true;
-            // 
-            // lblBookError
-            // 
-            lblBookError.AutoSize = true;
-            lblBookError.ForeColor = Color.Red;
-            lblBookError.Location = new Point(83, 54);
-            lblBookError.Name = "lblBookError";
-            lblBookError.Size = new Size(62, 15);
-            lblBookError.TabIndex = 13;
-            lblBookError.Text = "Book Error";
-            // 
-            // lblChapterError
-            // 
-            lblChapterError.AutoSize = true;
-            lblChapterError.ForeColor = Color.Red;
-            lblChapterError.Location = new Point(83, 98);
-            lblChapterError.Name = "lblChapterError";
-            lblChapterError.Size = new Size(77, 15);
-            lblChapterError.TabIndex = 14;
-            lblChapterError.Text = "Chapter Error";
-            // 
-            // lblVerseError
-            // 
-            lblVerseError.AutoSize = true;
-            lblVerseError.ForeColor = Color.Red;
-            lblVerseError.Location = new Point(83, 142);
-            lblVerseError.Name = "lblVerseError";
-            lblVerseError.Size = new Size(62, 15);
-            lblVerseError.TabIndex = 15;
-            lblVerseError.Text = "Verse Error";
-            // 
-            // lblTextError
-            // 
-            lblTextError.AutoSize = true;
-            lblTextError.ForeColor = Color.Red;
-            lblTextError.Location = new Point(83, 223);
-            lblTextError.Name = "lblTextError";
-            lblTextError.Size = new Size(56, 15);
-            lblTextError.TabIndex = 16;
-            lblTextError.Text = "Text Error";
-            // 
-            // lblMeaningError
-            // 
-            lblMeaningError.AutoSize = true;
-            lblMeaningError.ForeColor = Color.Red;
-            lblMeaningError.Location = new Point(83, 304);
-            lblMeaningError.Name = "lblMeaningError";
-            lblMeaningError.Size = new Size(82, 15);
-            lblMeaningError.TabIndex = 17;
-            lblMeaningError.Text = "Meaning Error";
-            // 
-            // lblImportanceError
-            // 
-            lblImportanceError.AutoSize = true;
-            lblImportanceError.ForeColor = Color.Red;
-            lblImportanceError.Location = new Point(83, 348);
-            lblImportanceError.Name = "lblImportanceError";
-            lblImportanceError.Size = new Size(96, 15);
-            lblImportanceError.TabIndex = 18;
-            lblImportanceError.Text = "Importance Error";
-            // 
             // grpFilterAndSort
             // 
             grpFilterAndSort.Controls.Add(rdoShowMostImportant);
@@ -315,16 +317,16 @@
             grpFilterAndSort.TabStop = false;
             grpFilterAndSort.Text = "Filter And Sort";
             // 
-            // rdoShowAll
+            // rdoShowMostImportant
             // 
-            rdoShowAll.AutoSize = true;
-            rdoShowAll.Location = new Point(19, 32);
-            rdoShowAll.Name = "rdoShowAll";
-            rdoShowAll.Size = new Size(71, 19);
-            rdoShowAll.TabIndex = 0;
-            rdoShowAll.TabStop = true;
-            rdoShowAll.Text = "Show All";
-            rdoShowAll.UseVisualStyleBackColor = true;
+            rdoShowMostImportant.AutoSize = true;
+            rdoShowMostImportant.Location = new Point(19, 98);
+            rdoShowMostImportant.Name = "rdoShowMostImportant";
+            rdoShowMostImportant.Size = new Size(140, 19);
+            rdoShowMostImportant.TabIndex = 2;
+            rdoShowMostImportant.TabStop = true;
+            rdoShowMostImportant.Text = "Show Most Important";
+            rdoShowMostImportant.UseVisualStyleBackColor = true;
             // 
             // rdoShowLeastImportant
             // 
@@ -337,16 +339,16 @@
             rdoShowLeastImportant.Text = "Show Least Important";
             rdoShowLeastImportant.UseVisualStyleBackColor = true;
             // 
-            // rdoShowMostImportant
+            // rdoShowAll
             // 
-            rdoShowMostImportant.AutoSize = true;
-            rdoShowMostImportant.Location = new Point(19, 98);
-            rdoShowMostImportant.Name = "rdoShowMostImportant";
-            rdoShowMostImportant.Size = new Size(140, 19);
-            rdoShowMostImportant.TabIndex = 2;
-            rdoShowMostImportant.TabStop = true;
-            rdoShowMostImportant.Text = "Show Most Important";
-            rdoShowMostImportant.UseVisualStyleBackColor = true;
+            rdoShowAll.AutoSize = true;
+            rdoShowAll.Location = new Point(19, 32);
+            rdoShowAll.Name = "rdoShowAll";
+            rdoShowAll.Size = new Size(71, 19);
+            rdoShowAll.TabIndex = 0;
+            rdoShowAll.TabStop = true;
+            rdoShowAll.Text = "Show All";
+            rdoShowAll.UseVisualStyleBackColor = true;
             // 
             // trbNumberToShow
             // 
