@@ -205,5 +205,57 @@ namespace FileIOAndLINQ.PresentationLayer
                 lblTextError.Visible = true;
             }
         }
+
+        /// <summary>
+        /// Leave event handler for txtVerseMeaning
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void TxtVerseMeaningLeaveEH(object sender, EventArgs e)
+        {
+            // Check to make sure the user entered a meaning for the verse
+            if (!string.IsNullOrWhiteSpace(txtVerseMeaning.Text))
+            {
+                // Set the valid meaning flag to true
+                isValidMeaning = true;
+                // Hide the error label
+                lblMeaningError.Visible = false;
+            }
+            else
+            {
+                // Make sure the valid meaning flag is false
+                isValidMeaning = false;
+                // Update the error label
+                lblMeaningError.Text = "The meaning cannot be blank";
+                // Show the error label
+                lblMeaningError.Visible = true;
+            }
+        }
+
+        /// <summary>
+        /// Leave event handler to validate importance input
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void NudVerseImportanceLeaveEH(object sender, EventArgs e)
+        {
+            // Check if the value is between 1 and 10
+            if (nudVerseImportance.Value >= 1 && nudVerseImportance.Value <= 10)
+            {
+                // Set the importance flag to true
+                isValidImportance = true;
+                // Hide the importance error label
+                lblImportanceError.Visible = false;
+            }
+            else
+            {
+                // Set the importance flag to false
+                isValidImportance = false;
+                // Update the importance error label
+                lblImportanceError.Text = "The importance must be 1 - 10";
+                // Show the importance error label
+                lblImportanceError.Visible = true;
+            }
+        }
     }
 }

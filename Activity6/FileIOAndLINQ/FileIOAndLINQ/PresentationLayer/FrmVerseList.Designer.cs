@@ -212,6 +212,7 @@
             txtVerseMeaning.Name = "txtVerseMeaning";
             txtVerseMeaning.Size = new Size(189, 60);
             txtVerseMeaning.TabIndex = 10;
+            txtVerseMeaning.Leave += TxtVerseMeaningLeaveEH;
             // 
             // txtVerseText
             // 
@@ -220,6 +221,7 @@
             txtVerseText.Name = "txtVerseText";
             txtVerseText.Size = new Size(189, 60);
             txtVerseText.TabIndex = 9;
+            txtVerseText.Leave += TxtVerseTextLeaveEH;
             // 
             // txtVerseVerse
             // 
