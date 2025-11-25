@@ -145,5 +145,65 @@ namespace FileIOAndLINQ.PresentationLayer
                 lblChapterError.Visible = true;
             }
         }
+
+        /// <summary>
+        /// Leave event handler to validate verse input from the user
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void TxtVerseVerseLeaveEH(object sender, EventArgs e)
+        {
+            // Declare and Initialize
+            // RegEx pattern to validate the verse
+            Regex regex = new Regex(@"^\d+(?:-\d+)?$");
+            // Match object to hold the result of the comparison
+            bool match;
+
+            // Match the RegEx pattern with the verse text
+            match = regex.IsMatch(txtVerseVerse.Text);
+            // Check if the match was a success
+            if (match)
+            {
+                // Set the verse flag to true
+                isValidVerse = true;
+                // Hide the verse error label
+                lblVerseError.Visible = false;
+            }
+            else
+            {
+                // Set the verse flag to false
+                isValidVerse = false;
+                // Update the verse error label
+                lblVerseError.Text = "The verse must be a number/range";
+                // Show the verse error label
+                lblVerseError.Visible = true;
+            }
+        }
+
+        /// <summary>
+        /// Leave event handler for txtVerseText
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void TxtVerseTextLeaveEH(object sender, EventArgs e)
+        {
+            // Check to make sure the user entered text for the verse
+            if (!string.IsNullOrWhiteSpace(txtVerseText.Text))
+            {
+                // Set the valid text flag to true
+                isValidText = true;
+                // Hide the error label
+                lblTextError.Visible = false;
+            }
+            else
+            {
+                // Make sure the valid text flag is false
+                isValidText = false;
+                // Update the error label
+                lblTextError.Text = "The text cannot be blank";
+                // Show the error label
+                lblTextError.Visible = true;
+            }
+        }
     }
 }

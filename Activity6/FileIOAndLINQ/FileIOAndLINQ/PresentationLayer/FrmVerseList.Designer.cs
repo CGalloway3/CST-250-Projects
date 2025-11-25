@@ -227,6 +227,7 @@
             txtVerseVerse.Name = "txtVerseVerse";
             txtVerseVerse.Size = new Size(189, 23);
             txtVerseVerse.TabIndex = 8;
+            txtVerseVerse.Leave += TxtVerseVerseLeaveEH;
             // 
             // txtVerseChapter
             // 
