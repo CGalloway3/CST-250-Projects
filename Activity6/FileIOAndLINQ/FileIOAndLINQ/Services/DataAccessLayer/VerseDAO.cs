@@ -46,5 +46,11 @@ namespace FileIOAndLINQ.Services.DataAccessLayer
             // Return the id of the new verse
             return id;
         }
+
+        public List<VerseDataModel> GetAllVerses()
+        {
+            // Return the _verses List
+            return _verses;
+        }
     }
 }

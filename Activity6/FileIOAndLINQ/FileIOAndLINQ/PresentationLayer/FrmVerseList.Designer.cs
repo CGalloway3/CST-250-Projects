@@ -138,6 +138,7 @@
             lblImportanceError.Size = new Size(96, 15);
             lblImportanceError.TabIndex = 18;
             lblImportanceError.Text = "Importance Error";
+            lblImportanceError.Leave += NudVerseImportanceLeaveEH;
             // 
             // lblMeaningError
             // 
@@ -202,9 +203,13 @@
             // nudVerseImportance
             // 
             nudVerseImportance.Location = new Point(81, 322);
+            nudVerseImportance.Maximum = new decimal(new int[] { 10, 0, 0, 0 });
+            nudVerseImportance.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             nudVerseImportance.Name = "nudVerseImportance";
             nudVerseImportance.Size = new Size(189, 23);
             nudVerseImportance.TabIndex = 11;
+            nudVerseImportance.Value = new decimal(new int[] { 1, 0, 0, 0 });
+            nudVerseImportance.Leave += NudVerseImportanceLeaveEH;
             // 
             // txtVerseMeaning
             // 
@@ -382,6 +387,7 @@
             MainMenuStrip = mnsFileActions;
             Name = "FrmVerseList";
             Text = "Bible Verses";
+            Load += FrmVerseListLoadEH;
             mnsFileActions.ResumeLayout(false);
             mnsFileActions.PerformLayout();
             grpAddVerse.ResumeLayout(false);
