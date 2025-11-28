@@ -26,7 +26,12 @@ namespace FileIOAndLINQ.Services.BusinessLogicLayer
             _verseDAO = new VerseDAO();
         }
 
-         public int AddVerse(VerseRequestModel verse)
+        /// <summary>
+        /// Add a new verse to the inventory
+        /// </summary>
+        /// <param name="verse"></param>
+        /// <returns></returns>        
+        public int AddVerse(VerseRequestModel verse)
         {
             // return the DAO method
             return _verseDAO.AddVerse(verse);
@@ -58,6 +63,12 @@ namespace FileIOAndLINQ.Services.BusinessLogicLayer
 
             // Return the display verses list
             return displayVerses;
+        }
+
+        public string WriteVersesToFile(string fileName)
+        {
+            // Call and return the DAO method
+            return _verseDAO.WriteVersesToFile(fileName);
         }
     }
 }

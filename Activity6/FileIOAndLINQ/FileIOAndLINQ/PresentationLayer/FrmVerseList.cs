@@ -402,5 +402,44 @@ namespace FileIOAndLINQ.PresentationLayer
             // Call the auto resize row method so the rows will expand
             dgvVerseDisplay.AutoResizeRows();
         }
+
+        /// <summary>
+        /// Click event handler to send data to various types of files
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void TsmSaveClickEH(object sender, EventArgs e)
+        {
+            // Declare and Initialize
+            // Filters for file dialogs
+            string filter = "All Files (*.*)|*.*|" +
+                "Text File (*.txt)|*.txt|" +
+                "CVS File (*.csv)|*.csv|" +
+                "JSON File (*.json)|*.json";
+            string fileName = "", result = "";
+            // Variable to store the result of the SaveFileDialog
+            DialogResult dialogResult;
+
+            // Create a save file dialog object
+            using (SaveFileDialog saveFileDialog = new SaveFileDialog())
+            {
+                // Set the title for the dialog
+                saveFileDialog.Title = "Save File";
+                // Set the filter for the dialog
+                saveFileDialog.Filter = filter;
+                // Show the file dialog and save the result to dialogResult
+                dialogResult = saveFileDialog.ShowDialog();
+                // Check if the dialog result returned OK
+                if (dialogResult == DialogResult.OK)
+                {
+                    // Get the selected file name
+                    fileName = saveFileDialog.FileName;
+                    // Save the inventory to the text file
+                    result = _verseLogic.WriteVersesToFile(fileName);
+                    // Show the result to the user
+                    MessageBox.Show(result);
+                }
+            }
+        } // End of TsmSaveClickEH
     }
 }

@@ -56,5 +56,15 @@ namespace FileIOAndLINQ.Models
             Meaning = meaning;
             Importance = importance;
         }
+
+        /// <summary>
+        /// To string override method to write Data Model to a text file.
+        /// </summary>
+        /// <returns></returns>
+        public override string ToString()
+        {
+            // Return a formatted string with all data minus the id
+            return $"{Book}* {Chapter}* {Verse}* {Text}* {Meaning}* {Importance}";
+        }
     }
 }

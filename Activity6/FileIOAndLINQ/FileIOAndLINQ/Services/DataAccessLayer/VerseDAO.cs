@@ -47,10 +47,55 @@ namespace FileIOAndLINQ.Services.DataAccessLayer
             return id;
         }
 
+        /// <summary>
+        /// Get the list of verses in the inventory.
+        /// </summary>
+        /// <returns></returns>
         public List<VerseDataModel> GetAllVerses()
         {
             // Return the _verses List
             return _verses;
+        }
+
+        public string WriteVersesToFile(string fileName)
+        {
+            // Declare and Initialize
+            string serialized = "";
+
+            // Create a switch based on file extensions to fill the serialized string
+            switch (Path.GetExtension(fileName))
+            {
+                case ".txt":
+                    // Loop through the _verses list
+                    foreach (var verse in _verses)
+                    {
+                        // Add each verse to the end of the serialized string
+                        serialized += verse.ToString() + "\n";
+                    }
+                    break;
+                case ".json":
+                    // Use ServiceStack to serialize to json
+                    serialized = ServiceStack.Text.JsonSerializer.SerializeToString(_verses);
+                    break;
+                case ".csv":
+                    // Use ServiceStack to serialize to csv
+                    serialized = ServiceStack.Text.CsvSerializer.SerializeToString(_verses);
+                    break;
+                default:
+                    return "File not recognized";
+            }
+            // Try to save the serialized string to file.
+            try
+            {
+                // Use File.WriteAllText to send the serialized string to the file
+                File.WriteAllText(fileName, serialized);
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
+            }
+            // Return success message to the user
+            return "The verses have been saved to your file.";
         }
     }
 }
