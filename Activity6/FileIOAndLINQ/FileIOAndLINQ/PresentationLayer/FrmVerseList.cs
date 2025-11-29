@@ -30,6 +30,8 @@ namespace FileIOAndLINQ.PresentationLayer
             "Text File (*.txt)|*.txt|" +
             "CVS File (*.csv)|*.csv|" +
             "JSON File (*.json)|*.json";
+        // Store the number of verses to show
+        private int _numToShow;
 
         public FrmVerseList()
         {
@@ -457,7 +459,7 @@ namespace FileIOAndLINQ.PresentationLayer
             using (OpenFileDialog openFileDialog = new OpenFileDialog())
             {
                 // Set the title for the dialog
-                openFileDialog.Title = "Save File";
+                openFileDialog.Title = "Open File";
                 // Set the filter for the dialog
                 openFileDialog.Filter = filter;
                 // Show the file dialog and store the result
@@ -476,5 +478,21 @@ namespace FileIOAndLINQ.PresentationLayer
                 }
             }
         } // End of TsmLoadClickEH
+
+        /// <summary>
+        /// Update the _numToShow variable and the
+        /// most/least important verses filter radio buttons
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void TrbNumberToShowScrollEH(object sender, EventArgs e)
+        {
+            // Update _numToShow
+            _numToShow = trbNumberToShow.Value;
+            // Update the text for rdoShowLeastImportant
+            rdoShowLeastImportant.Text = $"Show {_numToShow} Least Important";
+            // Update the text for rdoShowMostImportant
+            rdoShowMostImportant.Text = $"Show {_numToShow} Most Important";
+        }
     }
 }
