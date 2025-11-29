@@ -95,6 +95,7 @@
             tsmLoad.Name = "tsmLoad";
             tsmLoad.Size = new Size(180, 22);
             tsmLoad.Text = "Load";
+            tsmLoad.Click += TsmLoadClickEH;
             // 
             // tsmExit
             // 
@@ -369,6 +370,7 @@
             // 
             // dgvVerseDisplay
             // 
+            dgvVerseDisplay.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dgvVerseDisplay.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvVerseDisplay.Location = new Point(302, 27);
             dgvVerseDisplay.Name = "dgvVerseDisplay";

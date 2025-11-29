@@ -57,6 +57,12 @@ namespace FileIOAndLINQ.Services.DataAccessLayer
             return _verses;
         }
 
+        /// <summary>
+        /// Writes the verse list to the given file
+        /// formatted based on file type
+        /// </summary>
+        /// <param name="fileName"></param>
+        /// <returns></returns>
         public string WriteVersesToFile(string fileName)
         {
             // Declare and Initialize
@@ -96,6 +102,101 @@ namespace FileIOAndLINQ.Services.DataAccessLayer
             }
             // Return success message to the user
             return "The verses have been saved to your file.";
+        }
+
+        /// <summary>
+        /// Read verses from the given file
+        /// </summary>
+        /// <param name="fileName"></param>
+        /// <returns></returns>
+        public string ReadVersesFromFile(string fileName)
+        {
+            // Declare and initialize
+            string data = "";
+            List<VerseDataModel> dataVerses = new List<VerseDataModel>();
+
+            // Set up a try-catch to read files text
+            try
+            {
+                // Get the text from the file
+                data = File.ReadAllText(fileName);
+            }
+            catch (Exception ex)
+            {
+                // Return the exception message
+                return ex.Message;
+            }
+            // Create a switch based on the file extension
+            switch (Path.GetExtension(fileName))
+            {
+                case ".txt":
+                    // Split the text file on the newline character
+                    string[] lines = data.Split('\n');
+                    // Loop through the array of lines
+                    foreach (string line in lines)
+                    {
+                        // Check if each line contains data
+                        if (!string.IsNullOrWhiteSpace(line))
+                        {
+                            // If so, convert the data to a VerseDataModel
+                            // and add it to the dataVerses list
+                            dataVerses.Add(ConvertTxtToVerseDataModel(line));
+                        }
+                    }
+                    break;
+
+                case ".json":
+                    // Deserialize the data using the JsonSerializer
+                    dataVerses = ServiceStack.Text.JsonSerializer.DeserializeFromString<List<VerseDataModel>>(data);
+                    break;
+
+                case ".csv":
+                    // Deserialize the data using the CsvSerializer
+                    dataVerses = ServiceStack.Text.CsvSerializer.DeserializeFromString<List<VerseDataModel>>(data);
+                    break;
+
+                default:
+                    // Return the issue to the user
+                    return "File not recognized";
+            }
+            // Loop through the dataVerses list
+            foreach (VerseDataModel newVerse in dataVerses)
+            {
+                // Set the id for each new verse
+                newVerse.Id = _verses.Count + 1;
+                // Add the new verse to the _verses list
+                _verses.Add(newVerse);
+            }
+            // Return a success message to the user
+            return "The verses have been read from your file and added to the list";
+        } // End of ReadVersesFromFile
+
+        /// <summary>
+        /// Take a line from the text file and return a VerseDataModel
+        /// </summary>
+        /// <param name="line"></param>
+        /// <returns></returns>
+        public VerseDataModel ConvertTxtToVerseDataModel(string line)
+        {
+            // Declare and initialize
+            string[] values;
+            int chapter = 0, importance = 0;
+            VerseDataModel verse;
+
+            // Split the line on '*'
+            values = line.Split('*');
+
+            // Use a try parse to parse the chapter
+            int.TryParse(values[1], out chapter);
+
+            // Parse the importance
+            int.TryParse(values[5], out importance);
+
+            // Create the new verse
+            verse = new VerseDataModel(0, values[0], chapter, values[2], values[3], values[4], importance);
+
+            // Return the verse
+            return verse;
         }
     }
 }
