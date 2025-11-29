@@ -349,6 +349,7 @@
             rdoShowLeastImportant.TabStop = true;
             rdoShowLeastImportant.Text = "Show Least Important";
             rdoShowLeastImportant.UseVisualStyleBackColor = true;
+            rdoShowLeastImportant.CheckedChanged += RdoShowLeastImportantCheckChangedEH;
             // 
             // rdoShowAll
             // 

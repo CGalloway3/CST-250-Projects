@@ -1,4 +1,4 @@
-﻿wd/*
+﻿/*
  * Chad Galloway
  * CST - 250 Programming in C# II
  * 11/30/2025
@@ -197,6 +197,23 @@ namespace FileIOAndLINQ.Services.DataAccessLayer
 
             // Return the verse
             return verse;
+        }
+
+        /// <summary>
+        /// Get a list of the least important verses
+        /// </summary>
+        /// <param name="numToFind"></param>
+        /// <returns></returns>
+        public List<VerseDataModel> GetLeastImportantVerses(int numToFind)
+        {
+            // Use LINQ query syntax to order the verses and select how
+            // many are needed based on the numToFind parameter
+            List<VerseDataModel> leastImportantVerses = (from verse in _verses
+                                                         orderby verse.Importance
+                                                         select verse).Take(numToFind).ToList();
+
+            // Return the list of least important verses
+            return leastImportantVerses;
         }
     }
 }
