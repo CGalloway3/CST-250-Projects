@@ -511,12 +511,28 @@ namespace FileIOAndLINQ.PresentationLayer
         }
 
         /// <summary>
+        /// Event handler for the form resize to adjust the data grid view accordingly
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void FrmVerseListResizeEH(object sender, EventArgs e)
+        {
+            FormatVersesDgv();
+        }
+
+        /// <summary>
         /// Display the least important verses to the user
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void RdoShowLeastImportantCheckChangedEH(object sender, EventArgs e)
         {
+            // Short cut return if this radio button is not checked
+            if (!rdoShowLeastImportant.Checked)
+            {
+                return;
+            }
+
             // Get the list of least important objects from the BLL
             List<VerseDisplayModel> leastImportantVerses = _verseLogic.GetLeastImportantVerses(_numToShow);
             // Change the DataSource for the verse binding source
@@ -533,6 +549,12 @@ namespace FileIOAndLINQ.PresentationLayer
         /// <param name="e"></param>
         private void RdoShowMostImportantCheckChangedEH(object sender, EventArgs e)
         {
+            // Short cut return if this radio button is not checked
+            if (!rdoShowMostImportant.Checked)
+            {
+                return;
+            }
+            
             // Get the list of least important objects from the BLL
             List<VerseDisplayModel> mostImportantVerses = _verseLogic.GetMostImportantVerses(_numToShow);
             // Change the DataSource for the verse binding source
@@ -549,18 +571,14 @@ namespace FileIOAndLINQ.PresentationLayer
         /// <param name="e"></param>
         private void RdoShowAllCheckedChangedEH(object sender, EventArgs e)
         {
+            // Short cut return if this radio button is not checked
+            if (!rdoShowAll.Checked)
+            {
+                return;
+            }
+            
             // Refresh the dgv with all of the users verses
             RefreshVerseDgv();
-        }
-
-        /// <summary>
-        /// Event handler for the form resize to adjust the data grid view accordingly
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void FrmVerseListResizeEH(object sender, EventArgs e)
-        {
-            FormatVersesDgv();
         }
     }
 }

@@ -333,9 +333,9 @@
             rdoShowMostImportant.AutoSize = true;
             rdoShowMostImportant.Location = new Point(19, 98);
             rdoShowMostImportant.Name = "rdoShowMostImportant";
-            rdoShowMostImportant.Size = new Size(140, 19);
+            rdoShowMostImportant.Size = new Size(149, 19);
             rdoShowMostImportant.TabIndex = 2;
-            rdoShowMostImportant.Text = "Show Most Important";
+            rdoShowMostImportant.Text = "Show 0 Most Important";
             rdoShowMostImportant.UseVisualStyleBackColor = true;
             rdoShowMostImportant.CheckedChanged += RdoShowMostImportantCheckChangedEH;
             // 
@@ -344,9 +344,9 @@
             rdoShowLeastImportant.AutoSize = true;
             rdoShowLeastImportant.Location = new Point(19, 65);
             rdoShowLeastImportant.Name = "rdoShowLeastImportant";
-            rdoShowLeastImportant.Size = new Size(140, 19);
+            rdoShowLeastImportant.Size = new Size(149, 19);
             rdoShowLeastImportant.TabIndex = 1;
-            rdoShowLeastImportant.Text = "Show Least Important";
+            rdoShowLeastImportant.Text = "Show 0 Least Important";
             rdoShowLeastImportant.UseVisualStyleBackColor = true;
             rdoShowLeastImportant.CheckedChanged += RdoShowLeastImportantCheckChangedEH;
             // 
