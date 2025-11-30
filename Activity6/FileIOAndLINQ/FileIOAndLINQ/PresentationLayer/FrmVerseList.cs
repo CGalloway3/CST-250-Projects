@@ -404,7 +404,7 @@ namespace FileIOAndLINQ.PresentationLayer
         private void FormatVersesDgv()
         {
             // Calculate the width for the text and meaning columns
-            int width = (dgvVerseDisplay.Width - dgvVerseDisplay.Columns[0].Width - dgvVerseDisplay.Columns[3].Width) / 2;
+            int width = ((dgvVerseDisplay.Width - dgvVerseDisplay.Columns[0].Width - dgvVerseDisplay.Columns[3].Width) / 2) - 22; // Subtract an additional amount for the dgv to fit perfectly
             // Set the width for the text column
             dgvVerseDisplay.Columns[1].Width = width;
             // Set the width for the meaning column
@@ -507,7 +507,7 @@ namespace FileIOAndLINQ.PresentationLayer
             else if (rdoShowMostImportant.Checked)
             {
                 RdoShowMostImportantCheckChangedEH(this, EventArgs.Empty);
-            }            
+            }
         }
 
         /// <summary>
@@ -551,6 +551,16 @@ namespace FileIOAndLINQ.PresentationLayer
         {
             // Refresh the dgv with all of the users verses
             RefreshVerseDgv();
+        }
+
+        /// <summary>
+        /// Event handler for the form resize to adjust the data grid view accordingly
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void FrmVerseListResizeEH(object sender, EventArgs e)
+        {
+            FormatVersesDgv();
         }
     }
 }

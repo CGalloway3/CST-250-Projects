@@ -335,7 +335,6 @@
             rdoShowMostImportant.Name = "rdoShowMostImportant";
             rdoShowMostImportant.Size = new Size(140, 19);
             rdoShowMostImportant.TabIndex = 2;
-            rdoShowMostImportant.TabStop = true;
             rdoShowMostImportant.Text = "Show Most Important";
             rdoShowMostImportant.UseVisualStyleBackColor = true;
             rdoShowMostImportant.CheckedChanged += RdoShowMostImportantCheckChangedEH;
@@ -347,7 +346,6 @@
             rdoShowLeastImportant.Name = "rdoShowLeastImportant";
             rdoShowLeastImportant.Size = new Size(140, 19);
             rdoShowLeastImportant.TabIndex = 1;
-            rdoShowLeastImportant.TabStop = true;
             rdoShowLeastImportant.Text = "Show Least Important";
             rdoShowLeastImportant.UseVisualStyleBackColor = true;
             rdoShowLeastImportant.CheckedChanged += RdoShowLeastImportantCheckChangedEH;
@@ -355,6 +353,7 @@
             // rdoShowAll
             // 
             rdoShowAll.AutoSize = true;
+            rdoShowAll.Checked = true;
             rdoShowAll.Location = new Point(19, 32);
             rdoShowAll.Name = "rdoShowAll";
             rdoShowAll.Size = new Size(71, 19);
@@ -395,6 +394,7 @@
             Name = "FrmVerseList";
             Text = "Bible Verses";
             Load += FrmVerseListLoadEH;
+            Resize += FrmVerseListResizeEH;
             mnsFileActions.ResumeLayout(false);
             mnsFileActions.PerformLayout();
             grpAddVerse.ResumeLayout(false);
