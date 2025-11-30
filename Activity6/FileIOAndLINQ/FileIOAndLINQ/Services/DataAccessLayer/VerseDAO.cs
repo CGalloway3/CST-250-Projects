@@ -215,5 +215,19 @@ namespace FileIOAndLINQ.Services.DataAccessLayer
             // Return the list of least important verses
             return leastImportantVerses;
         }
+        
+        /// <summary>
+        /// Get a list of the most important verses
+        /// </summary>
+        /// <param name="numToFind"></param>
+        /// <returns></returns>
+        public List<VerseDataModel> GetMostImportantVerses(int numToFind)
+        {
+            // Use LINQ method syntax to order the verses and select how
+            //   many are needed based on the numToFind parameter
+            List<VerseDataModel> mostImportantVerses = _verses.OrderByDescending(verse => verse.Importance).Take(numToFind).ToList();
+            // Return the list of least important verses
+            return mostImportantVerses;
+        }
     }
 }
