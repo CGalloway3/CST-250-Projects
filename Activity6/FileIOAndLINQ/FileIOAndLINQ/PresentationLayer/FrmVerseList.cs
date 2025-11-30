@@ -531,5 +531,16 @@ namespace FileIOAndLINQ.PresentationLayer
             // Format the data grid view
             FormatVersesDgv();
         }
+
+        /// <summary>
+        /// Show the entire, unsorted list of verses
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void RdoShowAllCheckedChangedEH(object sender, EventArgs e)
+        {
+            // Refresh the dgv with all of the users verses
+            RefreshVerseDgv();
+        }
     }
 }
