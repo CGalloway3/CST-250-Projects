@@ -114,7 +114,7 @@ namespace FileIOAndLINQ.Services.BusinessLogicLayer
             foreach (VerseDataModel verse in dataVerses)
             {
                 // Use the book, chapter, and verse to create the reference
-                reference = $"{verse.Book}:{verse.Chapter}:{verse.Verse}";
+                reference = $"{verse.Book} {verse.Chapter}:{verse.Verse}";
 
                 // Create a display verse model using the VerseDataModel verse
                 VerseDisplayModel displayVerse = new VerseDisplayModel(reference, verse.Text, verse.Meaning, verse.Importance);

@@ -29,6 +29,8 @@ namespace FileIOAndLINQ.PresentationLayer
         string filter = "All Files (*.*)|*.*|" +
             "Text File (*.txt)|*.txt|" +
             "CVS File (*.csv)|*.csv|" +
+            "XML File (*.xml)|*.xml|" +
+            "Excel File (*.xlsx)|*.xlsx|" +
             "JSON File (*.json)|*.json";
         // Store the number of verses to show
         private int _numToShow;

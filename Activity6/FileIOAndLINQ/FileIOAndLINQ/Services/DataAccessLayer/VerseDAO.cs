@@ -8,6 +8,9 @@
  */
 
 using FileIOAndLINQ.Models;
+using OfficeOpenXml;
+using OfficeOpenXml.Style;
+using OfficeOpenXml.Table;
 
 namespace FileIOAndLINQ.Services.DataAccessLayer
 {
@@ -79,14 +82,64 @@ namespace FileIOAndLINQ.Services.DataAccessLayer
                         serialized += verse.ToString() + "\n";
                     }
                     break;
+
                 case ".json":
                     // Use ServiceStack to serialize to json
                     serialized = ServiceStack.Text.JsonSerializer.SerializeToString(_verses);
                     break;
+
                 case ".csv":
                     // Use ServiceStack to serialize to csv
                     serialized = ServiceStack.Text.CsvSerializer.SerializeToString(_verses);
                     break;
+
+                case ".xml":
+                    // Use ServiceStack to serialize to xml
+                    serialized = ServiceStack.Text.XmlSerializer.SerializeToString(_verses);
+                    break;
+
+                case ".xlsx":
+                    // Open the EPPlus Excel Package for use with the user selected fileName
+                    using (var package = new ExcelPackage(fileName))
+                    {
+                        // Initialize the variable sheet with the Bible Verses sheet if it exists.
+                        var sheet = package.Workbook.Worksheets["Bible Verses"];
+
+                        // If the Bible Verses sheet does exist we need to remove it.
+                        if (sheet != null)
+                        {
+                            package.Workbook.Worksheets.Delete(sheet);
+                        }
+                        
+                        // Set the sheet as a new sheet
+                        sheet = package.Workbook.Worksheets.Add("Bible Verses");
+                        
+                        // Fill the sheet with our data into a table starting at A1
+                        sheet.Cells["A1"].LoadFromCollection(_verses, true, TableStyles.Medium4);
+
+                        // Format the newly added table
+                        sheet.Columns[1].Width = 4;
+                        sheet.Columns[1].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                        sheet.Columns[2].Width = 20;
+                        sheet.Columns[2].Style.HorizontalAlignment = ExcelHorizontalAlignment.Left;
+                        sheet.Columns[3].Width = 10;
+                        sheet.Columns[3].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                        sheet.Columns[4].Width = 8;
+                        sheet.Columns[4].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                        sheet.Columns[5].Width = 50;
+                        sheet.Columns[5].Style.HorizontalAlignment = ExcelHorizontalAlignment.Justify;
+                        sheet.Columns[6].Width = 50;
+                        sheet.Columns[6].Style.HorizontalAlignment = ExcelHorizontalAlignment.Justify;
+                        sheet.Columns[7].Width = 12.5;
+                        sheet.Columns[7].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+
+                        sheet.Rows.Height = 48;
+
+                        // Save to file
+                        package.Save();
+                    }
+                    return "The Excel file was successfully created";
+
                 default:
                     return "File not recognized";
             }
@@ -153,6 +206,44 @@ namespace FileIOAndLINQ.Services.DataAccessLayer
                 case ".csv":
                     // Deserialize the data using the CsvSerializer
                     dataVerses = ServiceStack.Text.CsvSerializer.DeserializeFromString<List<VerseDataModel>>(data);
+                    break;
+
+                case ".xml":
+                    // Deserialize the data using XmlSerializer
+                    dataVerses = ServiceStack.Text.XmlSerializer.DeserializeFromString<List<VerseDataModel>>(data);
+                    break;
+
+                case ".xlsx":
+                    // Open the EPPlus Excel Package for use with the user selected fileName
+                    using (var package = new ExcelPackage(fileName))
+                    {
+                        // Check if the worksheet exists
+                        var worksheet = package.Workbook.Worksheets["Bible Verses"];
+                        if (worksheet == null)
+                        {
+                            return "Worksheet 'Bible Verses' not found";
+                        }
+
+                        // Check if there's any data
+                        if (worksheet.Dimension == null || worksheet.Dimension.Rows < 2)
+                        {
+                            return "No data found in worksheet";
+                        }
+
+                        // Create a xlsx data model list to hold our incoming table.
+                        // Incoming data from Excel hold numbers in doubles. Creating this new model allows me to
+                        // easily convert the data coming in into the data we need.
+                        List<VerseXlsxModel> xlsxVerses = new List<VerseXlsxModel>();
+                        // Fill the model list with the data in the xlsx file.
+                        xlsxVerses = worksheet.Tables[0].ToCollection<VerseXlsxModel>();
+
+                        // Convert each list item from xlsx data to verse data and the add it to the dataVerses list.
+                        foreach (VerseXlsxModel verse in xlsxVerses)
+                        {
+                            dataVerses.Add(verse.ToDataModel());
+                        }
+                    }
+
                     break;
 
                 default:
