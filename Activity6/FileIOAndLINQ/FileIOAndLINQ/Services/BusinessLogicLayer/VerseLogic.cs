@@ -94,7 +94,7 @@ namespace FileIOAndLINQ.Services.BusinessLogicLayer
         public List<VerseDisplayModel> GetMostImportantVerses(int numToFind)
         {
             // Get a list of the least important data verses
-            List<VerseDataModel> dataVerses = _verseDAO.GetLeastImportantVerses(numToFind);
+            List<VerseDataModel> dataVerses = _verseDAO.GetMostImportantVerses(numToFind);
             // Convert the dataVerses list to a displayVersesList and return
             return ConvertVerseDataToDisplay(dataVerses);
         }

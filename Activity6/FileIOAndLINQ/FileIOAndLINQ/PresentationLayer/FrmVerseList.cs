@@ -498,6 +498,16 @@ namespace FileIOAndLINQ.PresentationLayer
             rdoShowLeastImportant.Text = $"Show {_numToShow} Least Important";
             // Update the text for rdoShowMostImportant
             rdoShowMostImportant.Text = $"Show {_numToShow} Most Important";
+
+            // Update Dgv using radio button event handlers based on currently checked radio button
+            if (rdoShowLeastImportant.Checked)
+            {
+                RdoShowLeastImportantCheckChangedEH(this, EventArgs.Empty);
+            }
+            else if (rdoShowMostImportant.Checked)
+            {
+                RdoShowMostImportantCheckChangedEH(this, EventArgs.Empty);
+            }            
         }
 
         /// <summary>
