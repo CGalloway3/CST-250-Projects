@@ -59,6 +59,10 @@
             rdoShowAll = new RadioButton();
             trbNumberToShow = new TrackBar();
             dgvVerseDisplay = new DataGridView();
+            lblTotalVerses = new Label();
+            lblTotalVersesValue = new Label();
+            txtSearch = new TextBox();
+            btnSearch = new Button();
             mnsFileActions.SuspendLayout();
             grpAddVerse.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)nudVerseImportance).BeginInit();
@@ -365,6 +369,7 @@
             // 
             // trbNumberToShow
             // 
+            trbNumberToShow.LargeChange = 1;
             trbNumberToShow.Location = new Point(12, 586);
             trbNumberToShow.Name = "trbNumberToShow";
             trbNumberToShow.Size = new Size(284, 45);
@@ -377,14 +382,55 @@
             dgvVerseDisplay.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvVerseDisplay.Location = new Point(302, 27);
             dgvVerseDisplay.Name = "dgvVerseDisplay";
-            dgvVerseDisplay.Size = new Size(486, 473);
+            dgvVerseDisplay.Size = new Size(486, 545);
             dgvVerseDisplay.TabIndex = 4;
+            // 
+            // lblTotalVerses
+            // 
+            lblTotalVerses.AutoSize = true;
+            lblTotalVerses.Location = new Point(308, 590);
+            lblTotalVerses.Name = "lblTotalVerses";
+            lblTotalVerses.Size = new Size(134, 15);
+            lblTotalVerses.TabIndex = 5;
+            lblTotalVerses.Text = "Total Number Of Verses:";
+            // 
+            // lblTotalVersesValue
+            // 
+            lblTotalVersesValue.AutoSize = true;
+            lblTotalVersesValue.Location = new Point(440, 591);
+            lblTotalVersesValue.Name = "lblTotalVersesValue";
+            lblTotalVersesValue.Size = new Size(13, 15);
+            lblTotalVersesValue.TabIndex = 6;
+            lblTotalVersesValue.Text = "0";
+            // 
+            // txtSearch
+            // 
+            txtSearch.Location = new Point(480, 587);
+            txtSearch.Name = "txtSearch";
+            txtSearch.PlaceholderText = "Search...";
+            txtSearch.Size = new Size(227, 23);
+            txtSearch.TabIndex = 7;
+            txtSearch.KeyDown += TxtSearchKeyDownEH;
+            // 
+            // btnSearch
+            // 
+            btnSearch.Location = new Point(713, 588);
+            btnSearch.Name = "btnSearch";
+            btnSearch.Size = new Size(75, 23);
+            btnSearch.TabIndex = 8;
+            btnSearch.Text = "Search";
+            btnSearch.UseVisualStyleBackColor = true;
+            btnSearch.Click += BtnSearchClickEH;
             // 
             // FrmVerseList
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 629);
+            ClientSize = new Size(800, 624);
+            Controls.Add(btnSearch);
+            Controls.Add(txtSearch);
+            Controls.Add(lblTotalVersesValue);
+            Controls.Add(lblTotalVerses);
             Controls.Add(dgvVerseDisplay);
             Controls.Add(trbNumberToShow);
             Controls.Add(grpFilterAndSort);
@@ -441,5 +487,9 @@
         private RadioButton rdoShowAll;
         private TrackBar trbNumberToShow;
         private DataGridView dgvVerseDisplay;
+        private Label lblTotalVerses;
+        private Label lblTotalVersesValue;
+        private TextBox txtSearch;
+        private Button btnSearch;
     }
 }

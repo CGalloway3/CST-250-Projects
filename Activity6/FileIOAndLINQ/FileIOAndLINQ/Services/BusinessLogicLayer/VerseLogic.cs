@@ -126,5 +126,18 @@ namespace FileIOAndLINQ.Services.BusinessLogicLayer
             // Return the display verses list
             return displayVerses;
         }
+
+        public string GetTotalNumberOfVerses()
+        {
+            return _verseDAO.GetTotalNumberOfVerses().ToString();
+        }
+
+        public List<VerseDisplayModel> SearchVerses(string searchText)
+        {
+            // Get the search results from the DAO
+            List<VerseDataModel> dataVerses = _verseDAO.SearchVerses(searchText);
+            // Convert the returned data verses to display and return them
+            return ConvertVerseDataToDisplay(dataVerses);
+        }
     }
 }

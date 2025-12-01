@@ -398,6 +398,9 @@ namespace FileIOAndLINQ.PresentationLayer
 
             // Update the maximum for the number to show trackbar
             trbNumberToShow.Maximum = verses.Count;
+
+            // Additional code to update the number of Total verses.
+            lblTotalVersesValue.Text = _verseLogic.GetTotalNumberOfVerses();
         }
 
         /// <summary>
@@ -556,7 +559,7 @@ namespace FileIOAndLINQ.PresentationLayer
             {
                 return;
             }
-            
+
             // Get the list of least important objects from the BLL
             List<VerseDisplayModel> mostImportantVerses = _verseLogic.GetMostImportantVerses(_numToShow);
             // Change the DataSource for the verse binding source
@@ -578,9 +581,36 @@ namespace FileIOAndLINQ.PresentationLayer
             {
                 return;
             }
-            
+
             // Refresh the dgv with all of the users verses
             RefreshVerseDgv();
+        }
+
+        private void BtnSearchClickEH(object sender, EventArgs e)
+        {
+            // Get the search text from the textbox
+            string searchText = txtSearch.Text; // Adjust textbox name as needed
+
+            // Get the filtered list of verses from the BLL
+            List<VerseDisplayModel> searchResults = _verseLogic.SearchVerses(searchText);
+
+            // Change the DataSource for the verse binding source
+            _versesBindingSource.DataSource = searchResults;
+
+            // Format the data grid view
+            FormatVersesDgv();
+        }
+
+        private void TxtSearchKeyDownEH(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                // Prevent the 'ding' sound
+                e.SuppressKeyPress = true;
+
+                // Call the button click method
+                BtnSearchClickEH(sender, e);
+            }
         }
     }
 }

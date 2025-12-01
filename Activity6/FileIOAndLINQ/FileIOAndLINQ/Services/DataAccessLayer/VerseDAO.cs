@@ -11,6 +11,7 @@ using FileIOAndLINQ.Models;
 using OfficeOpenXml;
 using OfficeOpenXml.Style;
 using OfficeOpenXml.Table;
+using System.Security.Cryptography.Xml;
 
 namespace FileIOAndLINQ.Services.DataAccessLayer
 {
@@ -319,6 +320,95 @@ namespace FileIOAndLINQ.Services.DataAccessLayer
             List<VerseDataModel> mostImportantVerses = _verses.OrderByDescending(verse => verse.Importance).Take(numToFind).ToList();
             // Return the list of least important verses
             return mostImportantVerses;
+        }
+
+        /// <summary>
+        /// Public DAO method to count the number of verses in the list of verses entries.  
+        /// </summary>
+        /// <returns></returns>
+        public int GetTotalNumberOfVerses()
+        {
+            // Declare and Initialize
+            int totalCount = 0;
+
+            // count each verse entry
+            foreach (var verse in _verses)
+            {
+                // Add up the total verses
+                totalCount += CountVersesInReference(verse.Verse);
+            }
+            // Return the final count
+            return totalCount;
+        }
+
+        /// <summary>
+        /// Private method to count the number of verses in a single verse entry to handle spans (i.e. 2-6)
+        /// </summary>
+        /// <param name="verse"></param>
+        /// <returns></returns>
+        private int CountVersesInReference(string verse)
+        {
+            // Catch null or empty strings
+            if (string.IsNullOrWhiteSpace(verse))
+                return 0;
+
+            try
+            {
+                // Check for range (handle both hyphen and en dash)
+                // With Regex validating our input this is a bit of overkill
+                // but better safe than sorry later.
+                if (verse.Contains('-') || verse.Contains('–'))
+                {
+                    // Replace en dash with regular hyphen for consistency going forward
+                    verse = verse.Replace('–', '-');
+
+                    // Split the start and end values to a range array
+                    var verseRange = verse.Split('-');
+                    // If the array has exactly 2 elements (start and end)
+                    if (verseRange.Length == 2)
+                    {
+                        // Parse the start and end values
+                        if (int.TryParse(verseRange[0].Trim(), out int startVerse) &&
+                            int.TryParse(verseRange[1].Trim(), out int endVerse))
+                        {
+                            // Calculate the span (inclusive)
+                            return (endVerse - startVerse) + 1;
+                        }
+                    }
+                }
+
+                // Single verse with no hyphen
+                return 1;
+            }
+            catch (Exception ex) 
+            {
+                // If parsing fails, count as 1
+                return 1;
+            }
+
+        }
+
+        internal List<VerseDataModel> SearchVerses(string searchText)
+        {
+            List<VerseDataModel> filteredVerses;
+
+            if (string.IsNullOrWhiteSpace(searchText))
+            {
+                // Return all verses if search is empty
+                filteredVerses = _verses;
+            }
+            else
+            {
+                var searchLower = searchText.ToLower();
+
+                filteredVerses = _verses.Where(v =>
+                    (v.Text?.ToLower().Contains(searchLower) ?? false) ||
+                    (v.Meaning?.ToLower().Contains(searchLower) ?? false)
+                ).ToList();
+            }
+
+            // Return the search filtered verses
+            return filteredVerses;
         }
     }
 }
