@@ -90,25 +90,27 @@
             // tsmSave
             // 
             tsmSave.Name = "tsmSave";
-            tsmSave.Size = new Size(100, 22);
+            tsmSave.Size = new Size(180, 22);
             tsmSave.Text = "Save";
             tsmSave.Click += TsmSaveClickEH;
             // 
             // tsmLoad
             // 
             tsmLoad.Name = "tsmLoad";
-            tsmLoad.Size = new Size(100, 22);
+            tsmLoad.Size = new Size(180, 22);
             tsmLoad.Text = "Load";
             tsmLoad.Click += TsmLoadClickEH;
             // 
             // tsmExit
             // 
             tsmExit.Name = "tsmExit";
-            tsmExit.Size = new Size(100, 22);
+            tsmExit.Size = new Size(180, 22);
             tsmExit.Text = "Exit";
+            tsmExit.Click += TsmExitClickEH;
             // 
             // grpAddVerse
             // 
+            grpAddVerse.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
             grpAddVerse.Controls.Add(lblImportanceError);
             grpAddVerse.Controls.Add(lblMeaningError);
             grpAddVerse.Controls.Add(lblTextError);
@@ -322,6 +324,7 @@
             // 
             // grpFilterAndSort
             // 
+            grpFilterAndSort.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             grpFilterAndSort.Controls.Add(rdoShowMostImportant);
             grpFilterAndSort.Controls.Add(rdoShowLeastImportant);
             grpFilterAndSort.Controls.Add(rdoShowAll);
@@ -369,6 +372,7 @@
             // 
             // trbNumberToShow
             // 
+            trbNumberToShow.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             trbNumberToShow.LargeChange = 1;
             trbNumberToShow.Location = new Point(12, 586);
             trbNumberToShow.Name = "trbNumberToShow";
@@ -387,6 +391,7 @@
             // 
             // lblTotalVerses
             // 
+            lblTotalVerses.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             lblTotalVerses.AutoSize = true;
             lblTotalVerses.Location = new Point(308, 590);
             lblTotalVerses.Name = "lblTotalVerses";
@@ -396,6 +401,7 @@
             // 
             // lblTotalVersesValue
             // 
+            lblTotalVersesValue.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             lblTotalVersesValue.AutoSize = true;
             lblTotalVersesValue.Location = new Point(440, 591);
             lblTotalVersesValue.Name = "lblTotalVersesValue";
@@ -405,6 +411,7 @@
             // 
             // txtSearch
             // 
+            txtSearch.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             txtSearch.Location = new Point(480, 587);
             txtSearch.Name = "txtSearch";
             txtSearch.PlaceholderText = "Search...";
@@ -414,6 +421,7 @@
             // 
             // btnSearch
             // 
+            btnSearch.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             btnSearch.Location = new Point(713, 588);
             btnSearch.Name = "btnSearch";
             btnSearch.Size = new Size(75, 23);

@@ -127,11 +127,22 @@ namespace FileIOAndLINQ.Services.BusinessLogicLayer
             return displayVerses;
         }
 
+        /// <summary>
+        /// Get the int value of the number of verses in the list and return it as a string
+        /// </summary>
+        /// <returns></returns>
         public string GetTotalNumberOfVerses()
         {
+            // Return DAO Method
             return _verseDAO.GetTotalNumberOfVerses().ToString();
         }
 
+        /// <summary>
+        /// Get the list of verses that match the search term from the DAO 
+        /// then convert it to a display model and return it.
+        /// </summary>
+        /// <param name="searchText"></param>
+        /// <returns></returns>
         public List<VerseDisplayModel> SearchVerses(string searchText)
         {
             // Get the search results from the DAO

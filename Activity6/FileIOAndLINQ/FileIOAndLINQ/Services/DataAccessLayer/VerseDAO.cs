@@ -4,7 +4,7 @@
  * 11/30/2025
  * File IO and LINQ
  * Activity 6
- * References:
+ * References: EPPlus Software AB. (n.d.). Developers - EPPlus Software. EPPlus Software. https://epplussoftware.com/en/Developers/
  */
 
 using FileIOAndLINQ.Models;
@@ -232,8 +232,8 @@ namespace FileIOAndLINQ.Services.DataAccessLayer
                         }
 
                         // Create a xlsx data model list to hold our incoming table.
-                        // Incoming data from Excel hold numbers in doubles. Creating this new model allows me to
-                        // easily convert the data coming in into the data we need.
+                        // Incoming data from Excel stores numbers as doubles. Creating this new model allows me to
+                        // easily convert the data coming in, into the data we need.
                         List<VerseXlsxModel> xlsxVerses = new List<VerseXlsxModel>();
                         // Fill the model list with the data in the xlsx file.
                         xlsxVerses = worksheet.Tables[0].ToCollection<VerseXlsxModel>();
@@ -241,10 +241,10 @@ namespace FileIOAndLINQ.Services.DataAccessLayer
                         // Convert each list item from xlsx data to verse data and the add it to the dataVerses list.
                         foreach (VerseXlsxModel verse in xlsxVerses)
                         {
+                            // Convert and add one liner.
                             dataVerses.Add(verse.ToDataModel());
                         }
                     }
-
                     break;
 
                 default:
@@ -380,7 +380,7 @@ namespace FileIOAndLINQ.Services.DataAccessLayer
                 // Single verse with no hyphen
                 return 1;
             }
-            catch (Exception ex) 
+            catch
             {
                 // If parsing fails, count as 1
                 return 1;
@@ -388,10 +388,17 @@ namespace FileIOAndLINQ.Services.DataAccessLayer
 
         }
 
-        internal List<VerseDataModel> SearchVerses(string searchText)
+        /// <summary>
+        /// Searches the verses for matching search terms and returns any matches.
+        /// </summary>
+        /// <param name="searchText"></param>
+        /// <returns></returns>
+        public List<VerseDataModel> SearchVerses(string searchText)
         {
+            // Create a verse data model to hold the search results
             List<VerseDataModel> filteredVerses;
 
+            // Check if the search term is blank
             if (string.IsNullOrWhiteSpace(searchText))
             {
                 // Return all verses if search is empty
@@ -399,12 +406,14 @@ namespace FileIOAndLINQ.Services.DataAccessLayer
             }
             else
             {
-                var searchLower = searchText.ToLower();
+                // Convert the search term to lower case
+                string searchLower = searchText.ToLower();
 
-                filteredVerses = _verses.Where(v =>
-                    (v.Text?.ToLower().Contains(searchLower) ?? false) ||
-                    (v.Meaning?.ToLower().Contains(searchLower) ?? false)
-                ).ToList();
+                // Use method syntax LINQ to filter the searched terms for text and meaning
+                filteredVerses = _verses.Where(v => 
+                    (v.Text?.ToLower().Contains(searchLower) ?? false) 
+                 || (v.Meaning?.ToLower().Contains(searchLower) ?? false))
+                .ToList();
             }
 
             // Return the search filtered verses

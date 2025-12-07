@@ -355,24 +355,6 @@ namespace FileIOAndLINQ.PresentationLayer
         }
 
         /// <summary>
-        /// Clear the input fields used to add a verse
-        /// </summary>
-        /// <exception cref="NotImplementedException"></exception>
-        private void ClearInputFields()
-        {
-            // Clear the book combo box
-            cmbVerseBook.SelectedIndex = -1;
-            // Clear the textboxes in grpAddVerse
-            foreach (TextBox textBox in grpAddVerse.Controls.OfType<TextBox>())
-            {
-                // Clear the textbox
-                textBox.Clear();
-            }
-            // Reset the numeric up-down control
-            nudVerseImportance.Value = 1;
-        }
-
-        /// <summary>
         /// Load event handler for FrmVerseList
         /// </summary>
         /// <param name="sender"></param>
@@ -381,43 +363,6 @@ namespace FileIOAndLINQ.PresentationLayer
         {
             // Set the data source for the data grid view
             dgvVerseDisplay.DataSource = _versesBindingSource;
-        }
-
-        /// <summary>
-        /// Refresh the verse data grid view
-        /// </summary>
-        public void RefreshVerseDgv()
-        {
-            // Get the verses from the business logic layer
-            List<VerseDisplayModel> verses = _verseLogic.GetAllVerses();
-            // Set the data source for the binding source object
-            _versesBindingSource.DataSource = verses;
-
-            // Format the data grid view
-            FormatVersesDgv();
-
-            // Update the maximum for the number to show trackbar
-            trbNumberToShow.Maximum = verses.Count;
-
-            // Additional code to update the number of Total verses.
-            lblTotalVersesValue.Text = _verseLogic.GetTotalNumberOfVerses();
-        }
-
-        /// <summary>
-        /// Format the verses data grid view
-        /// </summary>
-        private void FormatVersesDgv()
-        {
-            // Calculate the width for the text and meaning columns
-            int width = ((dgvVerseDisplay.Width - dgvVerseDisplay.Columns[0].Width - dgvVerseDisplay.Columns[3].Width) / 2) - 22; // Subtract an additional amount for the dgv to fit perfectly
-            // Set the width for the text column
-            dgvVerseDisplay.Columns[1].Width = width;
-            // Set the width for the meaning column
-            dgvVerseDisplay.Columns[2].Width = width;
-            // Set the default cell style so text will wrap
-            dgvVerseDisplay.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
-            // Call the auto resize row method so the rows will expand
-            dgvVerseDisplay.AutoResizeRows();
         }
 
         /// <summary>
@@ -522,7 +467,12 @@ namespace FileIOAndLINQ.PresentationLayer
         /// <param name="e"></param>
         private void FrmVerseListResizeEH(object sender, EventArgs e)
         {
-            FormatVersesDgv();
+            // if the data grid view is not bound to a source it is empty
+            // and formatting the dgv would crash the client so we check to make sure it is bound.
+            if (_versesBindingSource.DataSource != null)
+            {
+                FormatVersesDgv();
+            }
         }
 
         /// <summary>
@@ -586,10 +536,15 @@ namespace FileIOAndLINQ.PresentationLayer
             RefreshVerseDgv();
         }
 
+        /// <summary>
+        /// Search Button click event handler
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BtnSearchClickEH(object sender, EventArgs e)
         {
             // Get the search text from the textbox
-            string searchText = txtSearch.Text; // Adjust textbox name as needed
+            string searchText = txtSearch.Text;
 
             // Get the filtered list of verses from the BLL
             List<VerseDisplayModel> searchResults = _verseLogic.SearchVerses(searchText);
@@ -601,16 +556,88 @@ namespace FileIOAndLINQ.PresentationLayer
             FormatVersesDgv();
         }
 
+        /// <summary>
+        /// Search text box key down event handler to catch hitting enter after typing
+        /// to simulate the search button click.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void TxtSearchKeyDownEH(object sender, KeyEventArgs e)
         {
+            // did the user hit enter?
             if (e.KeyCode == Keys.Enter)
             {
                 // Prevent the 'ding' sound
                 e.SuppressKeyPress = true;
 
-                // Call the button click method
+                // Call the search button click event handler
                 BtnSearchClickEH(sender, e);
             }
+        }
+
+        /// <summary>
+        /// Click event handler for the exit menu item.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void TsmExitClickEH(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        /// <summary>
+        /// Refresh the verse data grid view
+        /// </summary>
+        public void RefreshVerseDgv()
+        {
+            // Get the verses from the business logic layer
+            List<VerseDisplayModel> verses = _verseLogic.GetAllVerses();
+            // Set the data source for the binding source object
+            _versesBindingSource.DataSource = verses;
+
+            // Format the data grid view
+            FormatVersesDgv();
+
+            // Update the maximum for the number to show trackbar
+            trbNumberToShow.Maximum = verses.Count;
+
+            // Additional code to update the number of Total verses.
+            lblTotalVersesValue.Text = _verseLogic.GetTotalNumberOfVerses();
+        }
+
+        /// <summary>
+        /// Format the verses data grid view
+        /// </summary>
+        private void FormatVersesDgv()
+        {
+            // Calculate the width for the text and meaning columns
+            int width = ((dgvVerseDisplay.Width - dgvVerseDisplay.Columns[0].Width - dgvVerseDisplay.Columns[3].Width) / 2) - 22; // Subtract an additional amount for the dgv to fit perfectly
+            // Set the width for the text column
+            dgvVerseDisplay.Columns[1].Width = width;
+            // Set the width for the meaning column
+            dgvVerseDisplay.Columns[2].Width = width;
+            // Set the default cell style so text will wrap
+            dgvVerseDisplay.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+            // Call the auto resize row method so the rows will expand
+            dgvVerseDisplay.AutoResizeRows();
+        }
+
+        /// <summary>
+        /// Clear the input fields used to add a verse
+        /// </summary>
+        /// <exception cref="NotImplementedException"></exception>
+        private void ClearInputFields()
+        {
+            // Clear the book combo box
+            cmbVerseBook.SelectedIndex = -1;
+            // Clear the textboxes in grpAddVerse
+            foreach (TextBox textBox in grpAddVerse.Controls.OfType<TextBox>())
+            {
+                // Clear the textbox
+                textBox.Clear();
+            }
+            // Reset the numeric up-down control
+            nudVerseImportance.Value = 1;
         }
     }
 }

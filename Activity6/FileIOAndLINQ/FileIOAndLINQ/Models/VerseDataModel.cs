@@ -9,7 +9,7 @@
 
 namespace FileIOAndLINQ.Models
 {
-    class VerseDataModel
+    public class VerseDataModel
     {
         // Class level properties
         public int Id { get; set; }
