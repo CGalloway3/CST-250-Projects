@@ -25,7 +25,6 @@ namespace MinesweeperClassLibrary.Services.BusinessLogicLayer
 
         // Public properties
         public string ErrorMessage { get; private set; } = string.Empty;
-        public string FinalMessage { get; private set; } = string.Empty;
 
         /// <summary>
         /// Public Constructor that takes one param of size
@@ -556,16 +555,25 @@ namespace MinesweeperClassLibrary.Services.BusinessLogicLayer
             return _boardModel.GameState;
         }
 
+        /// <summary>
+        /// Resume game method. the model handles its own stat changes and game duration
+        /// </summary>
         public void ResumeGame()
         {
             _boardModel.ResumeTimer();
         }
 
+        /// <summary>
+        /// Pause game method. the model handles its own stat changes and game duration
+        /// </summary>
         public void PauseGame()
         {
             _boardModel.PauseTimer();
         }
 
+        /// <summary>
+        /// Method to serialize the current state of the board and save it to a text file
+        /// </summary>
         public void SaveGame()
         {
             // Serialized and write the board model
@@ -588,6 +596,10 @@ namespace MinesweeperClassLibrary.Services.BusinessLogicLayer
             File.WriteAllText(filePath, serialized);
         }
 
+        /// <summary>
+        /// Method to deserialize the current state of a game from the saved file location
+        /// </summary>
+        /// <param name="filePath"></param>
         public void LoadGame(string filePath)
         {
             var serialized = File.ReadAllText(filePath);
@@ -596,6 +608,10 @@ namespace MinesweeperClassLibrary.Services.BusinessLogicLayer
             File.Delete(filePath);
         }
         
+        /// <summary>
+        /// method to access the board models elapsed time
+        /// </summary>
+        /// <returns></returns>
         public TimeSpan GetCurrentElapsedTime()
         {  
             return _boardModel.GetCurrentElapsedTime(); 

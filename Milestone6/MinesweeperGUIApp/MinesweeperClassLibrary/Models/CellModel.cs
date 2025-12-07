@@ -42,6 +42,5 @@ namespace MinesweeperClassLibrary.Models
             NumberOfBombNeighbors = 0;
             HasSpecialReward = false;
         }
-
     }
 }

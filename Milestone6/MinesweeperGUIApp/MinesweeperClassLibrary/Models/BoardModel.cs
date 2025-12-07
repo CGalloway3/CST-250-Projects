@@ -41,11 +41,6 @@ namespace MinesweeperClassLibrary.Models
         // Public properties with private set logic
         public TimeSpan GameDuration { get; private set; } = TimeSpan.Zero;
 
-        public BoardModel()
-        { 
-        
-        }
-
         /// <summary>
         /// Public Model constructor
         /// </summary>
@@ -116,6 +111,10 @@ namespace MinesweeperClassLibrary.Models
             return _startTime;
         }
 
+        /// <summary>
+        /// internal pause timer implementation that handles state change and duration updates
+        /// </summary>
+        /// <returns></returns>
         internal bool PauseTimer()
         {
             if (GameState == GameState.InProgress)
@@ -127,6 +126,10 @@ namespace MinesweeperClassLibrary.Models
             return false;
         }
 
+        /// <summary>
+        /// internal resume timer implementation that handles state change and duration updates.
+        /// </summary>
+        /// <returns></returns>
         internal bool ResumeTimer()
         {
             if (GameState == GameState.Paused)
@@ -138,6 +141,10 @@ namespace MinesweeperClassLibrary.Models
             return false;
         }
 
+        /// <summary>
+        /// internal method to return the games elapsed time based off of the cession start time and previous duration
+        /// </summary>
+        /// <returns></returns>
         internal TimeSpan GetCurrentElapsedTime()
         {
             if (GameState == GameState.InProgress)

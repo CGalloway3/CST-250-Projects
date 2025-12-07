@@ -29,7 +29,7 @@
           <mxGeometry height="32" width="260" y="158" as="geometry" />
         </mxCell>
         <mxCell id="SUfHc94EB9urzrjcZ-3S-9" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="BoardLogic" vertex="1">
-          <mxGeometry height="400" width="290" x="89" y="430" as="geometry" />
+          <mxGeometry height="500" width="290" x="89" y="430" as="geometry" />
         </mxCell>
         <mxCell id="SUfHc94EB9urzrjcZ-3S-10" parent="SUfHc94EB9urzrjcZ-3S-9" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="- _board: BoardModel" vertex="1">
           <mxGeometry height="26" width="290" y="26" as="geometry" />
@@ -38,7 +38,7 @@
           <mxGeometry height="8" width="290" y="52" as="geometry" />
         </mxCell>
         <mxCell id="SUfHc94EB9urzrjcZ-3S-12" parent="SUfHc94EB9urzrjcZ-3S-9" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="&lt;div&gt;+ BoardLogic(size: int)&lt;/div&gt;+ SetupBombs(): void&lt;div&gt;+ CountNearbyBombs(): void&lt;/div&gt;&lt;div&gt;+ GetCellAt(ini, int): CellModel&lt;/div&gt;&lt;div&gt;+ GetBoardSize(): int&lt;/div&gt;&lt;div&gt;+ SetupBoardAtDifficulty(int): void&lt;/div&gt;&lt;div&gt;+ DetermineGameState(int, int, int): void&lt;/div&gt;&lt;div&gt;+ VisitCell(cell: CellModel): void&lt;/div&gt;&lt;div&gt;+ FlafCell(cell: CellModel): void&lt;/div&gt;&lt;div&gt;+ UseSpecialBonus(CellModel): void&lt;/div&gt;&lt;div&gt;+ DetermineFinalScore(GameStat: gameStat): void&lt;/div&gt;&lt;div&gt;- CountRemainingMoves(): int&lt;/div&gt;&lt;div&gt;+ GetNumberOfBombs(): int&lt;/div&gt;&lt;div&gt;+ GetNumberOfRewards(): int&lt;/div&gt;&lt;div&gt;+ GetGameState(): GameState&lt;/div&gt;&lt;div&gt;+ FloodFill(row: int, col: int): void&lt;/div&gt;&lt;div&gt;- ClaimReward(row: int, col: int): void&lt;/div&gt;&lt;div&gt;- StartGame(): void&lt;/div&gt;&lt;div&gt;- StopGame(): void&lt;/div&gt;&lt;div&gt;+ GetScore(): int&lt;/div&gt;&lt;div&gt;+ GetStartTiem(): DateTime&lt;/div&gt;&lt;div&gt;+ IsLeaderBoardLoaded(): bool&lt;/div&gt;&lt;div&gt;+ SetLeaderBoardStatus(v: bool): void&lt;/div&gt;" vertex="1">
-          <mxGeometry height="340" width="290" y="60" as="geometry" />
+          <mxGeometry height="440" width="290" y="60" as="geometry" />
         </mxCell>
         <mxCell id="SUfHc94EB9urzrjcZ-3S-13" parent="1" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=40;fillColor=none;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="&lt;b&gt;&amp;lt;&amp;lt;enumeration&amp;gt;&amp;gt; GameStates&lt;/b&gt;" vertex="1">
           <mxGeometry height="110" width="140" x="395" y="560" as="geometry" />
@@ -50,7 +50,7 @@
           <mxGeometry height="140" width="210" x="-60" as="geometry" />
         </mxCell>
         <mxCell id="veJLl1gOzC22DDno2Myq-1" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="SetupForm" vertex="1">
-          <mxGeometry height="150" width="290" x="-320" y="590" as="geometry" />
+          <mxGeometry height="150" width="290" x="-320" y="550" as="geometry" />
         </mxCell>
         <mxCell id="veJLl1gOzC22DDno2Myq-2" parent="veJLl1gOzC22DDno2Myq-1" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="- _setupSettings: GameStat" vertex="1">
           <mxGeometry height="26" width="290" y="26" as="geometry" />
@@ -191,9 +191,9 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="4TXKqEqSk759YUmSf279-1" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="LeaderboardLogic" vertex="1">
-          <mxGeometry height="114" width="310" x="-690" y="570" as="geometry" />
+          <mxGeometry height="114" width="310" x="-740" y="540" as="geometry" />
         </mxCell>
-        <mxCell id="4TXKqEqSk759YUmSf279-2" parent="4TXKqEqSk759YUmSf279-1" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="- _leaderboardEntries: List&amp;lt;GameSata&amp;gt;&lt;div&gt;_&lt;/div&gt;" vertex="1">
+        <mxCell id="4TXKqEqSk759YUmSf279-2" parent="4TXKqEqSk759YUmSf279-1" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="- _leaderboardEntries: List&amp;lt;GameSata&amp;gt;&lt;div&gt;- _leaderboardDAO: LeaderboardDAO&lt;/div&gt;" vertex="1">
           <mxGeometry height="54" width="310" y="26" as="geometry" />
         </mxCell>
         <mxCell id="4TXKqEqSk759YUmSf279-3" parent="4TXKqEqSk759YUmSf279-1" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" value="" vertex="1">
@@ -201,6 +201,24 @@
         </mxCell>
         <mxCell id="4TXKqEqSk759YUmSf279-4" parent="4TXKqEqSk759YUmSf279-1" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="+ method(type): type" vertex="1">
           <mxGeometry height="26" width="310" y="88" as="geometry" />
+        </mxCell>
+        <mxCell id="4TXKqEqSk759YUmSf279-5" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="SoundManager" vertex="1">
+          <mxGeometry height="270" width="290" x="545" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="4TXKqEqSk759YUmSf279-6" parent="4TXKqEqSk759YUmSf279-5" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="- _musicPlayer: WindowsMediaPlayer&lt;div&gt;- _random: Random&lt;/div&gt;&lt;div&gt;- _musicTracks: List&amp;lt;string&amp;gt;&lt;/div&gt;&lt;div&gt;- _playList: IWMPPlaylist&lt;br&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="64" width="290" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="4TXKqEqSk759YUmSf279-7" parent="4TXKqEqSk759YUmSf279-5" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" value="" vertex="1">
+          <mxGeometry height="8" width="290" y="90" as="geometry" />
+        </mxCell>
+        <mxCell id="4TXKqEqSk759YUmSf279-8" parent="4TXKqEqSk759YUmSf279-5" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="+ SoundManager()&lt;div&gt;+ StartMusic(): void&lt;/div&gt;&lt;div&gt;+ StopMusic(): void&lt;/div&gt;&lt;div&gt;+ PauseMusic(): void&lt;/div&gt;&lt;div&gt;+ ResumeMusic(): void&lt;/div&gt;&lt;div&gt;+ SetMusicVolume(int): void&lt;/div&gt;&lt;div&gt;+ PlaySound() void&lt;/div&gt;&lt;div&gt;- PlayBackgroundTracks(): void&lt;/div&gt;&lt;div&gt;- LoadMusicTracks(): void&lt;/div&gt;&lt;div&gt;- LoadSoundEffectFiles(): void&lt;/div&gt;&lt;div&gt;- PreLoadEffects(): void&lt;/div&gt;" vertex="1">
+          <mxGeometry height="172" width="290" y="98" as="geometry" />
+        </mxCell>
+        <mxCell id="4TXKqEqSk759YUmSf279-9" edge="1" parent="1" source="veJLl1gOzC22DDno2Myq-12" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;exitX=1.012;exitY=0.667;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.334;entryY=1.014;entryDx=0;entryDy=0;entryPerimeter=0;" target="4TXKqEqSk759YUmSf279-8" value="Use">
+          <mxGeometry relative="1" width="160" as="geometry">
+            <mxPoint x="520" y="320" as="sourcePoint" />
+            <mxPoint x="680" y="320" as="targetPoint" />
+          </mxGeometry>
         </mxCell>
       </root>
     </mxGraphModel>

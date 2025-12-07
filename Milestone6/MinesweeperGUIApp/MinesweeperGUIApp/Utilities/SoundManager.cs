@@ -16,10 +16,10 @@ namespace MinesweeperGUIApp.Utilities
     public class SoundManager
     {
         // Class level variables
-        private WMPLib.WindowsMediaPlayer _musicPlayer;
+        private WindowsMediaPlayer _musicPlayer;
         private Random _random;
         private List<string>? _musicTracks;
-        WMPLib.IWMPPlaylist _playlist;
+        private IWMPPlaylist _playlist;
 
         // Sound effect variables
         private SoundPlayer? _revealSound;
