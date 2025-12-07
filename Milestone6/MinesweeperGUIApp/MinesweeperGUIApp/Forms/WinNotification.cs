@@ -1,9 +1,9 @@
 ﻿/*
  * Chad Galloway
  * CST - 250 Programming in C# II
- * 11/23/2025
+ * 12/07/2025
  * Mine Sweeper Class Library
- * Milestone 5
+ * Milestone 6
  * References:
  */
 
