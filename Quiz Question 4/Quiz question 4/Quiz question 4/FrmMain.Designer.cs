@@ -28,54 +28,77 @@
         /// </summary>
         private void InitializeComponent()
         {
-            label1 = new Label();
-            textBox1 = new TextBox();
-            label2 = new Label();
+            components = new System.ComponentModel.Container();
+            lblEnter = new Label();
+            txtNumber = new TextBox();
+            lblCount = new Label();
+            tmrCounter = new System.Windows.Forms.Timer(components);
+            btnStart = new Button();
             SuspendLayout();
             // 
-            // label1
+            // lblEnter
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(18, 15);
-            label1.Name = "label1";
-            label1.Size = new Size(38, 15);
-            label1.TabIndex = 0;
-            label1.Text = "label1";
+            lblEnter.AccessibleRole = AccessibleRole.None;
+            lblEnter.AutoSize = true;
+            lblEnter.Location = new Point(18, 15);
+            lblEnter.Name = "lblEnter";
+            lblEnter.Size = new Size(90, 15);
+            lblEnter.TabIndex = 0;
+            lblEnter.Text = "Enter a Number";
             // 
-            // textBox1
+            // txtNumber
             // 
-            textBox1.Location = new Point(124, 15);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(100, 23);
-            textBox1.TabIndex = 1;
+            txtNumber.Location = new Point(114, 12);
+            txtNumber.Name = "txtNumber";
+            txtNumber.Size = new Size(100, 23);
+            txtNumber.TabIndex = 1;
             // 
-            // label2
+            // lblCount
             // 
-            label2.AutoSize = true;
-            label2.Location = new Point(58, 93);
-            label2.Name = "label2";
-            label2.Size = new Size(13, 15);
-            label2.TabIndex = 2;
-            label2.Text = "0";
+            lblCount.AutoSize = true;
+            lblCount.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblCount.Location = new Point(54, 83);
+            lblCount.Name = "lblCount";
+            lblCount.Size = new Size(27, 32);
+            lblCount.TabIndex = 2;
+            lblCount.Text = "0";
             // 
-            // Form1
+            // tmrCounter
+            // 
+            tmrCounter.Interval = 500;
+            tmrCounter.Tick += TmrCounterTickEH;
+            // 
+            // btnStart
+            // 
+            btnStart.Location = new Point(76, 44);
+            btnStart.Name = "btnStart";
+            btnStart.Size = new Size(75, 23);
+            btnStart.TabIndex = 3;
+            btnStart.Text = "Start";
+            btnStart.UseVisualStyleBackColor = true;
+            btnStart.Click += BtnStartClickEH;
+            // 
+            // FrmMain
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(291, 187);
-            Controls.Add(label2);
-            Controls.Add(textBox1);
-            Controls.Add(label1);
-            Name = "Form1";
-            Text = "Form1";
+            ClientSize = new Size(227, 134);
+            Controls.Add(btnStart);
+            Controls.Add(lblCount);
+            Controls.Add(txtNumber);
+            Controls.Add(lblEnter);
+            Name = "FrmMain";
+            Text = "Main Form";
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
 
-        private Label label1;
-        private TextBox textBox1;
-        private Label label2;
+        private Label lblEnter;
+        private TextBox txtNumber;
+        private Label lblCount;
+        private System.Windows.Forms.Timer tmrCounter;
+        private Button btnStart;
     }
 }
