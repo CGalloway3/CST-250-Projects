@@ -95,7 +95,6 @@ namespace MinesweeperGUIApp.Utilities
             _musicPlayer.controls.play();
         }
 
-
         /// <summary>
         /// Method to support the users ability to adjust the background music volume
         /// </summary>

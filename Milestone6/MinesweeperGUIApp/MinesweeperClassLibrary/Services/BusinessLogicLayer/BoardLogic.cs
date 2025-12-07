@@ -50,7 +50,7 @@ namespace MinesweeperClassLibrary.Services.BusinessLogicLayer
         /// <summary>
         /// The method for setting up the bombs and rewards on the board.
         /// </summary>
-        private void SetupBombs()
+        public void SetupBombs()
         {
             // Initialize Variables
             decimal bombPercentage = 0.10M; // Default to difficulty 1
@@ -127,7 +127,7 @@ namespace MinesweeperClassLibrary.Services.BusinessLogicLayer
         /// <summary>
         /// Method to count neighbor bombs
         /// </summary>
-        private void CountBombsNearby()
+        public void CountBombsNearby()
         {
             // Define Adjustment values for comparison of a cells neighbors in row and column arrays
             int[] rowAdjustments = { -1, -1, -1, 0, 0, 1, 1, 1 };

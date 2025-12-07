@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MinesweeperGUIApp", "Minesw
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MinesweeperClassLibrary", "MinesweeperClassLibrary\MinesweeperClassLibrary.csproj", "{EAB50DBE-4C21-4418-ADCF-D3E1FAD51F72}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MineSweeperClassLibrary.Tests", "MineSweeperClassLibrary.Tests\MineSweeperClassLibrary.Tests.csproj", "{F01CAAB8-647A-B9F1-45EF-C985F64DCAD0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{EAB50DBE-4C21-4418-ADCF-D3E1FAD51F72}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EAB50DBE-4C21-4418-ADCF-D3E1FAD51F72}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EAB50DBE-4C21-4418-ADCF-D3E1FAD51F72}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F01CAAB8-647A-B9F1-45EF-C985F64DCAD0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F01CAAB8-647A-B9F1-45EF-C985F64DCAD0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F01CAAB8-647A-B9F1-45EF-C985F64DCAD0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F01CAAB8-647A-B9F1-45EF-C985F64DCAD0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

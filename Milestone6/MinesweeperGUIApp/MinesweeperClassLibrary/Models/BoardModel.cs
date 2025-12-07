@@ -21,7 +21,7 @@ namespace MinesweeperClassLibrary.Models
     /// duration and manage the start and end times of the game. The board is initialized with a grid of  <see
     /// cref="CellModel"/> instances, and its size is determined by the <paramref name="size"/> parameter passed to the
     /// constructor.</remarks>
-    internal class BoardModel
+    public class BoardModel
     {
         // Private class level variables for GameDuration calculation
         private DateTime _startTime;

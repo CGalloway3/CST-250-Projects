@@ -30,10 +30,12 @@ namespace MinesweeperGUIApp.UI.Forms
         private int _dx = 2, _dy = 2;
         private Random _random = new Random();
         private SoundManager _soundManager;
+        private int _musicVolume = 30;
         private BoardLogic _boardLogic;
         private LeaderboardLogic _leaderboardLogic;
         private GameStat _gameStat;
         private bool _leaderBoardLoaded = false;
+        private bool _gameSaved = false;
 
         // Declare the variables for image resources used to paint cells
         private Image _blankCellImage;
@@ -81,6 +83,8 @@ namespace MinesweeperGUIApp.UI.Forms
             {
                 StartNewGame();
             }
+            // Start playing the music when the form opens
+            _soundManager.SetMusicVolume(_musicVolume);
             _soundManager.StartBackgroundMusic();
         }
 
@@ -94,7 +98,7 @@ namespace MinesweeperGUIApp.UI.Forms
         }
 
         /// <summary>
-        /// Method to contain all the start new game UI logic
+        /// Method to contain all the continue game UI logic
         /// </summary>
         private void ContinueSavedGame()
         {
@@ -190,7 +194,7 @@ namespace MinesweeperGUIApp.UI.Forms
             // catch super small boards and make them big enough to fit all the other controls
             if (_boardLogic.GetBoardSettings().BoardSize > 4)
             {
-                this.Size = new Size((_boardLogic.GetBoardSettings().BoardSize * 25) + 180, (_boardLogic.GetBoardSettings().BoardSize * 25) + 60);
+                this.Size = new Size((_boardLogic.GetBoardSettings().BoardSize * 25) + 180, (_boardLogic.GetBoardSettings().BoardSize * 25) + 80);
             }
             else // Small board so we will use the minimum size
             {
@@ -238,7 +242,7 @@ namespace MinesweeperGUIApp.UI.Forms
                 (_pauseOverlay.Width - _pauseLabel.Width) / 2,
                 (_pauseOverlay.Height - _pauseLabel.Height) / 2
             );
-            
+
             // Add the label to the pause panel
             _pauseOverlay.Controls.Add(_pauseLabel);
 
@@ -564,19 +568,21 @@ namespace MinesweeperGUIApp.UI.Forms
             // Get the games current state
             GameState gameState = _boardLogic.GetGameState();
 
-            // If the game is in progress or paused ask the user if they want to save
-            if (gameState == GameState.InProgress || gameState == GameState.Paused)
+            // If the game is in progress or paused ask the user if they want to save and not already saved
+            if ((gameState == GameState.InProgress || gameState == GameState.Paused) && !_gameSaved)
             {
                 if (MessageBox.Show("Do you want to Save your progress?", "Save Progress?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
+                    // Check if gaem is paused
                     if (gameState != GameState.Paused)
-                    { 
-                        _boardLogic.PauseGame(); 
+                    {
+                        // Pause the game if it was not already paused
+                        _boardLogic.PauseGame();
                     }
+                    // Call board logic game save method
                     _boardLogic.SaveGame();
                 }
             }
-
         }
 
         /// <summary>
@@ -586,21 +592,33 @@ namespace MinesweeperGUIApp.UI.Forms
         /// <param name="e"></param>
         private void BtnPauseClickEH(object sender, EventArgs e)
         {
+            // Play the sound effect for clicking the pause button
             _soundManager.PlayPause();
 
+            // Determine if the game is paused or not
             if (_boardLogic.GetGameState() != GameState.Paused)
             {
+                // Game is not paused so pause everything
                 _boardLogic.PauseGame();
                 _soundManager.PauseBackgroundMusic();
+                // Update the pause buttons text
                 btnPause.Text = "Resume";
+                // show the pause screen overlay (prevents cheating)
                 _pauseOverlay.Visible = true;
             }
             else
             {
+                // Game is paused so unpaused everything
                 _boardLogic.ResumeGame();
                 _soundManager.ResumeBackgroundMusic();
+                // Update the pause button text
                 btnPause.Text = "Pause";
+                // Hide the pause screen overlay
                 _pauseOverlay.Visible = false;
+                // Additional flag removal for saved games. When the user unpauses
+                // the saved game file is made out of date so we need to remove the flag
+                // so the application properly prompts the user to save on form exit.
+                _gameSaved = false; 
             }
         }
 
@@ -611,12 +629,17 @@ namespace MinesweeperGUIApp.UI.Forms
         /// <param name="e"></param>
         private void TmrElapsedTimeTickEH(object sender, EventArgs e)
         {
+            // Update the display for the timers label
             lblTimeValue.Text = _boardLogic.GetCurrentElapsedTime().ToString(@"h\:mm\:ss");
 
+            // Get, increment, and then set the tag property for this timer to offset the color change of the 
+            // background panel color by 10 ticks from the labels background color. The label will change color ten times
+            // for every one background color of the overlay panel. Just adds some variety to the pause screen colors.
             int ticks = (int)tmrElapsedTime.Tag;
             ticks++;
             tmrElapsedTime.Tag = ticks;
 
+            // Set the label in motion and randomize the colors
             if (_pauseOverlay.Visible)
             {
                 BounceLabel();
@@ -629,20 +652,224 @@ namespace MinesweeperGUIApp.UI.Forms
         /// </summary>
         private void BounceLabel()
         {
+            // Move the labels top left by the specified delta amounts
             _pauseLabel.Left += _dx;
             _pauseLabel.Top += _dy;
 
+            // Label is going to exit the screen flip the X delta polarity
             if (_pauseLabel.Left <= 0 || _pauseLabel.Right >= _pauseOverlay.Width)
                 _dx = -_dx;
 
+            // Label is gong to exit the screen flip the Y delta polarity
             if (_pauseLabel.Top <= 0 || _pauseLabel.Bottom >= _pauseOverlay.Height)
                 _dy = -_dy;
-            
+
+            // Randomize the color of the pause labels background every bounce
             _pauseLabel.BackColor = Color.FromArgb(100, _random.Next(256), _random.Next(256), _random.Next(256));
+            
+            // Randomize the panel overlays background color every 10 bounces
             if ((int)tmrElapsedTime.Tag >= 10)
             {
+                // Randomize the color
                 _pauseOverlay.BackColor = Color.FromArgb(200, _random.Next(256), _random.Next(256), _random.Next(256));
+                // reset the tag counter
                 tmrElapsedTime.Tag = 0;
+            }
+        }
+
+        /// <summary>
+        /// Click event handler for the save game menu item
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void TsmFileSaveClickEH(object sender, EventArgs e)
+        {
+            // Pause the game to prep for saving is it is not paused
+            if (_boardLogic.GetGameState() != GameState.Paused)
+            {
+                // call the btnPause click event handler to pause the game
+                BtnPauseClickEH(sender, e);
+            }
+            
+            // save the game and set the saved flag to true
+            _boardLogic.SaveGame();
+            _gameSaved = true;
+        }
+
+        /// <summary>
+        /// Click event handler for the load game menu item
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void TsmFileLoadClickEH(object sender, EventArgs e)
+        {
+            // Check if a save file exists
+            if (File.Exists("Data/save.json"))
+            {                
+                // file exists continue a saved game
+                ContinueSavedGame();          
+            }
+            else
+            {
+                // Tell the user a file does not exist
+                MessageBox.Show("There is no saved file.", "File Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        /// <summary>
+        /// Click event handler for the exit game menu item
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void TsmFileExitClickEH(object sender, EventArgs e)
+        {
+            // User selected exit close this form
+            this.Close();
+        }
+
+        /// <summary>
+        /// Click event handler for the mute/pause menu option to toggle the pause state of the music playback
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void TsmMusicMuteClickEH(object sender, EventArgs e)
+        {
+            // Menu item text property tells us the audio is not paused
+            if (tsmMusicMute.Text == "Pause(Mute)")
+            {
+                // Pause the audio and change the text
+                _soundManager.PauseBackgroundMusic();
+                tsmMusicMute.Text = "UnPause(unMute)";
+            }
+            else
+            {
+                // Unpause the audio and change the text
+                _soundManager.ResumeBackgroundMusic();
+                tsmMusicMute.Text = "Pause(Mute)";
+            }            
+        }
+
+        /// <summary>
+        /// Volume up 10 click event handler
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void TsmMusicUp10ClickEH(object sender, EventArgs e)
+        {
+            IncreaseVolume(10);
+        }
+
+        /// <summary>
+        /// Volume up 20 click event handler
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void TsmMusicUp20ClickEH(object sender, EventArgs e)
+        {
+            IncreaseVolume(20);
+        }
+
+        /// <summary>
+        /// Volume up 50 click event handler
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void TsmMusicUp50ClickEH(object sender, EventArgs e)
+        {
+            IncreaseVolume(50);
+        }
+
+        /// <summary>
+        /// Volume up to max click event handler
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void TsmMusicUpMaxClickEH(object sender, EventArgs e)
+        {
+            IncreaseVolume(100);
+        }
+
+        /// <summary>
+        /// Method to do the heavy lifting of all volume up click events
+        /// </summary>
+        /// <param name="amount"></param>
+        private void IncreaseVolume(int amount)
+        {
+            // Volume is not max
+            if (_musicVolume < 100)
+            {
+                // Add volume
+                _musicVolume = _musicVolume + amount;
+                // Volume is above max
+                if (_musicVolume > 100)
+                {
+                    // Set Volume to max
+                    _musicVolume = 100;
+                }
+                // Pass new volume to the sound manager
+                _soundManager.SetMusicVolume(_musicVolume);
+            }
+        }
+
+        /// <summary>
+        /// Click event handler for the volume down 10 menu item
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void TsmMusicDown10ClickEH(object sender, EventArgs e)
+        {
+            DecreaseVolume(10);
+        }
+
+        /// <summary>
+        /// Click event handler for the volume down 20 menu item
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void TsmMusicDown20ClickEH(object sender, EventArgs e)
+        {
+            DecreaseVolume(20);
+        }
+
+        /// <summary>
+        /// Click event handler for the volume down 50 menu item
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void TsmMusicDown50ClickEH(object sender, EventArgs e)
+        {
+            DecreaseVolume(50);
+        }
+
+        /// <summary>
+        /// Click event handler for the volume down to minimum menu item
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void TsmMusicDownMinClickEH(object sender, EventArgs e)
+        {
+            DecreaseVolume(100);
+        }
+
+        /// <summary>
+        /// Method to do all the heavy lifting for decreasing music volume
+        /// </summary>
+        /// <param name="amount"></param>
+        private void DecreaseVolume(int amount)
+        {
+            // If volume is not zero
+            if (_musicVolume > 0)
+            {
+                // Subtract volume
+                _musicVolume = _musicVolume - amount;
+                // Volume is below min
+                if (_musicVolume < 0)
+                {
+                    // Set volume to min
+                    _musicVolume = 0;
+                }
+                // Pass new volume to the sound manager
+                _soundManager.SetMusicVolume(_musicVolume);
             }
         }
     }
