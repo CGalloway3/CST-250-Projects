@@ -707,7 +707,9 @@ namespace MinesweeperGUIApp.UI.Forms
             if (File.Exists("Data/save.json"))
             {                
                 // file exists continue a saved game
-                ContinueSavedGame();          
+                ContinueSavedGame();
+                // Enable the pause button incase the load file is the first operation.
+                btnPause.Enabled = true;
             }
             else
             {

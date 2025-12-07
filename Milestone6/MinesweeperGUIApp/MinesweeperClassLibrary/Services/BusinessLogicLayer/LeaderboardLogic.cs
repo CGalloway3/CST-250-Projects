@@ -35,17 +35,6 @@ namespace MinesweeperClassLibrary.Services.BusinessLogicLayer
         }
 
         /// <summary>
-        /// Parameterized constructor for the class
-        /// </summary>
-        /// <param name="leaderboardEntries"></param>
-        public LeaderboardLogic(List<GameStat> leaderboardEntries)
-        {
-            // Set and initialize
-            _leaderboardEntries = leaderboardEntries;
-            _leaderboardDAO = new LeaderboardDAO();
-        }
-
-        /// <summary>
         /// Method to sort and return a list of game stats
         /// </summary>
         /// <param name="property"></param>
